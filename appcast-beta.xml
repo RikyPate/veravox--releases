@@ -17,7 +17,7 @@
             <sparkle:version>107</sparkle:version>
             <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://rikypate.github.io/veravox--releases/beta/Install_VeraVox_1.0.0.dmg" length="11126579" type="application/octet-stream" sparkle:edSignature="YqMSyEtjdNrR4Ug601XF34yJKf6S4BCXuNL3jmeEK2rFyMIBN04/kGyLtjZznw3YDxCf7vXtooEkVNVOVXO9BA=="/>
+            <enclosure url="https://rikypate.github.io/veravox--releases/beta/Install_VeraVox_1.0.0.dmg" length="11129043" type="application/octet-stream" sparkle:edSignature="WqpUyQlJbJX9JTxiSeFXPbynEl1x878i0FeSgNbWOlcPLPBrRkoiE05hCMe4hsNRUv4fNQrNH3jNw7OG/9nsCQ=="/>
         </item>
     </channel>
 </rss>
