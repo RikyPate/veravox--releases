@@ -408,8 +408,8 @@ p.body strong{color:var(--text);font-weight:600}
   <p class="body">VeraVox enumerates all CoreAudio output devices and classifies each by capability. The selector auto-refreshes on USB/Thunderbolt connect/disconnect. The selected device UID is persisted across launches.</p>
   <div class="device-grid">
     <div class="device-cell"><div class="device-indicator">🟢</div><div class="device-label">Bit-Perfect</div><div class="device-desc">Exposes at least one non-mixable integer physical format. Full bit-perfect PCM and DSD/DoP possible. Hog Mode can be acquired.</div></div>
-    <div class="device-cell"><div class="device-indicator">🟠</div><div class="device-label">System Mixer</div><div class="device-desc">Built-in transport type or only mixable formats. Audio passes through the CoreAudio system mixer. Not bit-perfect.</div></div>
-    <div class="device-cell"><div class="device-indicator">⚪</div><div class="device-label">Lossy</div><div class="device-desc">Bluetooth A2DP, AirPlay, or similar. Audio undergoes codec compression. Cannot be used for high-fidelity playback.</div></div>
+    <div class="device-cell"><div class="device-indicator">🟠</div><div class="device-label">System Mixer</div><div class="device-desc">Built-in transport type, AirPlay (ALAC lossless, max 16-bit / 44.1 kHz), or only mixable formats. Audio passes through the CoreAudio system mixer. Not bit-perfect.</div></div>
+    <div class="device-cell"><div class="device-indicator">⚪</div><div class="device-label">Lossy</div><div class="device-desc">Bluetooth A2DP. Audio undergoes lossy codec compression (SBC/AAC/aptX). Cannot be used for high-fidelity playback.</div></div>
   </div>
   <div class="note">The device selector is disabled during active Hog Mode playback. Changing the output device requires releasing Hog Mode and tearing down the IOProc. Stop playback before switching devices.</div>
 </section>
@@ -755,4 +755,11 @@ p.body strong{color:var(--text);font-weight:600}
     <div class="footer-brand"><em>Vera</em>Vox</div>
     <div class="footer-meta">
       Technical Press Kit — Beta Review Copy<br/>
-      <a href="https://veravox.audio">veravox.audio</a> &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="97e4e2e7e7f8e5e3d7e1f2e5f6e1f8efb9f6e2f3fef8">[email&#160;prote
+      <a href="https://veravox.audio">veravox.audio</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@veravox.audio">hello@veravox.audio</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
