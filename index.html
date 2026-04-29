@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>VeraVox Beta –Bit-Perfect Audio Player for macOS</title>
-<meta name="description" content="Download the VeraVox beta. Bit-perfect audio playback for macOS –PCM up to 32-bit/768kHz and DSD512 via DoP, directly to your DAC."/>
+<title>VeraVox Beta · Bit-Perfect Audio Player for macOS</title>
+<meta name="description" content="Download the VeraVox beta. Bit-perfect audio playback for macOS. PCM up to 32-bit/768kHz and DSD512 via DoP, directly to your DAC."/>
 <link rel="icon" type="image/png" href="VV_icon.png"/>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@300;400;500;600&display=swap');
@@ -190,7 +190,7 @@ p.body strong{color:var(--text);font-weight:600}
   <div class="cover-beta">Beta Program</div>
   <h1><em>Vera</em>Vox</h1>
   <p class="cover-sub">The signal, untouched.</p>
-  <p class="cover-desc">VeraVox is a bit-perfect audio player for macOS. Every sample of your audio files is delivered directly to your DAC –no DSP, no software volume, no compromise. PCM up to 32-bit/768&thinsp;kHz and DSD up to DSD512 via DoP.</p>
+  <p class="cover-desc">VeraVox is a bit-perfect audio player for macOS. Every sample of your audio files is delivered directly to your DAC. No DSP, no software volume, no compromise. PCM up to 32-bit/768&thinsp;kHz and DSD up to DSD512 via DoP.</p>
   <div class="cover-ctas">
     <a href="beta/Install_VeraVox_1.0.0.dmg" class="btn-dl">
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1v9M3.75 6.25L7.5 10l3.75-3.75M2.25 12.5h10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -220,14 +220,14 @@ p.body strong{color:var(--text);font-weight:600}
   <div class="glance-grid">
     <div class="glance-cell"><span class="gc-icon">Hog Mode</span><div class="gc-title">Exclusive Hardware Access</div><div class="gc-body">VeraVox acquires kAudioDevicePropertyHogMode, locking every other application out of the output device. No other process can touch the hardware.</div></div>
     <div class="glance-cell"><span class="gc-icon">IOProc</span><div class="gc-title">Direct CoreAudio Callback</div><div class="gc-body">Audio delivered via a registered AudioDeviceIOProc at real-time priority. Zero ARC traffic, zero dynamic allocation in the hot path.</div></div>
-    <div class="glance-cell"><span class="gc-icon am">DoP</span><div class="gc-title">Native DSD via DoP –up to DSD512</div><div class="gc-body">DSD data packed into DoP 32-bit words with alternating markers. No DSD-to-PCM conversion on the bit-perfect path.</div></div>
+    <div class="glance-cell"><span class="gc-icon am">DoP</span><div class="gc-title">Native DSD via DoP, up to DSD512</div><div class="gc-body">DSD data packed into DoP 32-bit words with alternating markers. No DSD-to-PCM conversion on the bit-perfect path.</div></div>
     <div class="glance-cell"><span class="gc-icon">Gapless</span><div class="gc-title">Sample-Accurate 3-Level Gapless</div><div class="gc-body">Track boundaries crossed inside a single IOProc callback. No click, no restart, no gap. The DAC relay never fires between tracks of identical format.</div></div>
     <div class="glance-cell"><span class="gc-icon cy">FFT</span><div class="gc-title">Audio Forensics &amp; Analysis</div><div class="gc-body">Adaptive-window FFT analysis detects fake hi-res, true bandwidth, effective bit depth, noise floor, and DC offset. Green / amber / red score card.</div></div>
     <div class="glance-cell"><span class="gc-icon cy">RTA</span><div class="gc-title">Spectrum Analyzer &amp; VU Meter</div><div class="gc-body">4096-point FFT at 30&thinsp;fps, Blackman-Harris window, A/C weighting, peak hold. Dual analog VU with IEC&thinsp;60268-17 ballistics.</div></div>
     <div class="glance-cell"><span class="gc-icon">SACD</span><div class="gc-title">SACD ISO &amp; DST Support</div><div class="gc-body">Full Scarlet Book parser for SACD ISO images. Per-track DSD extraction, sector by sector. DST-compressed frames decoded via streaming pipeline.</div></div>
     <div class="glance-cell"><span class="gc-icon cy">SIG GEN</span><div class="gc-title">Signal Generator &amp; Measurement</div><div class="gc-body">Six test patterns routed through the bit-perfect pipeline. Dual-channel analyser with level, frequency, phase, and bit-perfect verification.</div></div>
     <div class="glance-cell"><span class="gc-icon cy">PWA</span><div class="gc-title">Web Remote</div><div class="gc-body">Built-in HTTP server serves a Progressive Web App. Control VeraVox from any device on the local network. PIN-secured, WebSocket real-time updates.</div></div>
-    <div class="glance-cell"><span class="gc-icon">UPnP</span><div class="gc-title">UPnP / DLNA Streaming</div><div class="gc-body">Stream to network renderers –hi-fi streamers, AV receivers. The file is served directly; the renderer decodes it. Inherently bit-perfect.</div></div>
+    <div class="glance-cell"><span class="gc-icon">UPnP</span><div class="gc-title">UPnP / DLNA Streaming</div><div class="gc-body">Stream to network renderers: hi-fi streamers, AV receivers. The file is served directly; the renderer decodes it. Inherently bit-perfect.</div></div>
   </div>
 
   <!-- SIGNAL CHAIN -->
@@ -240,7 +240,7 @@ p.body strong{color:var(--text);font-weight:600}
       <div class="sc-node err"><div>Vol</div><div class="sc-sub">software</div></div><div class="sc-arrow bad"></div>
       <div class="sc-node"><div>DAC</div></div>
     </div>
-    <div class="sc-label">VeraVox –Hog Mode, Bit-Perfect</div>
+    <div class="sc-label">VeraVox · Hog Mode, Bit-Perfect</div>
     <div class="sc-row">
       <div class="sc-node active"><div>File</div><div class="sc-sub">native</div></div><div class="sc-arrow"></div>
       <div class="sc-node active"><div>Decoder</div><div class="sc-sub">ExtAudioFile / DoP</div></div><div class="sc-arrow"></div>
@@ -263,7 +263,7 @@ p.body strong{color:var(--text);font-weight:600}
   <h2 class="sec-h">Everything you throw at it.</h2>
   <div class="format-grid">
     <div class="fmt-block">
-      <div class="fmt-head"><span class="fmt-title">PCM –Lossless</span><span class="fdot"></span></div>
+      <div class="fmt-head"><span class="fmt-title">PCM · Lossless</span><span class="fdot"></span></div>
       <div class="frow"><span class="fext">FLAC</span><span class="fspec">up to 32-bit / 768 kHz</span></div>
       <div class="frow"><span class="fext">ALAC</span><span class="fspec">up to 32-bit / 384 kHz</span></div>
       <div class="frow"><span class="fext">WAV</span><span class="fspec">up to 32-bit / 768 kHz</span></div>
@@ -271,7 +271,7 @@ p.body strong{color:var(--text);font-weight:600}
       <div class="frow"><span class="fext">WavPack</span><span class="fspec">lossless / hybrid</span></div>
     </div>
     <div class="fmt-block">
-      <div class="fmt-head"><span class="fmt-title">DSD –Native</span><span class="fdot am"></span></div>
+      <div class="fmt-head"><span class="fmt-title">DSD · Native</span><span class="fdot am"></span></div>
       <div class="frow"><span class="fext">DSF</span><span class="fspec">DSD64 &rarr; DSD512</span></div>
       <div class="frow"><span class="fext">DFF</span><span class="fspec">DSD64 &rarr; DSD512</span></div>
       <div class="frow"><span class="fext">SACD ISO</span><span class="fspec">Scarlet Book + DST</span></div>
@@ -294,7 +294,7 @@ p.body strong{color:var(--text);font-weight:600}
 <section id="download">
   <div class="sec-eyebrow">Download</div>
   <h2 class="sec-h">Get the beta.</h2>
-  <p class="body">VeraVox is in active development. As a beta tester, you get early access to new features and your feedback directly shapes the product. The app includes <strong>automatic updates via Sparkle</strong> –you'll receive new builds without re-downloading.</p>
+  <p class="body">VeraVox is in active development. As a beta tester, you get early access to new features and your feedback directly shapes the product. The app includes <strong>automatic updates via Sparkle</strong>: you'll receive new builds without re-downloading.</p>
   <div class="callout">This is pre-release software. Some features may be incomplete or change between builds. Please report bugs and feedback to help us ship a solid v1.0.</div>
   <div class="dl-card">
     <div class="dl-hdr">
