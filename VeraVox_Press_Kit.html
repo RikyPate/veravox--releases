@@ -361,10 +361,10 @@ p.body strong{color:var(--text);font-weight:600}
   <div class="note">Setting macOS system volume to 100% does not bypass the system mixer — it applies unity-gain coefficient in the CoreAudio mixing stage operating in 32-bit float. Even at unity gain, the mixer may resample if the device rate differs from the file's native rate. Hog Mode eliminates the mixer entirely.</div>
 
   <h3 class="sub-h">DSD→PCM Fallback</h3>
-  <p class="body">When the DAC does not support DoP, VeraVox falls back to a sinc-Kaiser FIR decimation pipeline. DSD data is decimated using pre-computed byte lookup tables with overlap-save buffering for continuity across chunk boundaries. For DSD64, this produces a 352.8&thinsp;kHz Float32 PCM stream; for DSD128, 705.6&thinsp;kHz — delivered via AVAudioEngine bypassing the main mixer node. The Signal Path popover shows the full chain including the DSD→PCM Conversion step.</p>
+  <p class="body">When the DAC does not support DoP at the required carrier rate, VeraVox falls back to a sinc-Kaiser FIR decimation pipeline. DSD data is decimated using pre-computed byte lookup tables with overlap-save buffering for continuity across chunk boundaries. If the DAC supports non-mixable PCM formats, the decimated Int32 signal is output via exclusive mode (hog mode + IOProc), bypassing the system mixer entirely (Enhanced path, yellow LED). Otherwise, the Float32 output is delivered via AVAudioEngine (system mixer, orange LED). The Signal Path popover shows the full chain including the DSD→PCM Conversion step.</p>
 
   <h3 class="sub-h">Signal Path Indicator</h3>
-  <p class="body">During playback, a colored LED dot on the format badge shows playback quality at a glance: green (bit-perfect), blue (network bit-perfect via UPnP), or orange (system mixer). Click the badge to open a popover with the full processing chain — source, decode, sample rate conversion, lossy codec, output mode, and destination device. A purple "DAC Warm-Up" indicator appears below the badge when the warm-up sequence is active.</p>
+  <p class="body">During playback, a colored LED dot on the format badge shows playback quality at a glance: green (bit-perfect), yellow (enhanced — DSD converted to high-res PCM via exclusive mode), blue (network bit-perfect via UPnP), or orange (system mixer). Click the badge to open a popover with the full processing chain — source, decode, sample rate conversion, lossy codec, output mode, and destination device. A purple "DAC Warm-Up" indicator appears below the badge when the warm-up sequence is active.</p>
 </section>
 
 <!-- LIBRARY -->
@@ -664,7 +664,7 @@ p.body strong{color:var(--text);font-weight:600}
       <div class="frow"><span class="fext">DFF</span><span class="fspec">DSD64 → DSD512, multi-ch</span></div>
       <div class="frow"><span class="fext">SACD ISO</span><span class="fspec">Scarlet Book, DST decode</span></div>
       <div class="frow"><span class="fext">DoP</span><span class="fspec">bit-perfect via PCM carrier</span></div>
-      <div class="frow"><span class="fext">DSD→PCM</span><span class="fspec">FIR fallback when DAC lacks DoP</span></div>
+      <div class="frow"><span class="fext">DSD→PCM</span><span class="fspec">FIR fallback, exclusive mode when possible</span></div>
     </div>
     <div class="fmt-block">
       <div class="fmt-head"><span class="fmt-title">Compressed</span><span class="fdot"></span></div>
