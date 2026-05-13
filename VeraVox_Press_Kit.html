@@ -173,7 +173,7 @@ p.body strong{color:var(--text);font-weight:600}
   <div class="cover-eyebrow">Technical Press Kit — Confidential Beta</div>
   <h1><em>Vera</em>Vox</h1>
   <p class="cover-sub">The signal, untouched.</p>
-  <p class="cover-desc">VeraVox is a bit-perfect audio player for macOS. It delivers every sample of your audio files directly to your DAC, with zero DSP operations, zero software volume, and zero compromise. PCM up to 32-bit/768&thinsp;kHz and DSD up to DSD512 via DoP, via a native CoreAudio IOProc running under exclusive Hog Mode.</p>
+  <p class="cover-desc">VeraVox is a bit-perfect audio player for macOS. It delivers every sample of your audio files directly to your DAC, with no DSP, no mixer, and no software volume <em>in the player path</em>. PCM up to 32-bit/768&thinsp;kHz and DSD up to DSD512 via DoP &mdash; on capable DACs &mdash; through a native CoreAudio IOProc running under exclusive Hog Mode. Everything downstream of the DAC is delegated to the chain you&rsquo;ve built.</p>
   <div class="cover-meta">
     <div class="meta-item"><span class="meta-val">v1.0</span><span class="meta-lbl">Version</span></div>
     <div class="meta-item"><span class="meta-val">macOS 14+</span><span class="meta-lbl">Requirement</span></div>
@@ -186,7 +186,7 @@ p.body strong{color:var(--text);font-weight:600}
     <div class="spec-item"><span class="spec-val">768&thinsp;kHz</span><span class="spec-lbl">Max Sample Rate</span></div>
     <div class="spec-item"><span class="spec-val">DSD512</span><span class="spec-lbl">via DoP</span></div>
     <div class="spec-item"><span class="spec-val amber">Hog Mode</span><span class="spec-lbl">Exclusive HW</span></div>
-    <div class="spec-item"><span class="spec-val">0&times;</span><span class="spec-lbl">DSP Operations</span></div>
+    <div class="spec-item"><span class="spec-val">0&times;</span><span class="spec-lbl">DSP in Player Path</span></div>
     <div class="spec-item"><span class="spec-val">3-Level</span><span class="spec-lbl">Gapless</span></div>
     <div class="spec-item"><span class="spec-val">SIG GEN</span><span class="spec-lbl">Measurement Engine</span></div>
   </div>
@@ -218,7 +218,7 @@ p.body strong{color:var(--text);font-weight:600}
 <section id="glance">
   <div class="sec-eyebrow">At a Glance</div>
   <h2 class="sec-h">Everything you need to know, in one place.</h2>
-  <p class="body">VeraVox does one thing: it gets audio from a file to a DAC without touching it. No sample rate conversion, no mixing bus, no software volume, no floating-point intermediate representation. What the recording engineer encoded is what the DAC receives, sample for sample, bit for bit.</p>
+  <p class="body">VeraVox does one thing: it gets audio from a file to a DAC without touching it. No sample rate conversion, no mixing bus, no software volume, no floating-point intermediate representation in the player path. What the recording engineer encoded is what the DAC receives, sample for sample, bit for bit. Everything downstream &mdash; the DAC&rsquo;s own filters, its volume control if it has one, the preamp, the room &mdash; is delegated to the equipment designed for it.</p>
   <div class="glance-grid">
     <div class="glance-cell"><span class="gc-icon">Hog Mode</span><div class="gc-title">Exclusive Hardware Access</div><div class="gc-body">VeraVox acquires kAudioDevicePropertyHogMode before playback, locking every other application out of the output device. No other process — including the macOS system mixer — can touch the hardware while VeraVox holds the lock.</div></div>
     <div class="glance-cell"><span class="gc-icon">IOProc</span><div class="gc-title">Direct CoreAudio I/O Callback</div><div class="gc-body">Audio is delivered via a registered AudioDeviceIOProc at real-time priority, protected by a single os_unfair_lock — the lowest-latency primitive on Darwin. Zero ARC traffic, zero dynamic allocation in the hot path.</div></div>
@@ -228,7 +228,7 @@ p.body strong{color:var(--text);font-weight:600}
     <div class="glance-cell"><span class="gc-icon cy">Metal</span><div class="gc-title">GPU-Rendered Vectorscope at 60 fps</div><div class="gc-body">Real-time Lissajous XY display on GPU with additive blending and phosphor decay simulation. DSD streams are FIR-decimated before plotting — not PCM-converted. Triple-buffered vertex upload, no allocations in the render loop.</div></div>
     <div class="glance-cell"><span class="gc-icon cy">RTA</span><div class="gc-title">Real-Time Spectrum Analyzer</div><div class="gc-body">4096-point FFT at 30&thinsp;fps with Blackman-Harris window, logarithmic frequency axis, IEC&thinsp;61672 A/C weighting, peak hold, interactive cursor, and DSD support via FIR decimation. Line and gradient-fill display modes.</div></div>
     <div class="glance-cell"><span class="gc-icon">SACD</span><div class="gc-title">SACD ISO &amp; DST Support</div><div class="gc-body">Full Scarlet Book parser for SACD ISO images. Per-track DSD data extracted sector by sector. DST-compressed frames decoded via streaming pipeline with cancellation. Metadata from Area TOC and Master TOC.</div></div>
-    <div class="glance-cell"><span class="gc-icon am">0&times;</span><div class="gc-title">No DSP. No Volume. No Compromise.</div><div class="gc-body">No sample rate conversion, no software volume, no signal processing in the bit-perfect path. The only acceptable attenuation is analogue: the volume knob on your DAC or amplifier.</div></div>
+    <div class="glance-cell"><span class="gc-icon am">0&times;</span><div class="gc-title">No DSP in the Player Path</div><div class="gc-body">No sample rate conversion, no software volume, no signal processing in the bit-perfect path. Attenuation, EQ, room correction, and upsampling are delegated downstream &mdash; to the DAC, preamp, or processor designed for them.</div></div>
     <div class="glance-cell"><span class="gc-icon">ø</span><div class="gc-title">Polarity Inversion</div><div class="gc-body">Bit-perfect absolute polarity reversal: two's complement negation on PCM, marker-preserving bit flip on DSD. Exact algebraic operation — no dithering, no rounding, no dynamic range change.</div></div>
     <div class="glance-cell"><span class="gc-icon am">🌡</span><div class="gc-title">DAC Warm-Up</div><div class="gc-body">Streams DoP-encoded silence before the first track, stabilising oscillators and output stage temperature in exclusive mode. Configurable 1–10 seconds. Designed for tube-output and R-2R ladder DACs.</div></div>
     <div class="glance-cell"><span class="gc-icon">ⓘ</span><div class="gc-title">Metadata Viewer</div><div class="gc-body">Full tag reader for FLAC, ALAC, WAV, AIFF, WavPack, DSF, DFF, SACD ISO, MP3, AAC, and CUE sheets. Title, artist, album, year, genre, track/disc, composer, cover art at native resolution. Read-only — audio files are never modified.</div></div>
@@ -243,11 +243,16 @@ p.body strong{color:var(--text);font-weight:600}
 <!-- PHILOSOPHY -->
 <section id="philosophy">
   <div class="sec-eyebrow">Design Philosophy</div>
-  <h2 class="sec-h">Your DAC is the only processor that matters.</h2>
-  <p class="body">macOS CoreAudio is an excellent audio subsystem for general computing. In its default configuration, every stream passes through a shared mixing bus that applies sample rate conversion, 32-bit floating-point intermediate representation, and software volume scaling. These are deliberate design choices for a multi-application operating system. For bit-perfect playback, they are unacceptable.</p>
-  <p class="body">VeraVox treats the macOS audio stack not as a service to consume, but as a set of primitives to bypass. Hog Mode, non-mixable physical formats, direct IOProc registration, os_unfair_lock: these are CoreAudio's low-level mechanisms, designed precisely for applications that need exclusive, latency-critical hardware access. VeraVox uses all of them.</p>
-  <div class="callout">"The only bit-transparent attenuation is analogue: use the volume control on your DAC or integrated amplifier."</div>
-  <p class="body">VeraVox is distributed outside the Mac App Store. App Store sandboxing prohibits Hog Mode acquisition, non-mixable format negotiation, and the direct CoreAudio property writes the bit-perfect path requires. A sandboxed player cannot be bit-perfect in the strict sense. VeraVox does not compromise on this.</p>
+  <h2 class="sec-h">Your DAC is the processor that matters.</h2>
+  <p class="body">macOS CoreAudio is an excellent audio subsystem for general computing. In its default configuration, every stream passes through a shared mixing bus that applies sample rate conversion, 32-bit floating-point intermediate representation, and software volume scaling. These are deliberate design choices for a multi-application operating system. For bit-perfect playback, they are inappropriate.</p>
+  <p class="body">VeraVox treats the macOS audio stack not as a service to consume, but as a set of primitives to bypass. Hog Mode, non-mixable physical formats, direct IOProc registration, <span class="chip">os_unfair_lock</span>: these are CoreAudio's low-level mechanisms, designed precisely for applications that need exclusive, latency-critical hardware access. VeraVox uses all of them.</p>
+  <h3 class="sub-h">Player Path vs. Downstream</h3>
+  <p class="body">VeraVox's "no DSP, no mixer, no software volume" applies <strong>to the player path</strong> &mdash; everything between the source file and the DAC's USB receiver. It does not, and could not, make any claim about the chain that follows.</p>
+  <p class="body">Many high-end DACs (Chord, dCS, MSB, T+A) implement digital volume with high-order noise-shaping at the device's internal oversampled rate &mdash; an entirely different operation from applying a gain coefficient in the player. Rob Watts of Chord Electronics has argued explicitly that this is preferable to analog attenuation in many setups. VeraVox does not interfere with that design; it delivers the source untouched and lets the DAC do its job.</p>
+  <p class="body">The same applies to upsampling, EQ, room correction, and crossover filtering. If a downstream component (DAC, processor, room correction unit, integrated amplifier) is designed to perform one of those operations, VeraVox stays out of its way. The player&rsquo;s job is to feed the chain accurately, not to second-guess the equipment that follows.</p>
+  <div class="callout">Volume is delegated downstream &mdash; to the DAC, preamp, or integrated amplifier &mdash; where the operation can be performed with full knowledge of the analog stage and its dynamic range.</div>
+  <h3 class="sub-h">Distribution Outside the Mac App Store</h3>
+  <p class="body">VeraVox is distributed outside the Mac App Store. App Store sandboxing does not grant the entitlements VeraVox's bit-perfect path requires: Hog Mode acquisition, non-mixable physical format negotiation, and direct CoreAudio property writes are not part of any publicly available sandbox capability. Distributing outside the Mac App Store is therefore a technical prerequisite for VeraVox's design, not a stylistic choice.</p>
   <div class="signal-chain">
     <div class="sc-label">Standard macOS CoreAudio</div>
     <div class="sc-row">
@@ -257,7 +262,7 @@ p.body strong{color:var(--text);font-weight:600}
       <div class="sc-node err"><div>Vol</div><div class="sc-sub">software</div></div><div class="sc-arrow bad"></div>
       <div class="sc-node"><div>DAC</div></div>
     </div>
-    <div class="sc-label">VeraVox — Hog Mode, Bit-Perfect</div>
+    <div class="sc-label">VeraVox &mdash; Hog Mode, Bit-Perfect Player Path</div>
     <div class="sc-row">
       <div class="sc-node active"><div>File</div><div class="sc-sub">native</div></div><div class="sc-arrow"></div>
       <div class="sc-node active"><div>Decoder</div><div class="sc-sub">ExtAudioFile / DoP</div></div><div class="sc-arrow"></div>
@@ -299,7 +304,7 @@ p.body strong{color:var(--text);font-weight:600}
   <p class="body">Hog Mode is acquired immediately before playback and released after stop, restoring the device's original physical format and sample rate. VeraVox monitors <span class="chip">kAudioDevicePropertyDeviceIsAlive</span>: if the DAC is disconnected during playback, it stops gracefully within one callback interval — no crash, no hang. On initial acquisition, some DACs produce a brief relay click as the device transitions to exclusive mode. This occurs only once per session, never between gapless tracks of identical format.</p>
 
   <h3 class="sub-h">Memory Architecture</h3>
-  <p class="body">PCM ring buffer: 64&thinsp;KB read chunks, bounded size regardless of file length. DSD ring buffer: 8 seconds at DSD64/128, 4 seconds at DSD256+ to limit peak memory. Both PCM and DSD use a single-buffer gapless architecture: the next track's data is written contiguously into the same ring buffer, with no second buffer allocation required.</p>
+  <p class="body">PCM decode reads in 64&thinsp;KB chunks into a bounded ring buffer of fixed size, regardless of file length. DSD ring buffer: 8 seconds at DSD64/128, 4 seconds at DSD256+ to limit peak memory. Both PCM and DSD use a single-buffer gapless architecture: the next track's data is written contiguously into the same ring buffer, with no second buffer allocation required.</p>
 
   <h3 class="sub-h">Sleep Prevention</h3>
   <p class="body">During active playback, VeraVox asserts <span class="chip">kIOPMAssertPreventUserIdleSystemSleep</span> via IOKit to prevent macOS from sleeping. The assertion is released immediately on stop, pause, or error.</p>
@@ -323,6 +328,7 @@ p.body strong{color:var(--text);font-weight:600}
     <tr><td>DSD256</td><td>11.2896 MHz</td><td>705.6 kHz</td><td>~22 MB at 4 s</td></tr>
     <tr><td>DSD512</td><td>22.5792 MHz</td><td>1411.2 kHz</td><td>~45 MB at 4 s</td></tr>
   </table>
+  <div class="note">Higher DSD rates via DoP require a DAC capable of accepting the corresponding PCM carrier. DSD256 needs 705.6 kHz; DSD512 needs 1411.2 kHz. Many USB DACs cap at 705.6 kHz or lower &mdash; check your device&rsquo;s spec sheet before assuming DSD512 support. The DAC Diagnostic panel reports the maximum non-mixable carrier your device exposes.</div>
 
   <h3 class="sub-h">Streaming Architecture &amp; SACD ISO</h3>
   <p class="body">DSF and DFF files are read via streaming FileHandle in 128&thinsp;KB chunks — only the file header (~512 bytes) is loaded at startup. No full-file copy in RAM; memory usage is bounded to the ring buffer regardless of file length. SACD ISO images are parsed using a native Scarlet Book parser: the Master TOC at sector 510 locates both the stereo and multi-channel areas, and per-track DSD data is extracted sector by sector. DST-compressed tracks are decoded via a streaming pipeline with a C-language decoder bridge and a cancellation token for stopping mid-decode without blocking.</p>
@@ -468,7 +474,7 @@ p.body strong{color:var(--text);font-weight:600}
   <p class="body">Real-time FFT frequency-domain display updated at 30&thinsp;fps. A 4096-point FFT with Blackman-Harris window (&minus;92&thinsp;dB sidelobe rejection) produces 2048 output bins mapped onto a logarithmic frequency axis from 20&thinsp;Hz to the Nyquist frequency. Features include five-level EMA smoothing, IEC&thinsp;61672 A/C frequency weighting, peak hold with 1.5&thinsp;s flat hold and 30&thinsp;dB/s decay, interactive crosshair cursor with sub-bin interpolation, and line or gradient-fill display modes. DSD streams are FIR-decimated to PCM using the same sinc-Kaiser filter shared by the Vectorscope. The frequency axis updates dynamically when switching between tracks at different sample rates. Opened via &#8984;&#8679;S or the toolbar icon.</p>
 
   <h3 class="sub-h">VU Meter</h3>
-  <p class="body">Dual analog-style VU meter (L/R) with IEC&thinsp;60268-17 ballistics, modelled as a second-order spring-mass-damper system (&omega;&thinsp;=&thinsp;13.5&thinsp;rad/s, &zeta;&thinsp;=&thinsp;0.81, per Lobdell &amp; Allen, JASA 2007). Approximately 300&thinsp;ms rise time to 99% with 1.5% overshoot &mdash; identical to a real moving-coil meter. Calibrated to K-14 metering (0&thinsp;VU&thinsp;=&thinsp;&minus;14&thinsp;dBFS), with a nonlinear amplitude-proportional scale from &minus;20 to +3&thinsp;VU. Per-channel RMS for PCM via interleaved modulo indexing; mono FIR-decimated RMS for DSD. Needle animation at 60&thinsp;fps, RMS data at 30&thinsp;fps from the shared StreamAnalyzer. Warm amber backlit aesthetic inspired by Sifam&thinsp;AL19 and Pioneer&thinsp;RT-909. Opened via &#8984;&#8679;U or the toolbar icon.</p>
+  <p class="body">Dual analog-style VU meter (L/R) with IEC&thinsp;60268-17 ballistics, modelled as a second-order spring-mass-damper system (&omega;&thinsp;=&thinsp;13.5&thinsp;rad/s, &zeta;&thinsp;=&thinsp;0.81, per Lobdell &amp; Allen, JASA 2007). Approximately 300&thinsp;ms rise time to 99% with 1.5% overshoot &mdash; the response of a real moving-coil meter. Calibrated to K-14 metering (0&thinsp;VU&thinsp;=&thinsp;&minus;14&thinsp;dBFS), with a nonlinear amplitude-proportional scale from &minus;20 to +3&thinsp;VU. Per-channel RMS for PCM via interleaved modulo indexing; mono FIR-decimated RMS for DSD. Needle animation at 60&thinsp;fps, RMS data at 30&thinsp;fps from the shared StreamAnalyzer. Mechanical response inspired by the Sifam&thinsp;AL19 moving-coil panel meter; the warm amber back-light is a visual nod to the Pioneer&thinsp;RT-909&rsquo;s fluorescent VU display &mdash; aesthetic only, not the underlying meter type. Opened via &#8984;&#8679;U or the toolbar icon.</p>
 
   <h3 class="sub-h">DAC Diagnostic Panel</h3>
   <p class="body">Queries every physical format exposed by the selected DAC's output stream via CoreAudio (kAudioStreamPropertyAvailablePhysicalFormats), sorted by capability — non-mixable first, then by container suitability. The currently active format is highlighted with an ACTIVE badge.</p>
@@ -640,8 +646,8 @@ p.body strong{color:var(--text);font-weight:600}
   <p class="body">If the renderer becomes unreachable (network disruption, device restart, Wi-Fi loss), VeraVox detects the failure after 5 consecutive poll errors (~5 seconds) and displays a red error banner. Probing continues every 10 seconds. When the renderer comes back online, a green "Renderer reconnected" banner appears and playback can be resumed.</p>
 
   <h3 class="sub-h">Volume</h3>
-  <p class="body">VeraVox does <strong>not</strong> provide volume control for UPnP renderers. This is by design: applying digital volume would compromise the bit-perfect signal path. Use the renderer's own volume control (hardware knob, remote, or native app).</p>
-  <div class="callout">"The only bit-transparent attenuation is analogue" — this principle extends to UPnP output. VeraVox serves the file untouched; the renderer and its DAC handle the rest.</div>
+  <p class="body">VeraVox does <strong>not</strong> apply volume to UPnP renderers. This is consistent with the player&rsquo;s overall design: VeraVox serves the file untouched and lets the renderer&rsquo;s own audio stage handle the rest. Use the renderer&rsquo;s own volume control (hardware knob, remote, or native app) &mdash; many modern streamers implement digital volume with high-order noise-shaping at the device&rsquo;s internal rate, which is a different operation from applying a player-side coefficient.</p>
+  <div class="callout">Volume is delegated to the endpoint &mdash; the renderer&rsquo;s own audio stage, where it can be performed with knowledge of the device&rsquo;s downstream chain. VeraVox supplies the source, untouched.</div>
 </section>
 
 <!-- FORMATS -->
@@ -740,7 +746,7 @@ p.body strong{color:var(--text);font-weight:600}
       <div class="pf"><div class="pch">✓</div>NAS &amp; network storage with adaptive buffering</div>
       <div class="pf"><div class="pch">✓</div>Web Remote — control from any device on the network</div>
       <div class="pf"><div class="pch">✓</div>UPnP/DLNA streaming to network renderers</div>
-      <div class="pf"><div class="pch">✓</div>Zero DSP · zero software volume · zero compromise</div>
+      <div class="pf"><div class="pch">✓</div>No DSP, no mixer, no software volume in the player path</div>
     </div>
     <div class="pricing-note">
       macOS 14 Sonoma or later &nbsp;·&nbsp; Apple Silicon &amp; Intel &nbsp;·&nbsp; Direct download &nbsp;·&nbsp; v1.x updates included<br/>

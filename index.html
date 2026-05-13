@@ -191,7 +191,7 @@ p.body strong{color:var(--text);font-weight:600}
   <div class="cover-beta">Beta Program</div>
   <h1><em>Vera</em>Vox</h1>
   <p class="cover-sub">The signal, untouched.</p>
-  <p class="cover-desc">VeraVox is a bit-perfect audio player for macOS. Every sample of your audio files is delivered directly to your DAC. No DSP, no software volume, no compromise. PCM up to 32-bit/768&thinsp;kHz and DSD up to DSD512 via DoP.</p>
+  <p class="cover-desc">VeraVox is a bit-perfect audio player for macOS. Every sample of your audio files is delivered directly to your DAC, with no DSP, no mixer, and no software volume in the player path. PCM up to 32-bit/768&thinsp;kHz and DSD up to DSD512 via DoP, on capable DACs. Everything downstream is delegated to the chain you&rsquo;ve built.</p>
   <div class="cover-ctas">
     <a href="beta/Install_VeraVox_1.0.0.dmg" class="btn-dl" data-goatcounter-click="download-beta-hero" data-goatcounter-title="Download Beta (hero)">
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1v9M3.75 6.25L7.5 10l3.75-3.75M2.25 12.5h10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -208,7 +208,7 @@ p.body strong{color:var(--text);font-weight:600}
     <div class="spec-item"><span class="spec-val">768&thinsp;kHz</span><span class="spec-lbl">Max Sample Rate</span></div>
     <div class="spec-item"><span class="spec-val">DSD512</span><span class="spec-lbl">via DoP</span></div>
     <div class="spec-item"><span class="spec-val amber">Hog Mode</span><span class="spec-lbl">Exclusive HW</span></div>
-    <div class="spec-item"><span class="spec-val">0&times;</span><span class="spec-lbl">DSP Operations</span></div>
+    <div class="spec-item"><span class="spec-val">0&times;</span><span class="spec-lbl">DSP in Player Path</span></div>
     <div class="spec-item"><span class="spec-val">SIG GEN</span><span class="spec-lbl">Measurement</span></div>
   </div>
 </div>
@@ -217,7 +217,7 @@ p.body strong{color:var(--text);font-weight:600}
 <section id="glance">
   <div class="sec-eyebrow">At a Glance</div>
   <h2 class="sec-h">Everything your DAC deserves.</h2>
-  <p class="body">VeraVox does one thing: it gets audio from a file to a DAC without touching it. No sample rate conversion, no mixing bus, no software volume. What the recording engineer encoded is what the DAC receives, sample for sample, bit for bit.</p>
+  <p class="body">VeraVox does one thing: it gets audio from a file to a DAC without touching it. No sample rate conversion, no mixing bus, no software volume in the player path. What the recording engineer encoded is what the DAC receives, sample for sample, bit for bit &mdash; everything downstream is delegated to the equipment designed for it.</p>
   <div class="glance-grid">
     <div class="glance-cell"><span class="gc-icon">Hog Mode</span><div class="gc-title">Exclusive Hardware Access</div><div class="gc-body">VeraVox acquires kAudioDevicePropertyHogMode, locking every other application out of the output device. No other process can touch the hardware.</div></div>
     <div class="glance-cell"><span class="gc-icon">IOProc</span><div class="gc-title">Direct CoreAudio Callback</div><div class="gc-body">Audio delivered via a registered AudioDeviceIOProc at real-time priority. Zero ARC traffic, zero dynamic allocation in the hot path.</div></div>
@@ -241,7 +241,7 @@ p.body strong{color:var(--text);font-weight:600}
       <div class="sc-node err"><div>Vol</div><div class="sc-sub">software</div></div><div class="sc-arrow bad"></div>
       <div class="sc-node"><div>DAC</div></div>
     </div>
-    <div class="sc-label">VeraVox · Hog Mode, Bit-Perfect</div>
+    <div class="sc-label">VeraVox &middot; Hog Mode, Bit-Perfect Player Path</div>
     <div class="sc-row">
       <div class="sc-node active"><div>File</div><div class="sc-sub">native</div></div><div class="sc-arrow"></div>
       <div class="sc-node active"><div>Decoder</div><div class="sc-sub">ExtAudioFile / DoP</div></div><div class="sc-arrow"></div>
