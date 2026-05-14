@@ -6,6 +6,14 @@
         <item>
             <title>1.0.0</title>
             <pubDate>Mon, 27 Apr 2026 18:45:49 +0200</pubDate>
+            <sparkle:version>134</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://rikypate.github.io/veravox--releases/beta/Install_VeraVox_1.0.0.dmg" length="11759722" type="application/octet-stream" sparkle:edSignature="ZxwWafTjVx8dkCa9+vxPLJ4vXgMNbRens9PUqZ/AzQ+dOPonZT3MLqEO5Rr5A0d77yAq2eXpPhYCQIfFCHR4DA=="/>
+        </item>
+        <item>
+            <title>1.0.0</title>
+            <pubDate>Mon, 27 Apr 2026 18:45:49 +0200</pubDate>
             <sparkle:version>133</sparkle:version>
             <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
@@ -18,14 +26,6 @@
             <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://rikypate.github.io/veravox--releases/beta/Install_VeraVox_1.0.0.dmg" length="11753848" type="application/octet-stream" sparkle:edSignature="JjbA/KkzjnfZZGfmgltQ6lk1iuirRzAxHIt5ykCCZVDVA7ejimOY6lxS59Z5ZiplQKtFx1zlXw1jt4qTBN25DA=="/>
-        </item>
-        <item>
-            <title>1.0.0</title>
-            <pubDate>Mon, 27 Apr 2026 18:45:49 +0200</pubDate>
-            <sparkle:version>131</sparkle:version>
-            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://rikypate.github.io/veravox--releases/beta/Install_VeraVox_1.0.0.dmg" length="11723980" type="application/octet-stream" sparkle:edSignature="UYaVL/aeiAhyAh6LWagIHjdjn9XHKu4L7KS9pCJlGXG8XEQ+rS5vCCX00HjTIzdsMnBnKqdbI2kQga3YUMHnAg=="/>
         </item>
     </channel>
 </rss>
