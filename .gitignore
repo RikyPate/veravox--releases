@@ -1,0 +1,10 @@
+# DMG e delta dei nuovi build vivono su GitHub Releases.
+# package.sh li scrive ancora in beta/ e release/ come cache locale per
+# Sparkle generate_appcast, ma non vanno committati.
+# I file legacy gia' tracked (148/149/150 + relativi delta) restano fino
+# al cleanup programmato ~30gg post-cutover.
+# Riferimento: memory/distribution_migration_plan.md
+beta/*.dmg
+beta/*.delta
+release/*.dmg
+release/*.delta
