@@ -5,16 +5,17 @@
         <language>en</language>
         <item>
             <title>1.0.0</title>
-            <pubDate>Wed, 27 May 2026 09:51:10 +0200</pubDate>
-            <sparkle:version>152</sparkle:version>
+            <pubDate>Wed, 27 May 2026 18:56:05 +0200</pubDate>
+            <sparkle:version>153</sparkle:version>
             <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-152/Install_VeraVox_1.0.0_152.dmg" length="12376635" type="application/octet-stream" sparkle:edSignature="HXy/G/5AQsAyUckhabo/AGEXjJfxmi9Sk4dS4UeVn1cqyen5vEY3N2LlWEM7Hvqlx5h6W0qx0jX3vBFGsPRuBQ=="/>
+            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-153/Install_VeraVox_1.0.0_153.dmg" length="12381274" type="application/octet-stream" sparkle:edSignature="1rlW8DjE/z6K4x8qOqiqb3H/oFmpsnJ85MJG3Tg5py28bD364jyUE0gux8uAsVzomlUYwAA7evbd03SKbAEyAw=="/>
             <sparkle:deltas>
-                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-152/VeraVox152-151.delta" sparkle:deltaFrom="151" length="974370" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="sldujGKwDUKjMM3IZnAQMomkG4q7SGooQrJAxe1inxqpoRU5ZYBBEs+8YYLUy2rdxFnkYNqzOr2ABNs1yOSfAw=="/>
-                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-152/VeraVox152-150.delta" sparkle:deltaFrom="150" length="995406" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="nSW7jEnB0nRwdGQwBICAgU2vBzpRajSzecz/pHUrG6n9PP4zslWcshCU1mRSc5f/bD4Avq87BIpJ6qukRrEdCw=="/>
-                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-152/VeraVox152-149.delta" sparkle:deltaFrom="149" length="1044398" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="96qec8s9wri6J9aueexq+zRcVmqZk2mJfomOBWla7z+exSuBCtYgDx8R1ADTgg4a9ZRDoVOXyIboMpLAodPLCA=="/>
-                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-152/VeraVox152-148.delta" sparkle:deltaFrom="148" length="1047422" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="E5PDj87TLYqIvuSr8XUpwATUTtoAxQkK9702jI8reGMe1Ui4ZS6CgP0Oyliy3keB/dvdn5h39aEV7+DgzVbjAQ=="/>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-153/VeraVox153-152.delta" sparkle:deltaFrom="152" length="885506" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="WP7mYt8jarcfxYJJw4tmJIclY/A39Ns7RroKcf/N4qQ+f3GicDvUKXsA5MmCrhUPWfPEsWA/K3LBJGnwy0SPAQ=="/>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-153/VeraVox153-151.delta" sparkle:deltaFrom="151" length="1062778" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="n0MEbb0F7vQFmSSEw/K8UotsdLUGD9o1WqZ8ovDHnnbH/j8Q6ZYiZZyY8KQf/96zuiPxzqC2lVesP3P3xzOqCg=="/>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-153/VeraVox153-150.delta" sparkle:deltaFrom="150" length="1066226" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="RbFID9xmJp0iDXfY437HZVip3zK9z/k1MbBoBTbjYULrRvt38B/DLPM/98SIoJE35+f2M9pvvGxuZeVDSzBMAQ=="/>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-153/VeraVox153-149.delta" sparkle:deltaFrom="149" length="1112374" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="RfjseGvzNqIBN2/crDNbEdnfzXC2jbRjf8SDy2YYyx6b/nzRKQAbB1kLKYe7rFaOINY5cbeGrijN8uJCnW/yAg=="/>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-153/VeraVox153-148.delta" sparkle:deltaFrom="148" length="1117314" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="nWNPM2k1BMSaZu2oV2+efLOZjNtpKij/Xo2Qq2/3SUZUFXSqEUSCir3HbUILaQq7IuUstYnqo7xe/ufFHla8Dw=="/>
             </sparkle:deltas>
         </item>
     </channel>
