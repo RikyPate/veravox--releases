@@ -453,6 +453,19 @@ p.body strong{color:var(--text);font-weight:600}
   </table>
   <p class="body">Results are presented in a colour-coded score card: <strong>green</strong> for metrics consistent with the container's claims, <strong>amber</strong> for values lower than expected but inconclusive, <strong>red</strong> for clear inconsistencies.</p>
   <div class="note">DSD files are excluded from FFT-based analysis by design. Sigma-delta noise shaping intentionally elevates the noise floor in the ultrasonic region — applying PCM-derived bit-depth heuristics to a 1-bit PDM stream produces meaningless results.</div>
+
+  <h3 class="sub-h">Dynamic Range &mdash; Crest Factor DR &amp; EBU R128 LRA</h3>
+  <p class="body">For every Library track VeraVox can compute, strictly on user request, two industry-standard measures of dynamic range. The values live in the local Library database only and are never written back to the source files. Four entry points: right-click a single track, right-click an album (multi-selection aware), right-click a Music Folder, or run a library-wide pass from the Tools menu. While analysis is in flight, affected rows and album cards render a spinner in place of the badge; when the run ends, VeraVox returns to silence. No background loop, no automatic scanning.</p>
+  <table class="tech-table">
+    <tr><th>Metric</th><th>Standard</th><th>Algorithm</th></tr>
+    <tr><td>Crest Factor DR</td><td>Pleasurize Music Foundation TT DR Offline Meter</td><td>3 s RMS windows with 50&thinsp;% overlap, mono-summed signal, +3&thinsp;dB sine correction. Top 20&thinsp;% of windows, second-highest RMS vs second-highest peak. Reported as a single integer in dB (&ldquo;DR12&rdquo;, &ldquo;DR8&rdquo;).</td></tr>
+    <tr><td>R128 LRA</td><td>EBU Tech 3342 (Loudness Range)</td><td>ITU-R BS.1770-4 K-weighted pipeline. 3 s short-term loudness blocks at 100 ms hop, absolute gate at &minus;70 LUFS, relative gate at &minus;20 LU below the abs-gated mean. LRA = p95 &minus; p10 of the surviving blocks, in Loudness Units.</td></tr>
+    <tr><td>LUFS-I (integrated)</td><td>ITU-R BS.1770-4</td><td>Same K-weighted pipeline, 400 ms momentary blocks with 75&thinsp;% overlap, cascaded gating (&minus;70 LUFS absolute, &minus;10 LU relative). Persisted alongside DR and LRA and surfaced in the Track Info panel.</td></tr>
+    <tr><td>Sample Peak</td><td>File peak in dBFS</td><td>Largest absolute sample value, reported in dBFS. True Peak (BS.1770-4 Annex 2, 4&times; polyphase oversampling) not yet measured.</td></tr>
+  </table>
+  <p class="body">Multichannel material is handled per the respective standard: Crest Factor DR runs on a mono-summed signal (the Pleasurize convention), R128 LRA applies the full BS.1770 channel weighting (L,&thinsp;R,&thinsp;C,&thinsp;height = 1.0; LFE = 0; surrounds = &radic;2). The K-weighting filter is computed via the RBJ Audio EQ Cookbook bilinear transform; the deviation from the canonical BS.1770-4 digital coefficients tabulated at 48 kHz is under 0.5 dB on broadband material and is documented in the in-app Help.</p>
+  <p class="body">DSD sources (DSF, DFF) are analysed via the same sinc-Kaiser FIR decimation used by the Library waveform scanner. Results are flagged with a trailing asterisk (&ldquo;DR12*&rdquo;) to remind the reader that 0 dBFS on DSD is a mastering convention, not a hardware ceiling. SACD ISO support is in progress.</p>
+  <p class="body">Where the numbers appear: as compact monospaced badges next to the duration in every track list, as a MIN-of-tracks pill on the artwork of every album card in the Library grid (worst-master heuristic), as a discreet technical row beneath the now-playing artwork, and as a dedicated &ldquo;Dynamic Range&rdquo; card inside the Track Info panel. Two sort orders &mdash; &ldquo;Dynamic Range (DR)&rdquo; and &ldquo;Dynamic Range (R128)&rdquo; &mdash; surface the worst masters first in the Library lists.</p>
 </section>
 
 <!-- TOOLS -->
