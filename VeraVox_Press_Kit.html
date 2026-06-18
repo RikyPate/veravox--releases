@@ -636,7 +636,7 @@ p.body strong{color:var(--text);font-weight:600}
   </table>
 
   <h3 class="sub-h">Automatic Reconnection</h3>
-  <p class="body">When a previously offline volume comes back online (NAS wakes from sleep, USB drive re-plugged), VeraVox detects the mount event, re-resolves the security-scoped bookmark, and triggers an incremental scan. No manual intervention — the status badge transitions from red to green, and new files are picked up automatically. Tracks whose source volume is offline appear dimmed in the Playlist with a tooltip.</p>
+  <p class="body">When a previously offline volume comes back online (NAS wakes from sleep, USB drive re-plugged, file server reboots), VeraVox brings the folder back automatically, without needing to play a track first. For network shares it probes the server with a lightweight reachability check and remounts the share as soon as it answers; it also reacts to system mount events. The status badge transitions from red to green, the security-scoped bookmark is re-resolved, and an incremental scan picks up new files. A Reconnect button forces an immediate retry. Tracks and albums whose source volume is offline appear dimmed across the Playlist and Library, clearing automatically when the volume returns.</p>
 
   <h3 class="sub-h">Non-Blocking Startup</h3>
   <p class="body">Folder bookmarks are resolved asynchronously at launch using the <span class="chip">withoutMounting</span> option. The app starts instantly even if a NAS is powered off or a network share is unreachable — the UI never freezes. Offline folders are shown in red and reconnect automatically when their volume becomes available.</p>
