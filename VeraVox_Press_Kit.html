@@ -284,7 +284,7 @@ p.body strong{color:var(--text);font-weight:600}
     <div class="glance-cell"><span class="gc-icon cy">SIG GEN</span><div class="gc-title">Signal Generator &amp; Measurement Engine</div><div class="gc-body">Six test patterns (sine, beat, Lissajous, noise, impulse, reference) routed through the bit-perfect pipeline. Dual-channel analyser with level, frequency, phase, bit-perfect verification, and IEC 61672 A/C weighting. Latency calibration via cross-correlation.</div></div>
     <div class="glance-cell"><span class="gc-icon">NAS</span><div class="gc-title">NAS &amp; Network Storage</div><div class="gc-body">Full support for SMB, AFP, NFS shares and external drives. Volume health monitoring with automatic reconnection on wake. Adaptive preload buffering based on measured I/O latency (10s local, 20s fast network, 30s slow network). Non-blocking startup — the UI never freezes on unreachable volumes.</div></div>
     <div class="glance-cell"><span class="gc-icon cy">PWA</span><div class="gc-title">Web Remote</div><div class="gc-body">Built-in HTTP server serves a Progressive Web App — control VeraVox from any device on the local network. Full transport, playlist, library browsing, artwork, and device selection. PIN-secured, WebSocket real-time updates, Bonjour discovery. No internet, no app install required.</div></div>
-    <div class="glance-cell"><span class="gc-icon">UPnP</span><div class="gc-title">UPnP / DLNA Streaming</div><div class="gc-body">Stream to network renderers — hi-fi streamers, AV receivers, software players. The file is served directly via HTTP; the renderer decodes it. Inherently bit-perfect. SSDP auto-discovery, AVTransport SOAP control, gapless via SetNextAVTransportURI, native DSD streaming for capable devices.</div></div>
+    <div class="glance-cell"><span class="gc-icon">UPnP</span><div class="gc-title">UPnP / DLNA</div><div class="gc-body">Bit-perfect networking both ways. Send to any UPnP/DLNA renderer (served over HTTP, decoded untouched), or let VeraVox be the renderer — a control app pushes a stream and VeraVox plays it through the same engine as a local file, reporting whether what arrived is lossless or was transcoded upstream. SSDP discovery, AVTransport SOAP, GENA eventing.</div></div>
   </div>
 </section>
 
@@ -680,12 +680,12 @@ p.body strong{color:var(--text);font-weight:600}
 
 <!-- UPnP / DLNA -->
 <section id="upnp">
-  <div class="sec-eyebrow">UPnP / DLNA Streaming</div>
-  <h2 class="sec-h">Stream to any renderer on the network.</h2>
-  <p class="body">VeraVox can stream audio to UPnP/DLNA MediaRenderer devices on the local network: hi-fi network streamers, wireless DACs, and AV receivers from Linn, dCS, Lumin, Cambridge Audio, Naim, and others. The audio file is served directly over HTTP; the renderer decodes and plays it. VeraVox never touches the audio samples, making UPnP streaming inherently bit-perfect for renderers that support the source format natively.</p>
+  <div class="sec-eyebrow">UPnP / DLNA</div>
+  <h2 class="sec-h">Bit-perfect networking, both directions.</h2>
+  <p class="body">VeraVox speaks UPnP/DLNA both ways. It can <strong>send</strong> a track to any UPnP/DLNA MediaRenderer on the local network — the file is served directly over HTTP and the renderer decodes it, untouched — and it can <strong>be</strong> the renderer itself, playing a stream a control app pushes to it through the same bit-perfect engine as a local file. Both paths leave the samples unmodified.</p>
 
-  <h3 class="sub-h">Architecture</h3>
-  <p class="body">VeraVox acts as both a <strong>UPnP Control Point</strong> and a lightweight <strong>Media Server</strong>. Six new files implement the complete stack:</p>
+  <h3 class="sub-h">Sending — Control Point + Media Server</h3>
+  <p class="body">As a control point, VeraVox acts as both a <strong>UPnP Control Point</strong> and a lightweight <strong>Media Server</strong>:</p>
   <table class="tech-table">
     <tr><th>Component</th><th>Implementation</th><th>Role</th></tr>
     <tr><td>SSDPDiscovery</td><td>POSIX UDP multicast, GCD dispatch source</td><td>M-SEARCH queries to 239.255.255.250:1900 every 30 s</td></tr>
@@ -722,6 +722,20 @@ p.body strong{color:var(--text);font-weight:600}
   <h3 class="sub-h">Volume</h3>
   <p class="body">VeraVox does <strong>not</strong> apply volume to UPnP renderers. This is consistent with the player&rsquo;s overall design: VeraVox serves the file untouched and lets the renderer&rsquo;s own audio stage handle the rest. Use the renderer&rsquo;s own volume control (hardware knob, remote, or native app) &mdash; many modern streamers implement digital volume with high-order noise-shaping at the device&rsquo;s internal rate, which is a different operation from applying a player-side coefficient.</p>
   <div class="callout">Volume is delegated to the endpoint &mdash; the renderer&rsquo;s own audio stage, where it can be performed with knowledge of the device&rsquo;s downstream chain. VeraVox supplies the source, untouched.</div>
+
+  <h3 class="sub-h">Renderer Mode — VeraVox as the endpoint</h3>
+  <p class="body">The same machinery runs in reverse. Turned on as an opt-in (off by default), VeraVox advertises itself on the network as a UPnP/DLNA MediaRenderer. A control app pushes a track to it &mdash; the practical way to play a streaming service through VeraVox&rsquo;s engine, since the control app supplies the music and VeraVox renders it untouched. The defining design choice: a received stream takes the <strong>exact same path as a local file</strong>. The pushed URI is materialised and handed to the very same <code>AudioPlayer</code> local playback uses &mdash; format dispatch, Hog Mode / bit-perfect selection, ring buffer, channel routing, Signal Path, fade. Renderer mode is a new entry point for the signal, not a separate playback engine.</p>
+  <table class="tech-table">
+    <tr><th>Aspect</th><th>Behaviour</th></tr>
+    <tr><td>Same engine</td><td>Identical bit-perfect path to the DAC as a local file — no parallel, lesser chain.</td></tr>
+    <tr><td>Fast start</td><td>Progressive download to disk with a safe-start gate: a large hi-res file begins in seconds, and only real samples are ever played.</td></tr>
+    <tr><td>Gapless</td><td>The control point&rsquo;s next-track queue (SetNextAVTransportURI) feeds VeraVox&rsquo;s existing sample-accurate gapless engine.</td></tr>
+    <tr><td>Eventing</td><td>A GENA server emits LastChange NOTIFYs so the control point&rsquo;s state tracks VeraVox live; transport controls are bidirectional.</td></tr>
+    <tr><td>Resilience</td><td>A dropped control point, a dead source, a disconnected device, or turning the mode off mid-stream all stop playback in an orderly way — the renderer is never left orphaned.</td></tr>
+  </table>
+  <h3 class="sub-h">Signal Provenance</h3>
+  <p class="body">For a received stream, VeraVox reports the truth about what arrived: the format, sample rate and bit depth it <strong>probed from the file itself</strong> — not the values the metadata declared — and a verdict on whether the delivery is lossless or was re-encoded upstream by the control point. A transcode is made visible rather than silently inherited, which is also the clearest defence against misattributed blame. As far as we are aware, surfacing this provenance is uncommon among software renderers; we state it plainly, not as a claim of superiority.</p>
+  <div class="callout">VeraVox renders faithfully and tells you how faithful the delivery was. The signal, and the truth about it &mdash; untouched.</div>
 </section>
 
 <!-- FORMATS -->
@@ -820,7 +834,7 @@ p.body strong{color:var(--text);font-weight:600}
       <div class="pf"><div class="pch">✓</div>Music Library, Playlist, Mini Player, Metadata Viewer</div>
       <div class="pf"><div class="pch">✓</div>NAS &amp; network storage with adaptive buffering</div>
       <div class="pf"><div class="pch">✓</div>Web Remote — control from any device on the network</div>
-      <div class="pf"><div class="pch">✓</div>UPnP/DLNA streaming to network renderers</div>
+      <div class="pf"><div class="pch">✓</div>UPnP/DLNA both ways: stream to renderers, or be one (with signal provenance)</div>
       <div class="pf"><div class="pch">✓</div>No DSP, no mixer, no software volume in the player path</div>
     </div>
     <div class="pricing-note">
