@@ -283,7 +283,7 @@ p.body strong{color:var(--text);font-weight:600}
     <div class="glance-cell"><span class="gc-icon">⤓</span><div class="gc-title">Mini Player &amp; Output Selection</div><div class="gc-body">Floating always-on-top window with transport controls for desktop use. Output device selector enumerates all CoreAudio devices with Exclusive Ready / Shared Output / Lossy classification. Auto-refreshes on USB connect/disconnect.</div></div>
     <div class="glance-cell"><span class="gc-icon cy">SIG GEN</span><div class="gc-title">Signal Generator &amp; Measurement Engine</div><div class="gc-body">Six test patterns (sine, beat, Lissajous, noise, impulse, reference) routed through the bit-perfect pipeline. Dual-channel analyser with level, frequency, phase, bit-perfect verification, and IEC 61672 A/C weighting. Latency calibration via cross-correlation.</div></div>
     <div class="glance-cell"><span class="gc-icon">NAS</span><div class="gc-title">NAS &amp; Network Storage</div><div class="gc-body">Full support for SMB, AFP, NFS shares and external drives. Volume health monitoring with automatic reconnection on wake. Adaptive preload buffering based on measured I/O latency (10s local, 20s fast network, 30s slow network). Non-blocking startup — the UI never freezes on unreachable volumes.</div></div>
-    <div class="glance-cell"><span class="gc-icon cy">PWA</span><div class="gc-title">Web Remote</div><div class="gc-body">Built-in HTTP server serves a Progressive Web App — control VeraVox from any device on the local network. Full transport, playlist, library browsing, artwork, and device selection. PIN-secured, WebSocket real-time updates, Bonjour discovery. No internet, no app install required.</div></div>
+    <div class="glance-cell"><span class="gc-icon cy">PWA</span><div class="gc-title">Web Remote</div><div class="gc-body">Built-in HTTP server serves a Progressive Web App — control VeraVox from any device on the local network. Full transport, queue, library browsing, artwork, and device selection. PIN-secured, WebSocket real-time updates, Bonjour discovery. No internet, no app install required.</div></div>
     <div class="glance-cell"><span class="gc-icon">UPnP</span><div class="gc-title">UPnP / DLNA</div><div class="gc-body">Bit-perfect networking both ways. Send to any UPnP/DLNA renderer (served over HTTP, decoded untouched), or let VeraVox be the renderer — a control app pushes a stream and VeraVox plays it through the same engine as a local file, reporting whether what arrived is lossless or was transcoded upstream. SSDP discovery, AVTransport SOAP, GENA eventing.</div></div>
   </div>
 </section>
@@ -430,9 +430,9 @@ p.body strong{color:var(--text);font-weight:600}
 
 <!-- LIBRARY -->
 <section id="library">
-  <div class="sec-eyebrow">Library, Playlist &amp; Interface</div>
+  <div class="sec-eyebrow">Library, Queue &amp; Interface</div>
   <h2 class="sec-h">Three columns. Every library, fully browsable.</h2>
-  <p class="body">VeraVox's interface is divided into up to three resizable columns: Library (optional), Playlist (optional), and Player. All column boundaries are draggable. The layout resets to a clean state at any time via ⌘⌃0.</p>
+  <p class="body">VeraVox's interface is divided into up to three resizable columns: Library (optional), Queue (optional), and Player. All column boundaries are draggable. The layout resets to a clean state at any time via ⌘⌃0.</p>
 
   <h3 class="sub-h">Music Library</h3>
   <p class="body">The Library provides a browsable view of the music collection (by Home, Album, Artist, Genre, Composer, Folder, Smart Playlist, or Track) and acts as a source from which tracks are added to the queue. The Home tab is the default landing page, featuring horizontal carousels of Recently Added, Recently Played, and Most Played albums. The database is built from folder scans, stored locally with concurrent reads for responsiveness during scanning, and survives restarts. Watched folders are monitored via FSEvents: changes trigger an incremental rescan within seconds.</p>
@@ -459,8 +459,8 @@ p.body strong{color:var(--text);font-weight:600}
     </li>
   </ul>
 
-  <h3 class="sub-h">Playlist</h3>
-  <p class="body">The Playlist panel shows the active playback queue. Tracks play in order top to bottom. Double-clicking a track starts playback immediately. Shuffle randomises the queue order; Repeat cycles through Off → Repeat One → Repeat All, with dot indicators in the transport.</p>
+  <h3 class="sub-h">Queue</h3>
+  <p class="body">The Queue panel holds the tracks lined up for playback. Tracks play in order top to bottom. Double-clicking a track starts playback immediately. Shuffle randomises the queue order; Repeat cycles through Off → Repeat One → Repeat All, with dot indicators in the transport.</p>
 
   <h3 class="sub-h">Mini Player</h3>
   <p class="body">A compact floating window (⤓ in the toolbar) that stays always on top, providing Previous, Play/Pause, Next, track title, and a format badge. Shares AudioPlayer state with the main window — actions in either are immediately reflected in the other. Does not display Hog Mode status or stream diagnostics; those remain in the main window and the Stream Inspector.</p>
@@ -636,7 +636,7 @@ p.body strong{color:var(--text);font-weight:600}
   </table>
 
   <h3 class="sub-h">Automatic Reconnection</h3>
-  <p class="body">When a previously offline volume comes back online (NAS wakes from sleep, USB drive re-plugged, file server reboots), VeraVox brings the folder back automatically, without needing to play a track first. For network shares it probes the server with a lightweight reachability check and remounts the share as soon as it answers; it also reacts to system mount events. The status badge transitions from red to green, the security-scoped bookmark is re-resolved, and an incremental scan picks up new files. A Reconnect button forces an immediate retry. Tracks and albums whose source volume is offline appear dimmed across the Playlist and Library, clearing automatically when the volume returns.</p>
+  <p class="body">When a previously offline volume comes back online (NAS wakes from sleep, USB drive re-plugged, file server reboots), VeraVox brings the folder back automatically, without needing to play a track first. For network shares it probes the server with a lightweight reachability check and remounts the share as soon as it answers; it also reacts to system mount events. The status badge transitions from red to green, the security-scoped bookmark is re-resolved, and an incremental scan picks up new files. A Reconnect button forces an immediate retry. Tracks and albums whose source volume is offline appear dimmed across the Queue and Library, clearing automatically when the volume returns.</p>
 
   <h3 class="sub-h">Non-Blocking Startup</h3>
   <p class="body">Folder bookmarks are resolved asynchronously at launch using the <span class="chip">withoutMounting</span> option. The app starts instantly even if a NAS is powered off or a network share is unreachable — the UI never freezes. Offline folders are shown in red and reconnect automatically when their volume becomes available.</p>
@@ -659,8 +659,8 @@ p.body strong{color:var(--text);font-weight:600}
   <table class="tech-table">
     <tr><th>Feature</th><th>Description</th></tr>
     <tr><td>Now Playing</td><td>Full-size artwork, track info, format badge (DSD128, FLAC 24/96, etc.), seek bar, and transport controls: shuffle, previous, stop, play/pause, next, repeat.</td></tr>
-    <tr><td>Playlist</td><td>Browse the current queue, tap any track to play it, swipe to remove, or clear the entire playlist.</td></tr>
-    <tr><td>Library</td><td>Nine sub-tabs — Albums (cover art grid), Artists (alphabetical list), Tracks (flat track list), Genres, Composers, Tags, Folders, Playlists, Smart — with a persistent search bar that filters the active view in place, mirroring the desktop Library FTS5 behaviour. Tap an album to see its tracks. Tap an artist to open a grid of that artist's albums with cover art (mirroring the desktop Artist view), then drill in or use Play All / Add to Playlist for the artist's entire discography. The Folders tab browses the on-disk folder structure to any depth, mirroring the desktop Folder View.</td></tr>
+    <tr><td>Queue</td><td>Browse the current queue, tap any track to play it, swipe to remove, or clear the entire queue.</td></tr>
+    <tr><td>Library</td><td>Nine sub-tabs — Albums (cover art grid), Artists (alphabetical list), Tracks (flat track list), Genres, Composers, Tags, Folders, Playlists, Smart — with a persistent search bar that filters the active view in place, mirroring the desktop Library FTS5 behaviour. Tap an album to see its tracks. Tap an artist to open a grid of that artist's albums with cover art (mirroring the desktop Artist view), then drill in or use Play All / Add to Queue for the artist's entire discography. The Folders tab browses the on-disk folder structure to any depth, mirroring the desktop Folder View.</td></tr>
     <tr><td>Device Select</td><td>See all audio output devices with capability badges (Exclusive Ready, Shared Output, Lossy). Tap to switch the active device.</td></tr>
   </table>
 
@@ -831,7 +831,7 @@ p.body strong{color:var(--text);font-weight:600}
       <div class="pf"><div class="pch">✓</div>Signal Generator with dual-channel measurement engine</div>
       <div class="pf"><div class="pch">✓</div>DAC Warm-Up, Polarity Inversion (ø), DAC Diagnostic</div>
       <div class="pf"><div class="pch">✓</div>3-level sample-accurate gapless playback</div>
-      <div class="pf"><div class="pch">✓</div>Music Library, Playlist, Mini Player, Metadata Viewer</div>
+      <div class="pf"><div class="pch">✓</div>Music Library, Queue, Mini Player, Metadata Viewer</div>
       <div class="pf"><div class="pch">✓</div>NAS &amp; network storage with adaptive buffering</div>
       <div class="pf"><div class="pch">✓</div>Web Remote — control from any device on the network</div>
       <div class="pf"><div class="pch">✓</div>UPnP/DLNA both ways: stream to renderers, or be one (with signal provenance)</div>
