@@ -7,8 +7,18 @@
 <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png"/>
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png"/>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@300;400;500;600&display=swap');
-:root{--bg:#0a0d0b;--panel:#0d1310;--panel2:#111a15;--border:rgba(46,255,107,.13);--bdim:rgba(46,255,107,.06);--green:#2EFF6B;--gdim:#15883a;--gbg:rgba(46,255,107,.04);--amber:#FFB21A;--adim:#7a5208;--abg:rgba(255,178,26,.04);--cyan:#1AD9FF;--red:#FF4444;--text:#e8ede9;--tmid:#8fa893;--tdim:#445a4a;--mono:'DM Mono','Menlo',monospace;--serif:'DM Serif Display',Georgia,serif;--sans:'Instrument Sans',sans-serif;--r:8px}
+/* Self-hosted fonts (same .ttf as the main site) so the wordmark+pay-off
+   lockup always renders in DM Serif Display and never falls back to Georgia
+   (which breaks same-width). No Google Fonts dependency, consistent with the
+   site, landing, app and brand. Fonts/ ships next to this file. */
+@font-face{font-family:'DM Serif Display';src:url('Fonts/DMSerifDisplay-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'DM Serif Display';src:url('Fonts/DMSerifDisplay-Italic.ttf') format('truetype');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'DM Mono';src:url('Fonts/DMMono-Light.ttf') format('truetype');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:'DM Mono';src:url('Fonts/DMMono-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'DM Mono';src:url('Fonts/DMMono-Medium.ttf') format('truetype');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Instrument Sans';src:url('Fonts/InstrumentSans-VariableFont_wdth,wght.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Instrument Sans';src:url('Fonts/InstrumentSans-Italic-VariableFont_wdth,wght.ttf') format('truetype');font-weight:100 900;font-style:italic;font-display:swap}
+:root{--bg:#0a0d0b;--panel:#0d1310;--panel2:#111a15;--border:rgba(46,255,107,.13);--bdim:rgba(46,255,107,.06);--green:#2EFF6B;--gdim:#15883a;--gbg:rgba(46,255,107,.04);--amber:#FFB21A;--adim:#7a5208;--abg:rgba(255,178,26,.04);--teal:#00BDD4;--red:#FF4444;--text:#e8ede9;--tmid:#8fa893;--tdim:#445a4a;--mono:'DM Mono','Menlo',monospace;--serif:'DM Serif Display',Georgia,serif;--sans:'Instrument Sans',sans-serif;--r:8px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -17,9 +27,9 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:80px 0 60px;border-bottom:1px solid var(--bdim)}
 .cover-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:10px;margin-bottom:28px;opacity:0;animation:fadeUp .7s .1s ease forwards}
 .cover-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--gdim)}
-.cover h1{font-family:var(--serif);font-size:clamp(56px,9vw,88px);line-height:1.0;color:var(--text);margin-bottom:8px;opacity:0;animation:fadeUp .7s .18s ease forwards}
+.cover h1{font-family:var(--serif);font-size:clamp(52px,8vw,96px);line-height:1.0;color:var(--text);margin-bottom:10px;opacity:0;animation:fadeUp .7s .18s ease forwards}
 .cover h1 em{font-style:italic;color:var(--green)}
-.cover-sub{font-family:var(--serif);font-size:clamp(18px,3vw,26px);color:var(--tmid);margin-bottom:32px;opacity:0;animation:fadeUp .7s .26s ease forwards}
+.cover-sub{font-family:var(--serif);font-size:clamp(18.41px,2.833vw,33.99px);color:var(--tmid);margin-bottom:32px;opacity:0;animation:fadeUp .7s .26s ease forwards}
 .cover-desc{font-size:17px;line-height:1.8;color:var(--tmid);max-width:580px;margin-bottom:48px;opacity:0;animation:fadeUp .7s .34s ease forwards}
 .cover-meta{display:flex;gap:32px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .42s ease forwards}
 .meta-item{display:flex;flex-direction:column;gap:3px}
@@ -52,7 +62,7 @@ p.body strong{color:var(--text);font-weight:600}
 .glance-cell:hover{background:var(--panel2)}
 .gc-icon{font-family:var(--mono);font-size:11px;color:var(--green);background:var(--gbg);border:1px solid var(--border);border-radius:4px;padding:2px 8px;display:inline-block;margin-bottom:10px;letter-spacing:.08em}
 .gc-icon.am{color:var(--amber);background:var(--abg);border-color:rgba(255,178,26,.2)}
-.gc-icon.cy{color:var(--cyan);background:rgba(26,217,255,.06);border-color:rgba(26,217,255,.2)}
+.gc-icon.cy{color:var(--teal);background:rgba(0,189,212,.06);border-color:rgba(0,189,212,.2)}
 .gc-title{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--text);margin-bottom:6px}
 .gc-body{font-size:13px;line-height:1.65;color:var(--tmid)}
 .signal-chain{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:28px;font-family:var(--mono);font-size:12px;margin-top:32px}
@@ -98,7 +108,7 @@ p.body strong{color:var(--text);font-weight:600}
 .feat-item:last-child{border-bottom:none}
 .feat-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(46,255,107,.6);margin-top:8px;flex-shrink:0}
 .feat-dot.am{background:var(--amber);box-shadow:0 0 6px rgba(255,178,26,.6)}
-.feat-dot.cy{background:var(--cyan);box-shadow:0 0 6px rgba(26,217,255,.6)}
+.feat-dot.cy{background:var(--teal);box-shadow:0 0 6px rgba(0,189,212,.6)}
 .feat-title{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--text);margin-bottom:3px}
 .feat-desc{font-size:13px;line-height:1.65;color:var(--tmid)}
 .rate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:2px;background:var(--bdim);border:1px solid var(--bdim);border-radius:var(--r);overflow:hidden;margin-top:24px}
