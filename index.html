@@ -9,7 +9,17 @@
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png"/>
 <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@300;400;500;600&display=swap');
+/* Self-hosted fonts (same .ttf as the main site) so the wordmark+pay-off
+   lockup always renders in DM Serif Display and never falls back to Georgia
+   (which breaks same-width: pay-off/wordmark 0.79 instead of 1.0). No Google
+   Fonts dependency, consistent with the site, app and brand assets. */
+@font-face{font-family:'DM Serif Display';src:url('Fonts/DMSerifDisplay-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'DM Serif Display';src:url('Fonts/DMSerifDisplay-Italic.ttf') format('truetype');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'DM Mono';src:url('Fonts/DMMono-Light.ttf') format('truetype');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:'DM Mono';src:url('Fonts/DMMono-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'DM Mono';src:url('Fonts/DMMono-Medium.ttf') format('truetype');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Instrument Sans';src:url('Fonts/InstrumentSans-VariableFont_wdth,wght.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Instrument Sans';src:url('Fonts/InstrumentSans-Italic-VariableFont_wdth,wght.ttf') format('truetype');font-weight:100 900;font-style:italic;font-display:swap}
 :root{--bg:#0a0d0b;--panel:#0d1310;--panel2:#111a15;--border:rgba(46,255,107,.13);--bdim:rgba(46,255,107,.06);--green:#2EFF6B;--gdim:#15883a;--gbg:rgba(46,255,107,.04);--amber:#FFB21A;--adim:#7a5208;--abg:rgba(255,178,26,.04);--teal:#00BDD4;--red:#FF4444;--text:#e8ede9;--tmid:#8fa893;--tdim:#445a4a;--mono:'DM Mono','Menlo',monospace;--serif:'DM Serif Display',Georgia,serif;--sans:'Instrument Sans',sans-serif;--r:8px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
