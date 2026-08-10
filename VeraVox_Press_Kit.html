@@ -198,14 +198,14 @@ p.body strong{color:var(--text);font-weight:600}
 
 <!-- COVER -->
 <div class="cover">
-  <div class="cover-eyebrow">Technical Press Kit — Confidential Beta</div>
+  <div class="cover-eyebrow">Technical Press Kit — Version 1.0</div>
   <h1><em>Vera</em>Vox</h1>
   <p class="cover-sub">The signal, untouched.</p>
   <p class="cover-desc">VeraVox is a bit-perfect audio player for macOS. It delivers every sample of your audio files directly to your DAC, with no DSP, no mixer, and no software volume <em>in the player path</em>. PCM up to 32-bit/768&thinsp;kHz and DSD up to DSD512 via DoP &mdash; on capable DACs &mdash; through a native CoreAudio IOProc running under exclusive Hog Mode. Everything downstream of the DAC is delegated to the chain you&rsquo;ve built.</p>
   <div class="cover-meta">
     <div class="meta-item"><span class="meta-val">v1.0</span><span class="meta-lbl">Version</span></div>
     <div class="meta-item"><span class="meta-val">macOS 14+</span><span class="meta-lbl">Requirement</span></div>
-    <div class="meta-item"><span class="meta-val">TBA</span><span class="meta-lbl">Price</span></div>
+    <div class="meta-item"><span class="meta-val">&euro;69</span><span class="meta-lbl">Price</span></div>
     <div class="meta-item"><span class="meta-val">30 days</span><span class="meta-lbl">Full-Feature Trial</span></div>
     <div class="meta-item"><span class="meta-val">Direct</span><span class="meta-lbl">Distribution</span></div>
   </div>
@@ -238,6 +238,7 @@ p.body strong{color:var(--text);font-weight:600}
     <a href="#nas"       class="toc-link">NAS</a>
     <a href="#webremote" class="toc-link">Web Remote</a>
     <a href="#upnp"      class="toc-link">UPnP</a>
+    <a href="#tuneshine" class="toc-link">Tuneshine&trade;</a>
     <a href="#formats"   class="toc-link">Formats</a>
     <a href="#pricing"   class="toc-link">Pricing</a>
   </div>
@@ -751,6 +752,23 @@ p.body strong{color:var(--text);font-weight:600}
   <div class="callout">VeraVox renders faithfully and tells you how faithful the delivery was. The signal, and the truth about it &mdash; untouched.</div>
 </section>
 
+<!-- TUNESHINE -->
+<section id="tuneshine">
+  <div class="sec-eyebrow">Partner Integration</div>
+  <h2 class="sec-h">The cover you own, on a display across the room.</h2>
+  <p class="body">Tuneshine&trade; is an LED display in a wooden case, made by Tobias Butler, that shows the album art of what is playing. VeraVox drives it directly over the local network, and it is the first hardware integration built against Tuneshine&rsquo;s own HTTP API rather than through a music service.</p>
+  <p class="body">That distinction is the point. The display&rsquo;s built-in integrations identify music by looking it up online, which serves the mainstream catalogue and quietly fails for a self-made rip, a limited pressing, or a recording no database has catalogued. VeraVox sends the artwork <strong>embedded in the listener&rsquo;s own file</strong>, so what appears on the display is the cover that shipped with the music.</p>
+  <table class="tech-table">
+    <tr><th>Aspect</th><th>Detail</th></tr>
+    <tr><td>Discovery</td><td>VeraVox browses for displays on the local network and lists what it finds; an address can also be entered by hand. The resolved <span class="chip">.local</span> name is stored rather than a numeric address, so the link survives a DHCP reassignment.</td></tr>
+    <tr><td>What is sent</td><td>On each track change: the embedded cover art resized to roughly 256 px, plus title, artist and album. On stop, VeraVox clears its own override and the display returns to its idle image. A track with no embedded cover sends nothing; VeraVox never substitutes artwork it did not find in the file.</td></tr>
+    <tr><td>Where it runs</td><td>Entirely on the local network. No account, no cloud service, no internet connection. The integration is off by default and inert until a display is named.</td></tr>
+    <tr><td>Cost to playback</td><td>None. It sits outside the real-time audio path: one image resize and one small HTTP request per track change, on the same track-change signal the Web Remote and the system Now Playing panel already observe.</td></tr>
+  </table>
+  <div class="callout">The same principle as the rest of the player, applied to metadata: show what the file actually contains, and never invent what it does not.</div>
+  <p class="body" style="font-size:12px;opacity:.7">Tuneshine and the Tuneshine wordmark are trademarks of Tuneshine, Inc.</p>
+</section>
+
 <!-- FORMATS -->
 <section id="formats">
   <div class="sec-eyebrow">Supported Formats</div>
@@ -832,8 +850,8 @@ p.body strong{color:var(--text);font-weight:600}
   <div class="pricing-card">
     <div class="pricing-hdr">
       <div class="pricing-name">VeraVox</div>
-      <div class="pricing-num"><span class="pricing-amt">TBA</span></div>
-      <div class="pricing-cycle">pricing to be announced</div>
+      <div class="pricing-num"><span class="pricing-amt">&euro;69</span></div>
+      <div class="pricing-cycle">one-time purchase &middot; tax included</div>
       <div class="pricing-trial">◆ 30-day free trial — full features, no account</div>
     </div>
     <div class="pricing-feats">
@@ -862,7 +880,7 @@ p.body strong{color:var(--text);font-weight:600}
   <div class="doc-footer">
     <div class="footer-brand"><em>Vera</em>Vox</div>
     <div class="footer-meta">
-      Technical Press Kit — Beta Review Copy<br/>
+      Technical Press Kit — Version 1.0<br/>
       <a href="https://veravox.audio">veravox.audio</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@veravox.audio">hello@veravox.audio</a>
     </div>
   </div>
