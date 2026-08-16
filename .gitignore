@@ -8,3 +8,11 @@ beta/*.dmg
 beta/*.delta
 release/*.dmg
 release/*.delta
+
+# old_updates/ e' la quarantena di generate_appcast, non un'area da pubblicare.
+# Le regole sopra (beta/*.dmg, beta/*.delta) NON la coprono: in gitignore un
+# singolo * non attraversa le directory, quindi per mesi ogni build spostata
+# qui dentro e' stata committata e servita da GitHub Pages. Erano 387 file per
+# 1,5 GB di beta senza licensing, scaricabili da chiunque (R-288).
+beta/old_updates/
+release/old_updates/
