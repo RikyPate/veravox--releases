@@ -1,22 +1,60 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
     <channel>
-        <title>VeraVox Beta Updates</title>
+        <title>VeraVox Updates</title>
         <language>en</language>
         <item>
             <title>1.0.0</title>
-            <pubDate>Wed, 05 Aug 2026 17:33:31 +0200</pubDate>
-            <sparkle:version>217</sparkle:version>
+            <pubDate>Mon, 10 Aug 2026 18:52:59 +0200</pubDate>
+            <sparkle:version>218</sparkle:version>
             <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-217/Install_VeraVox_1.0.0_217.dmg" length="20497738" type="application/octet-stream" sparkle:edSignature="n+wzb4GVX5aqJUb8IiBUEMVBOTdUONAaQtWMzWDA8D6VVDc6cpFdFYUwcdVO+6LiPfSu7wiRXSzovyOMAvRrCQ=="/>
-            <sparkle:deltas>
-                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-217/VeraVox217-216.delta" sparkle:deltaFrom="216" length="1957710" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="jQW/sD01nzdCx+RC9/xWFsyOYM87mBaVcUYVq0Pxw26t+AQ1Jh4xb/dtGEvplR1NUTyJMcaNErXiyJh3JBA9Bw=="/>
-                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-217/VeraVox217-215.delta" sparkle:deltaFrom="215" length="3329962" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="w3CR5jznj+HtfMNSs5AdJL36IJJGpCb5gTy1eexTVdZCfx/kkk4HbIHbplSNvNlxSfCejIUoJPbVfbOREKdFDw=="/>
-                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-217/VeraVox217-214.delta" sparkle:deltaFrom="214" length="3626142" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="DzeiF1cqLE3h8GHfmT8guBkLdoH2EE1FTQz8jDqWE6HibpPdf7G5F1jHbc17sPnstw0vVRfJAbni2ESa2NybBQ=="/>
-                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-217/VeraVox217-213.delta" sparkle:deltaFrom="213" length="3742418" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="q94NEy+ARRoGHvq2LQxk7wQBA3BFP8aU21iGRCzIrgnNLPc2w8CsaNLY2CwOudI9RDKmreSxFw5xfwecoNJlBQ=="/>
-                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/beta-217/VeraVox217-212.delta" sparkle:deltaFrom="212" length="3811042" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="21/U5neVgdfwOJYuJV610hEZcvdmgvoqhIY4nLyCCWClFDJknVT32YPUKlDSDCRPYco4hOFhfZiLVm3FiLYVAA=="/>
-            </sparkle:deltas>
+            <description><![CDATA[<h2>VeraVox 1.0.0</h2>
+
+<p>This is the released version of the app you have been testing. Nothing in
+the playback path has changed since the last beta: same engine, same formats,
+same signal path.</p>
+
+<h3>What changes for you</h3>
+
+<ul>
+  <li>The beta period is over. On first launch VeraVox offers a 30-day free
+      trial, with no card and no account, or you can enter a licence key you
+      already have.</li>
+  <li>Your library, queues, saved playlists and settings are untouched. This
+      is an ordinary update, not a reinstall.</li>
+</ul>
+
+<h3>New since the last beta</h3>
+
+<ul>
+  <li>New in Settings: if you own a Tuneshine&trade; LED display, VeraVox can show
+      the cover art of what is playing on it. It sends the artwork embedded in
+      your own files, so a self-made rip shows its real cover. Off by default,
+      and everything stays on your local network.</li>
+  <li>Search understands more of what you type: a minus in front of a word
+      excludes it, and punctuation inside a title or a name no longer breaks
+      the query.</li>
+  <li>The Smart Playlists and saved playlists lists can be filtered by name,
+      in the app and in the Web Remote, and smart playlists gained a
+      "does not contain" rule for text fields.</li>
+  <li>The instrument windows look different: the panels and the booklet reader
+      now take the same window material, corners and border as every other
+      window in the app.</li>
+  <li>The scanning indicator now belongs to the scan that is really running:
+      it no longer vanishes part way through a rebuild, and it no longer
+      flickers when a background check finds nothing to do.</li>
+  <li>The diagnostic report is readable again. A single repeated line about
+      network devices was most of its length, and each device is now reported
+      once.</li>
+</ul>
+
+<p>Thank you. Several of these exist because you took the time to describe
+what you saw.</p>
+
+<p><a href="https://veravox.audio">veravox.audio</a></p>
+]]></description>
+            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-218/Install_VeraVox_1.0.0_218.dmg" length="20861707" type="application/octet-stream" sparkle:edSignature="hD4wp8uRycKl8T5WwsgjmT5coPplUimPTOm3LIYujlJ1Y4gvRQKbjHCP0MZzyP722Gicg1aww64N/vhcl1qJDw=="/>
         </item>
     </channel>
 </rss>
