@@ -1,0 +1,64 @@
+<h2>VeraVox 1.0.1</h2>
+
+<p>The first update since release. Your library, queues, saved playlists and
+settings are untouched: this is an ordinary update, and there is nothing to
+rebuild or re-scan afterwards.</p>
+
+<h3>Streaming to network players</h3>
+
+<ul>
+  <li>High resolution files could break up when VeraVox served them to a network
+      renderer, with DSD256 and DXD affected first. The cause sits outside
+      VeraVox, in the way recent versions of macOS move data on Macs whose
+      network card offloads segmentation. VeraVox now has two ways of sending
+      the audio and chooses between them by itself: it opens the route that is
+      not affected and serves the music through it, and if that route cannot be
+      opened it goes on using the previous one, so your renderer keeps playing
+      either way.</li>
+</ul>
+
+<h3>Windows</h3>
+
+<ul>
+  <li>VeraVox remembers where its windows were and how big they had been. The
+      main window had been reopening at its default size on every launch.</li>
+  <li>Help is a window of its own. It no longer holds the rest of the app still,
+      so you can read it while music plays, keep it pinned above the player, and
+      set the size of its text with the controls at the foot of its sidebar.</li>
+  <li>Help renders its own formatting instead of showing you the markup.</li>
+  <li>With a narrow player window, opening Settings from the expanded tool row
+      closed the popover at once. It stays open.</li>
+</ul>
+
+<h3>Library</h3>
+
+<ul>
+  <li>Album covers follow the file. A cover used to be written once and never
+      revisited, so replacing the artwork on disk and re-scanning changed
+      nothing on screen. A pass that re-reads the file now applies the cover it
+      finds there.</li>
+  <li>Two editions of the same album, scanned in the same batch, could end up
+      sharing a single cover. They no longer do.</li>
+  <li>Launching with the Library attached to the player is quick again, without
+      the spinning wheel.</li>
+</ul>
+
+<h3>Smaller things</h3>
+
+<ul>
+  <li>Playback Mode now has a submenu in Tools. It could be reached only from
+      the popover of the output picker, and two people have told us they could
+      not find it there.</li>
+  <li>In UPnP Renderer Mode, a control point that presses Play while VeraVox has
+      no local output selected gets a clear answer instead of silence.</li>
+  <li>Tools then Booklet is dimmed when there is no booklet to open, rather than
+      opening nothing.</li>
+  <li>The diagnostic report carries the physical formats your selected device
+      offers, and the state of the playback options.</li>
+  <li>Tuneshine&reg; is written with its registered mark.</li>
+</ul>
+
+<p>Thank you to everyone who took the time to describe what they saw. Most of
+what is above exists for that reason.</p>
+
+<p><a href="https://veravox.audio">veravox.audio</a></p>
