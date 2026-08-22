@@ -4,6 +4,76 @@
         <title>VeraVox Updates</title>
         <language>en</language>
         <item>
+            <title>1.0.2</title>
+            <pubDate>Sat, 22 Aug 2026 19:58:19 +0200</pubDate>
+            <sparkle:version>220</sparkle:version>
+            <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h2>VeraVox 1.0.2</h2>
+
+<p>An ordinary update. Your library, queues, saved playlists and settings are
+untouched, and there is nothing to rebuild or re-scan afterwards.</p>
+
+<h3>Playback</h3>
+
+<ul>
+  <li>Tracks played through Shared Output could stop before their end, and the
+      next one would start. It happened when the output device was sitting at a
+      sample rate higher than the file's, and it affected MP3, AAC, ALAC, WAV
+      and AIFF: a 44.1 kHz track ended at about 46% of itself on a device set to
+      96 kHz. The time display kept showing the full duration, so a track simply
+      ended before a number that was right, and seeking inside one of them
+      landed somewhere other than where it was asked to. Both are fixed. FLAC,
+      WavPack, DSD and RF64 files were never affected, and neither was Exclusive
+      Ready playback.</li>
+</ul>
+
+<h3>Appearance</h3>
+
+<ul>
+  <li>The Appearance menu marks the theme in use, so you can see which of the
+      three is active and that your choice was applied. The sun and moon button
+      now reads what is actually on screen: under the system theme on a dark Mac
+      it offers the light one, where before it offered dark and pressing it
+      changed nothing. The Analog and Modern choice for the instruments works
+      the same way.</li>
+</ul>
+
+<h3>Audio Analysis</h3>
+
+<ul>
+  <li>When a file is called out as fake hi-res for two reasons at once, the
+      sentence explaining that this is a measurement and not an accusation can
+      be read in full. Its last line used to be cut in half.</li>
+  <li>The numbers at the top and bottom of the spectrum's dB scale can be read.
+      They were cut across the middle. No grid line has moved, so the graph says
+      exactly what it said before.</li>
+</ul>
+
+<h3>Smaller things</h3>
+
+<ul>
+  <li>Opening a smart playlist and coming back leaves you where you were in the
+      list, rather than at the top. Albums, Artists, Genres, Composers and Tags
+      already worked that way; Smart Playlists was the one section that did
+      not.</li>
+  <li>Adding a tag in the Web Remote offers the tags already in your library,
+      the way the desktop editor does. Type a fragment, or tap a name, instead
+      of remembering the exact spelling on a phone or tablet.</li>
+</ul>
+
+<p>Most of what is above came from someone taking the time to describe what
+they saw.</p>
+
+<p><a href="https://veravox.audio">veravox.audio</a></p>
+]]></description>
+            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-220/Install_VeraVox_1.0.2_220.dmg" length="20996262" type="application/octet-stream" sparkle:edSignature="Kb/CTX/eNyg2S1WQ1TAJErusvvB/8kWdXZnmSEU9uOhMr7Pf8nGPXk1A4itWITAlk2icNxRhLniURFi4JguYBQ=="/>
+            <sparkle:deltas>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-220/VeraVox220-219.delta" sparkle:deltaFrom="219" length="1739298" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="wCqdrdhKF/P2IyTHuJRDAGzgvRzA1AuGIvJfKzkQIVRvDbbiQtjVUotX2xi38z9/g26sxIRACzniMtK0VfmLCA=="/>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-220/VeraVox220-218.delta" sparkle:deltaFrom="218" length="2542254" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="vJ2aWf4JiOQoP60rKLOwCqrIJoDLyq2OIazmF6pmhGggvga8KzKLNWav9ukWpKx1vRUxUTO73fZvwXtF0Ow/Dg=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.0.1</title>
             <pubDate>Thu, 20 Aug 2026 17:19:48 +0200</pubDate>
             <sparkle:version>219</sparkle:version>
@@ -74,7 +144,7 @@ what is above exists for that reason.</p>
 
 <p><a href="https://veravox.audio">veravox.audio</a></p>
 ]]></description>
-            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-219/Install_VeraVox_1.0.1_219.dmg" length="20994797" type="application/octet-stream" sparkle:edSignature="BYN1kFwieoLQtzXAJA5T0/2XkY80kmW74e6VqG4xPLMqQFVJUpWLUwlYzOo+p36YzCm4NiJoGMl9grV+49RCDg=="/>
+            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-220/Install_VeraVox_1.0.1_219.dmg" length="20994797" type="application/octet-stream" sparkle:edSignature="BYN1kFwieoLQtzXAJA5T0/2XkY80kmW74e6VqG4xPLMqQFVJUpWLUwlYzOo+p36YzCm4NiJoGMl9grV+49RCDg=="/>
             <sparkle:deltas>
                 <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-219/VeraVox219-218.delta" sparkle:deltaFrom="218" length="2336334" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="0P/0Fn/9COPKDh5gpmD0H22RThVNUUdgY3KiCndUMG0EE560PMKjwUmaPOlFLhx6fp7tzYan519AD7u0+N5nDQ=="/>
             </sparkle:deltas>
@@ -130,7 +200,7 @@ what you saw.</p>
 
 <p><a href="https://veravox.audio">veravox.audio</a></p>
 ]]></description>
-            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-219/Install_VeraVox_1.0.0_218.dmg" length="20861707" type="application/octet-stream" sparkle:edSignature="hD4wp8uRycKl8T5WwsgjmT5coPplUimPTOm3LIYujlJ1Y4gvRQKbjHCP0MZzyP722Gicg1aww64N/vhcl1qJDw=="/>
+            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-220/Install_VeraVox_1.0.0_218.dmg" length="20861707" type="application/octet-stream" sparkle:edSignature="hD4wp8uRycKl8T5WwsgjmT5coPplUimPTOm3LIYujlJ1Y4gvRQKbjHCP0MZzyP722Gicg1aww64N/vhcl1qJDw=="/>
         </item>
     </channel>
 </rss>

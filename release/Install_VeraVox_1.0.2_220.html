@@ -1,0 +1,57 @@
+<h2>VeraVox 1.0.2</h2>
+
+<p>An ordinary update. Your library, queues, saved playlists and settings are
+untouched, and there is nothing to rebuild or re-scan afterwards.</p>
+
+<h3>Playback</h3>
+
+<ul>
+  <li>Tracks played through Shared Output could stop before their end, and the
+      next one would start. It happened when the output device was sitting at a
+      sample rate higher than the file's, and it affected MP3, AAC, ALAC, WAV
+      and AIFF: a 44.1 kHz track ended at about 46% of itself on a device set to
+      96 kHz. The time display kept showing the full duration, so a track simply
+      ended before a number that was right, and seeking inside one of them
+      landed somewhere other than where it was asked to. Both are fixed. FLAC,
+      WavPack, DSD and RF64 files were never affected, and neither was Exclusive
+      Ready playback.</li>
+</ul>
+
+<h3>Appearance</h3>
+
+<ul>
+  <li>The Appearance menu marks the theme in use, so you can see which of the
+      three is active and that your choice was applied. The sun and moon button
+      now reads what is actually on screen: under the system theme on a dark Mac
+      it offers the light one, where before it offered dark and pressing it
+      changed nothing. The Analog and Modern choice for the instruments works
+      the same way.</li>
+</ul>
+
+<h3>Audio Analysis</h3>
+
+<ul>
+  <li>When a file is called out as fake hi-res for two reasons at once, the
+      sentence explaining that this is a measurement and not an accusation can
+      be read in full. Its last line used to be cut in half.</li>
+  <li>The numbers at the top and bottom of the spectrum's dB scale can be read.
+      They were cut across the middle. No grid line has moved, so the graph says
+      exactly what it said before.</li>
+</ul>
+
+<h3>Smaller things</h3>
+
+<ul>
+  <li>Opening a smart playlist and coming back leaves you where you were in the
+      list, rather than at the top. Albums, Artists, Genres, Composers and Tags
+      already worked that way; Smart Playlists was the one section that did
+      not.</li>
+  <li>Adding a tag in the Web Remote offers the tags already in your library,
+      the way the desktop editor does. Type a fragment, or tap a name, instead
+      of remembering the exact spelling on a phone or tablet.</li>
+</ul>
+
+<p>Most of what is above came from someone taking the time to describe what
+they saw.</p>
+
+<p><a href="https://veravox.audio">veravox.audio</a></p>
