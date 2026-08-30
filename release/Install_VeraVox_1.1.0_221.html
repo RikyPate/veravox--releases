@@ -1,0 +1,118 @@
+<h2>VeraVox 1.1.0</h2>
+
+<p>A larger update than the last two. Your library, queues, saved playlists and
+settings are untouched, and there is nothing to rebuild. Two things are worth
+knowing before you start.</p>
+
+<p>The way albums are grouped has been corrected, and VeraVox applies the
+correction to your existing library by itself the first time you open it after
+updating. It takes a couple of seconds and asks nothing of you.</p>
+
+<p>VeraVox also reads a few things from your files that it did not read before:
+the name of a disc inside a box set, the codec actually inside an .m4a, the
+tags of a file described by a CUE sheet. Those appear on albums the scanner
+reads again, so on an existing library you will see them after a Deep Re-scan,
+or after a Rescan of a single folder from the Folder Manager.</p>
+
+<h3>Speed</h3>
+
+<ul>
+  <li>Adding a folder to the library is substantially faster, on a local disk
+      and over a network drive alike, and so is every update after it. VeraVox
+      reads far less of each file to learn what it needs, so the saving is
+      largest where the reading was slowest. How long your own library takes
+      still depends on where the music lives and on what sits between VeraVox
+      and it. You can also start listening sooner: the first tracks become
+      playable while the rest of the folder is still being read. Track lengths
+      read from FLAC files are exact now, where they could be overstated by a
+      fraction of a second.</li>
+  <li>Adding a track to a long queue, reordering it, or loading a saved playlist
+      onto it is immediate, whatever the length of the queue and wherever the
+      music lives. On a library held on a network drive those gestures could
+      hold VeraVox still for a long while, and gestures made in quick
+      succession piled the waits up.</li>
+  <li>When the VeraVox window is covered, minimised, or the app is hidden, its
+      animations stop and resume untouched when you bring it back. Listening
+      with VeraVox in the background now costs a small fraction of what it did.
+      The analysis instruments are unaffected and go on measuring either
+      way.</li>
+</ul>
+
+<h3>Albums and box sets</h3>
+
+<ul>
+  <li>An album whose tracks name different artists, and which carries no album
+      artist of its own, used to appear split into one album per artist: a
+      soundtrack, or a classical record with two orchestras. It now stays whole,
+      under Various Artists, without anything being written to your files. If
+      you tag your own album artists, nothing changes for you, by design. A new
+      switch in Settings, Group Untagged Compilations, is on by default and
+      turning it off restores the previous grouping exactly and immediately.</li>
+  <li>A box set ripped as one file per disc with a CUE sheet beside each one
+      appeared as one album per disc, titled after the disc, with no disc
+      number, genre or year. It is now a single album with its real title, its
+      Disc 1 and Disc 2 sections, and the metadata the files declare. Single
+      disc rips made the same way gain their genre and year too.</li>
+  <li>A box set whose discs have names of their own shows the name beside the
+      number, so Disc 1 reads as the disc is called, including when that name is
+      declared in the form older ID3 tags are obliged to use.</li>
+  <li>Moving a box set, or any folder with subfolders inside it, to the Trash
+      makes it leave the Library on its own within seconds, as flat album
+      folders already did. It used to stay behind as a ghost album until the
+      next update.</li>
+  <li>Sorting by Year, or by Album Artist and Year, puts albums that share a
+      year in the order they were released rather than in alphabetical order.
+      This applies where your files declare a full date; with the year alone
+      nothing changes.</li>
+  <li>Updating the library is faster, and an album copied in while VeraVox is
+      watching no longer arrives without its title or cover. Every update used
+      to re-read hundreds of files that had not changed. A file already in your
+      library that arrived without its tags, which neither an update nor a Deep
+      Re-scan could repair before, is recovered by a Deep Re-scan now.</li>
+</ul>
+
+<h3>What VeraVox tells you about a file</h3>
+
+<ul>
+  <li>The Signal Path names the codec that is really inside the file. A track
+      bought from a store, an AAC inside an .m4a, used to read ALAC: a claim of
+      lossless decoding over a compressed file, on the one screen that exists to
+      tell the truth about the signal. It now reads AAC and says the decode is
+      lossy, and the Library rows, album cards, Track Info and Web Remote say
+      the same. The Lossless, Lossy and Hi-Res filters classify by the real
+      codec, so an AAC album in an .m4a leaves Lossless and appears under Lossy,
+      where you would look for it.</li>
+  <li>The panel listing supported formats names M4A, the extension ALAC and AAC
+      arrive with from an iTunes or Apple Music library. Those files always
+      opened and played; the list simply did not mention them.</li>
+  <li>A dropout caused by a starved buffer is recorded on every playback path
+      and appears in the exported diagnostic log, even if the Stream Inspector
+      was closed at the time. If you report one, the evidence is inside the file
+      you send, without anyone having to ask you to keep a panel open while you
+      listen.</li>
+</ul>
+
+<h3>Fixes</h3>
+
+<ul>
+  <li>In shuffle towards certain network players, HQPlayer 6 among them,
+      playback stopped by itself at the end of a track. Play restarted the same
+      track and stopped again at the same point, and only Next moved things on.
+      The queue now advances by itself with those players too.</li>
+  <li>With the Tuneshine&reg; panel enabled and the display unreachable, every
+      track change held the interface still for several seconds, and the
+      Sample Rate Switch Pause countdown appeared already half spent. Neither
+      happens now, and covers start appearing again on their own as soon as the
+      display can be reached.</li>
+  <li>On macOS 27 beta the Settings popover appeared visibly broken, with titles
+      cut off under the left edge and two of its cards overflowing on the right.
+      It is whole again, on macOS 26 and on macOS 27 beta alike.</li>
+  <li>The note and tip boxes in Help follow the width of the column, at any
+      window width and any text size, instead of standing as wide as their own
+      text.</li>
+</ul>
+
+<p>Most of what is above came from someone taking the time to describe what they
+saw.</p>
+
+<p><a href="https://veravox.audio">veravox.audio</a></p>
