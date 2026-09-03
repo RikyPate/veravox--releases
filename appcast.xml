@@ -4,6 +4,156 @@
         <title>VeraVox Updates</title>
         <language>en</language>
         <item>
+            <title>1.2.0</title>
+            <pubDate>Thu, 03 Sep 2026 20:01:09 +0200</pubDate>
+            <sparkle:fullReleaseNotesLink>https://veravox.audio/release-notes.html</sparkle:fullReleaseNotesLink>
+            <sparkle:version>222</sparkle:version>
+            <sparkle:shortVersionString>1.2.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h2>VeraVox 1.2.0</h2>
+
+<p>A deep update rather than a wide one. Your library, queues, saved playlists
+and settings are untouched, and there is nothing you need to do.</p>
+
+<p>The first time you scroll through the library after updating, VeraVox quietly
+rebuilds its cover thumbnails in a sharper format as it goes. It happens on that
+first pass and never again.</p>
+
+<p>A few of the corrections below concern what VeraVox reads from your files.
+Those settle on albums the scanner reads again, so on an existing library you
+will see them after a Deep Re-scan, or a Rescan of a single folder from the
+Folder Manager.</p>
+
+<h3>Playback</h3>
+
+<ul>
+  <li>VeraVox now starts a track with a real cushion of audio ready, and keeps
+      that cushion topped up while the track plays. On a slow disk, a busy
+      network share, or a drive that stops answering for a moment, the start of
+      a track and any hesitation during it could come out as silence while the
+      progress bar kept moving. On a fast local disk you will notice no
+      difference, because there was nothing to wait for.</li>
+  <li>Dragging the progress bar in the last seconds of a track inside a gapless
+      album now lands exactly where you put it.</li>
+  <li>Playing to a network renderer that moves to the next track by itself no
+      longer stops at the track change. VeraVox used to read that moment as the
+      renderer having nothing to play, when it was already loading the right
+      track.</li>
+</ul>
+
+<h3>The library, while you scroll it</h3>
+
+<ul>
+  <li>Scrolling through covers no longer shows you each one arriving, and going
+      back over ground you had already covered no longer reloads them. At the
+      largest cover size the artwork is sharper.</li>
+  <li>Fast scrolling in the detached Library window keeps up with your hand.
+      Covers now sit on a quiet ground instead of inside a glass card, and
+      selecting an album tints the ground around the cover rather than the
+      cover itself.</li>
+  <li>Every artist has one tile again. An artist could appear in two places in
+      the alphabet at once, with their albums and track count split between the
+      two.</li>
+  <li>The A-Z index lands where it says it will. Sorted by Album Artist it often
+      jumped somewhere else, and artists whose name begins with an accented
+      letter had no letter to reach them by. The same applies in All Tracks and
+      in the Web Remote.</li>
+</ul>
+
+<h3>What the library remembers</h3>
+
+<ul>
+  <li>An album made of one file per disc plus a CUE sheet no longer jumps back
+      to the top of Recently Added every time you re-scan, and albums from SACD
+      ISO images stop after one Rescan from the Folder Manager. A Dynamic Range
+      figure you had already measured is no longer thrown away with it. Dates
+      already lost cannot be recovered, but from here on they stay put.</li>
+  <li>The Booklet button no longer disappears from tracks whose tags you have
+      edited in place.</li>
+</ul>
+
+<h3>Finding your way around</h3>
+
+<ul>
+  <li>The library now says in words what is filtering and sorting it, in a strip
+      above the albums: each active filter as a pill you can lift with a click,
+      and the sort order whenever you have moved it off its default. Before, the
+      only sign was a dot on the filter icon, which is not a thing you look at
+      while scrolling. The command to sort Tags, until now reachable only from
+      the Web Remote, is on the Mac too.</li>
+  <li>The A-Z index has been redesigned: quiet letters at rest, a translucent
+      capsule under the pointer, and a glass lens on the letter you are dragging
+      to, with a callout showing it large.</li>
+  <li>Right-clicking a folder in Music Folders opens the VeraVox menu, as it
+      does everywhere else, and so does the row's own button. On saved playlists
+      the menu appears at the button you pressed.</li>
+  <li>Changing between light and dark with the Library window detached no longer
+      clears your filters, search, tab and open album. The other panels follow a
+      theme change straight away.</li>
+  <li>The resizable tool windows go full screen.</li>
+</ul>
+
+<h3>The queue</h3>
+
+<ul>
+  <li>The queue says how many tracks it holds and how long it runs, and while it
+      plays, how much of it is left. Select some rows and it tells you how long
+      the selection lasts.</li>
+  <li>A track dragged to the bottom now lands last, including when you drop it
+      in the empty space below the list, and a line shows where it will
+      land.</li>
+  <li>A long album reads as 1:44:23 rather than 104:23, and so does a track that
+      runs over an hour.</li>
+</ul>
+
+<h3>The Web Remote</h3>
+
+<ul>
+  <li>The transport bar shows the same waveform you see on the Mac, filling from
+      the left while the track is analysed. Drag to seek and the coloured part
+      follows your finger. The ABS/ADP pill beside the duration is the Mac's,
+      and the same preference: change it in one place and it changes in the
+      other.</li>
+  <li>Tap the number to the right of the bar to switch between total duration
+      and time remaining. Same preference as the Mac.</li>
+  <li>The A-Z index matches the desktop's, and the letter you are on lights up
+      with a callout beside it, so your finger does not hide where you are
+      going.</li>
+</ul>
+
+<h3>Smaller things</h3>
+
+<ul>
+  <li>The Help section on DSD to PCM now explains how memory behaves on that
+      path, so you can tell in advance what a long file will ask of your
+      Mac.</li>
+  <li>The icon beside the output selector reads properly in light theme, and the
+      two network states, VeraVox sending to a renderer and VeraVox receiving as
+      one, share the colour everything on the network uses. The icon tells them
+      apart: an aerial when audio arrives here, a globe when it leaves.</li>
+  <li>The tool icons across the top are grey exactly when they cannot be
+      pressed.</li>
+  <li><strong>Help &rarr; Release Notes</strong> opens the full history of what
+      changed in every version, newest first, so notes you updated past are no
+      longer out of reach. The same page is public on veravox.audio, and Sparkle
+      offers a Version History button when you check for updates and are already
+      up to date.</li>
+</ul>
+
+<p>Several of the improvements above began with someone taking the time to
+describe what they saw.</p>
+
+<p><a href="https://veravox.audio">veravox.audio</a></p>
+]]></description>
+            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-222/Install_VeraVox_1.2.0_222.dmg" length="21178681" type="application/octet-stream" sparkle:edSignature="Jrrn+hifatmXyxt83E94MWYnu71Bd0N2P2BxPA5qvmb6zuGqDQsbbgfogKm/b9p5NXsur3/INyhPv98KERY6Cg=="/>
+            <sparkle:deltas>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-222/VeraVox222-221.delta" sparkle:deltaFrom="221" length="2631710" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="AsvjVolb+EmDYCv8oW62kVKscBxR98DtRaseUbbr2piDJOmJUDkgUZcHpkoS5izQYzKezCITSDKHqo0nllVzCA=="/>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-222/VeraVox222-220.delta" sparkle:deltaFrom="220" length="3169806" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="O0rTQL2Vc0iPGfRiYBk0td9kKt5lBvxD6MyWLKgP91+JqTvO8cuK/gV8ehKnX4erHm9DcBFAe4iTemUfZvfNAg=="/>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-222/VeraVox222-219.delta" sparkle:deltaFrom="219" length="3324150" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="gKHAli1xsHGpaZrAxa3EQbZ+S4Gzo7159ZpDfoeXASNYcMJe9tVTWYXP1LSKifUeDreiDsFF5b4jawUrOrsTDA=="/>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-222/VeraVox222-218.delta" sparkle:deltaFrom="218" length="3647278" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="Np1CCrWVHrY9WPRoSxMCr+bi3fNNnvDwzOIV322JQ81v6W9BCaEY33ZXEM1s6+jnq8dtQUJNGWylUb37lxDlCw=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.1.0</title>
             <pubDate>Sun, 30 Aug 2026 16:20:28 +0200</pubDate>
             <sparkle:version>221</sparkle:version>
@@ -128,7 +278,7 @@ saw.</p>
 
 <p><a href="https://veravox.audio">veravox.audio</a></p>
 ]]></description>
-            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-221/Install_VeraVox_1.1.0_221.dmg" length="21065308" type="application/octet-stream" sparkle:edSignature="vuJZ53q84pjZ8cQ3gCe4ZAAR8euh3P51UMueVRrBWElN3X+oJm8TE81WKjsGg9+9/R9XromSIVPN3QiIXtZsCQ=="/>
+            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-222/Install_VeraVox_1.1.0_221.dmg" length="21065308" type="application/octet-stream" sparkle:edSignature="vuJZ53q84pjZ8cQ3gCe4ZAAR8euh3P51UMueVRrBWElN3X+oJm8TE81WKjsGg9+9/R9XromSIVPN3QiIXtZsCQ=="/>
             <sparkle:deltas>
                 <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-221/VeraVox221-220.delta" sparkle:deltaFrom="220" length="2452834" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="O5tThf81jef6qJ02ZZ2uuu86iuSomKaffvtNCs5MFd/U3jGQKx65YrEY4ujTiZ9SEUkzSCHl1gPoz5W3mYTWBg=="/>
                 <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-221/VeraVox221-219.delta" sparkle:deltaFrom="219" length="2676166" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="l25uZDaAM7rKJWREl1z/rP0xVZJu/mquJJUTGSWtVZszTvxisOjheK1GT+EM/X1It2A2cSpT9zLR/QnofiGHCQ=="/>
@@ -199,86 +349,10 @@ they saw.</p>
 
 <p><a href="https://veravox.audio">veravox.audio</a></p>
 ]]></description>
-            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-221/Install_VeraVox_1.0.2_220.dmg" length="20996262" type="application/octet-stream" sparkle:edSignature="Kb/CTX/eNyg2S1WQ1TAJErusvvB/8kWdXZnmSEU9uOhMr7Pf8nGPXk1A4itWITAlk2icNxRhLniURFi4JguYBQ=="/>
+            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-222/Install_VeraVox_1.0.2_220.dmg" length="20996262" type="application/octet-stream" sparkle:edSignature="Kb/CTX/eNyg2S1WQ1TAJErusvvB/8kWdXZnmSEU9uOhMr7Pf8nGPXk1A4itWITAlk2icNxRhLniURFi4JguYBQ=="/>
             <sparkle:deltas>
                 <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-220/VeraVox220-219.delta" sparkle:deltaFrom="219" length="1739298" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="wCqdrdhKF/P2IyTHuJRDAGzgvRzA1AuGIvJfKzkQIVRvDbbiQtjVUotX2xi38z9/g26sxIRACzniMtK0VfmLCA=="/>
                 <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-220/VeraVox220-218.delta" sparkle:deltaFrom="218" length="2542254" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="vJ2aWf4JiOQoP60rKLOwCqrIJoDLyq2OIazmF6pmhGggvga8KzKLNWav9ukWpKx1vRUxUTO73fZvwXtF0Ow/Dg=="/>
-            </sparkle:deltas>
-        </item>
-        <item>
-            <title>1.0.1</title>
-            <pubDate>Thu, 20 Aug 2026 17:19:48 +0200</pubDate>
-            <sparkle:version>219</sparkle:version>
-            <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[<h2>VeraVox 1.0.1</h2>
-
-<p>The first update since release. Your library, queues, saved playlists and
-settings are untouched: this is an ordinary update, and there is nothing to
-rebuild or re-scan afterwards.</p>
-
-<h3>Streaming to network players</h3>
-
-<ul>
-  <li>High resolution files could break up when VeraVox served them to a network
-      renderer, with DSD256 and DXD affected first. The cause sits outside
-      VeraVox, in the way recent versions of macOS move data on Macs whose
-      network card offloads segmentation. VeraVox now has two ways of sending
-      the audio and chooses between them by itself: it opens the route that is
-      not affected and serves the music through it, and if that route cannot be
-      opened it goes on using the previous one, so your renderer keeps playing
-      either way.</li>
-</ul>
-
-<h3>Windows</h3>
-
-<ul>
-  <li>VeraVox remembers where its windows were and how big they had been. The
-      main window had been reopening at its default size on every launch.</li>
-  <li>Help is a window of its own. It no longer holds the rest of the app still,
-      so you can read it while music plays, keep it pinned above the player, and
-      set the size of its text with the controls at the foot of its sidebar.</li>
-  <li>Help renders its own formatting instead of showing you the markup.</li>
-  <li>With a narrow player window, opening Settings from the expanded tool row
-      closed the popover at once. It stays open.</li>
-</ul>
-
-<h3>Library</h3>
-
-<ul>
-  <li>Album covers follow the file. A cover used to be written once and never
-      revisited, so replacing the artwork on disk and re-scanning changed
-      nothing on screen. A pass that re-reads the file now applies the cover it
-      finds there.</li>
-  <li>Two editions of the same album, scanned in the same batch, could end up
-      sharing a single cover. They no longer do.</li>
-  <li>Launching with the Library attached to the player is quick again, without
-      the spinning wheel.</li>
-</ul>
-
-<h3>Smaller things</h3>
-
-<ul>
-  <li>Playback Mode now has a submenu in Tools. It could be reached only from
-      the popover of the output picker, and two people have told us they could
-      not find it there.</li>
-  <li>In UPnP Renderer Mode, a control point that presses Play while VeraVox has
-      no local output selected gets a clear answer instead of silence.</li>
-  <li>Tools then Booklet is dimmed when there is no booklet to open, rather than
-      opening nothing.</li>
-  <li>The diagnostic report carries the physical formats your selected device
-      offers, and the state of the playback options.</li>
-  <li>Tuneshine&reg; is written with its registered mark.</li>
-</ul>
-
-<p>Thank you to everyone who took the time to describe what they saw. Most of
-what is above exists for that reason.</p>
-
-<p><a href="https://veravox.audio">veravox.audio</a></p>
-]]></description>
-            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-221/Install_VeraVox_1.0.1_219.dmg" length="20994797" type="application/octet-stream" sparkle:edSignature="BYN1kFwieoLQtzXAJA5T0/2XkY80kmW74e6VqG4xPLMqQFVJUpWLUwlYzOo+p36YzCm4NiJoGMl9grV+49RCDg=="/>
-            <sparkle:deltas>
-                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-219/VeraVox219-218.delta" sparkle:deltaFrom="218" length="2336334" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="0P/0Fn/9COPKDh5gpmD0H22RThVNUUdgY3KiCndUMG0EE560PMKjwUmaPOlFLhx6fp7tzYan519AD7u0+N5nDQ=="/>
             </sparkle:deltas>
         </item>
     </channel>
