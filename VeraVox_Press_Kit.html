@@ -3,7 +3,16 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>VeraVox — Technical Press Kit</title>
+<title>Technical Documentation — VeraVox Bit-Perfect Audio Player for macOS</title>
+<meta name="description" content="Technical documentation for VeraVox, the bit-perfect audio player for macOS: exclusive hog mode, non-mixable CoreAudio formats, DSD via DoP, channel mapping and speaker layouts, the measurement and diagnostic tools, UPnP/DLNA in both directions, and every supported lossless format."/>
+<link rel="canonical" href="https://veravox.audio/technical.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://veravox.audio/technical.html"/>
+<meta property="og:title" content="VeraVox Technical Documentation — Bit-Perfect Audio Player for macOS"/>
+<meta property="og:description" content="Exclusive hog mode, non-mixable CoreAudio formats, DSD via DoP, channel mapping and speaker layouts, the measurement and diagnostic tools, UPnP/DLNA in both directions, and every supported lossless format."/>
+<meta property="og:image" content="https://veravox.audio/Images/og-image.png"/>
+<meta property="og:site_name" content="VeraVox"/>
+<meta property="og:locale" content="en_US"/>
 <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png"/>
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png"/>
 <style>
@@ -25,12 +34,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.018;pointer-events:none;z-index:0}
 .page{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 40px 100px}
 .cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:80px 0 60px;border-bottom:1px solid var(--bdim)}
-.cover-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:10px;margin-bottom:28px;opacity:0;animation:fadeUp .7s .1s ease forwards}
+.cover-eyebrow{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:10px;margin-bottom:28px;opacity:0;animation:fadeUp .7s .1s ease forwards}
 .cover-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--gdim)}
-.cover h1{font-family:var(--serif);font-weight:400;font-synthesis-weight:none;font-size:clamp(52px,8vw,96px);line-height:1.0;color:var(--text);margin-bottom:10px;opacity:0;animation:fadeUp .7s .18s ease forwards}
-.cover h1 em{font-style:italic;color:var(--green)}
+.cover .cover-wm{font-family:var(--serif);font-weight:400;font-synthesis-weight:none;font-size:clamp(52px,8vw,96px);line-height:1.0;color:var(--text);margin-bottom:10px;opacity:0;animation:fadeUp .7s .18s ease forwards}
+.cover .cover-wm em{font-style:italic;color:var(--green)}
 .cover-sub{font-family:var(--serif);font-size:clamp(18.41px,2.833vw,33.99px);color:var(--tmid);margin-bottom:32px;opacity:0;animation:fadeUp .7s .26s ease forwards}
 .cover-desc{font-size:17px;line-height:1.8;color:var(--tmid);max-width:580px;margin-bottom:48px;opacity:0;animation:fadeUp .7s .34s ease forwards}
+/* Same typographic form as the doc-meta line on privacy/terms/eula/refund/
+   release-notes. The bottom border of the original rule is dropped: inside the
+   cover it would draw a second rule right above the cover's own. */
+.doc-meta{font-family:var(--mono);font-size:11px;color:var(--tdim);letter-spacing:.05em;margin-top:36px;opacity:0;animation:fadeUp .7s .5s ease forwards}
+.doc-meta span{color:var(--tmid)}
 .cover-meta{display:flex;gap:32px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .42s ease forwards}
 .meta-item{display:flex;flex-direction:column;gap:3px}
 .meta-val{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--green);letter-spacing:.04em}
@@ -171,44 +185,135 @@ p.body strong{color:var(--text);font-weight:600}
   .tech-table td:first-child{white-space:normal;min-width:80px}
   .tech-table td{padding:8px 10px;font-size:11px}
   .tech-table th{padding:6px 10px}
+  /* tables wider than a phone scroll inside their own box (R-443). The top
+     margin moves onto the box so the space above collapses as before. */
+  .table-scroll{overflow-x:auto;margin-top:20px}
+  .table-scroll>.tech-table{margin-top:0}
 
   /* cover-meta: gap ridotto */
   .cover-meta{gap:20px}
 
-  .coverage-card{padding:24px 16px}
-  .cv-quote{font-size:clamp(17px,4vw,21px);max-width:none}
 }
 
-/* COVERAGE */
-.coverage-card{background:var(--panel);border:1px solid var(--bdim);border-radius:var(--r);padding:32px 36px;text-align:center;margin-top:28px;max-width:620px;margin-left:auto;margin-right:auto}
-.cv-meta{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--tmid);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
-.cv-outlet{color:var(--amber)}
-.cv-dot{width:3px;height:3px;border-radius:50%;background:var(--tdim)}
-.cv-divider{width:32px;height:1px;background:var(--bdim);margin:0 auto 18px;border:none}
-.cv-quote{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.2vw,24px);line-height:1.4;color:var(--text);margin:0 auto 16px;max-width:480px;quotes:none}
-.cv-author{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--tmid);margin-bottom:22px}
-.cv-author .cv-name{color:var(--text)}
-.cv-article{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--tmid);margin-bottom:20px;line-height:1.45}
-.cv-cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--green);border:1px solid var(--border);background:var(--gbg);padding:9px 20px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:background .2s,box-shadow .2s,transform .2s}
-.cv-cta:hover{background:rgba(46,255,107,.10);box-shadow:0 0 14px rgba(46,255,107,.15);transform:translateY(-1px)}
+
+/* ── SITE CHROME ──────────────────────────────────────────────────────────
+   Header, mobile menu and footer identical to every other secondary page,
+   lifted verbatim from privacy.html. Scoped as `body > nav` upstream, so the
+   .toc rail nested inside .page is untouched. The three offsets below make
+   room for the 60px fixed bar. */
+body > nav{position:fixed;top:0;left:0;right:0;z-index:9998;padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(14,16,18,.95);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid var(--bdim)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-icon{width:28px;height:28px;border-radius:7px;overflow:hidden;flex-shrink:0;box-shadow:0 0 10px rgba(255,178,26,.2)}
+.nav-icon img{width:100%;height:100%;display:block}
+.nav-wm{font-family:var(--serif);font-size:20px;color:var(--text);font-weight:400;font-synthesis-weight:none}
+.nav-wm em{font-style:italic;color:var(--green)}
+.nav-ver{font-family:var(--mono);font-size:9px;color:var(--green);border:1px solid var(--border);padding:2px 6px;border-radius:3px}
+.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
+.nav-links a{font-size:13px;font-weight:500;color:var(--tmid);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.active{color:var(--green)}
+.nav-cta{font-family:var(--mono)!important;font-size:12px!important;color:var(--green)!important;border:1px solid var(--border)!important;padding:6px 16px!important;border-radius:4px!important;background:var(--gbg,rgba(46,255,107,.04))!important;transition:background .2s,box-shadow .2s!important}
+.nav-cta:hover{background:rgba(46,255,107,.10)!important;box-shadow:0 0 12px rgba(46,255,107,.15)!important}
+.nav-ham{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;border-radius:6px}
+.nav-ham span{display:block;width:20px;height:1.5px;background:var(--tmid);border-radius:2px;transition:transform .25s,opacity .2s,background .2s;transform-origin:center}
+.nav-ham:hover span{background:var(--text)}
+.nav-ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-ham.open span:nth-child(2){opacity:0}
+.nav-ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+#mobile-menu{position:fixed;top:60px;left:0;right:0;background:#0e1012;border-bottom:1px solid var(--border);z-index:9999;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .28s cubic-bezier(.25,.46,.45,.94),opacity .25s ease}
+#mobile-menu.open{transform:translateY(0);opacity:1;pointer-events:all}
+#mobile-menu ul{list-style:none;padding:8px 0 4px;margin:0}
+#mobile-menu ul li a{display:block;padding:15px 24px;font-size:16px;font-weight:500;color:var(--tmid);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.04);-webkit-tap-highlight-color:rgba(46,255,107,.08);transition:color .15s,background .15s}
+#mobile-menu ul li a:active{color:var(--text);background:rgba(46,255,107,.05)}
+#mobile-menu .mm-cta{display:block;margin:12px 20px 20px;font-family:var(--mono);font-size:13px;color:var(--green);text-decoration:none;border:1px solid var(--border);padding:12px 20px;border-radius:6px;background:var(--gbg,rgba(46,255,107,.04));text-align:center;-webkit-tap-highlight-color:rgba(46,255,107,.1);transition:background .15s}
+#mobile-menu .mm-cta:active{background:rgba(46,255,107,.1)}
+#nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9998;opacity:0;transition:opacity .25s ease}
+#nav-overlay.open{display:block;opacity:1}
+footer{
+      border-top:1px solid var(--bdim);padding:36px 32px;
+      text-align:center;
+    }
+.foot-copy{
+      font-family:var(--mono);font-size:10px;color:var(--tdim);
+      letter-spacing:.05em;margin-bottom:8px;
+    }
+.foot-links{display:flex;gap:20px;justify-content:center;list-style:none;margin-top:10px;flex-wrap:wrap}
+.foot-links a{
+      font-family:var(--mono);font-size:11px;color:var(--tdim);
+      text-decoration:none;letter-spacing:.06em;text-transform:uppercase;
+      transition:color .2s;
+    }
+.foot-links a:hover{color:var(--tmid)}
+@media(max-width:600px){
+      nav{padding:0 20px}}
+@media(max-width:560px){.nav-ham{display:flex}.nav-links{display:none!important}}
+/* Same scrollbar as every other page. The 14px width is also why this page
+   used to measure 14px wider than its siblings: it had no styled bar. */
+::-webkit-scrollbar{width:14px;background:transparent}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--gdim);border-radius:7px;border:5px solid transparent;background-clip:padding-box;min-height:30px;transition:background .4s ease-out,border-width .4s ease-out}
+::-webkit-scrollbar-thumb:hover{background:var(--green);border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:active{background:var(--green);border:2px solid transparent;background-clip:padding-box}
+
+/* offsets for the fixed bar */
+.page{padding-top:60px}
+.cover{min-height:calc(100vh - 60px)}
+.toc{top:60px}
 </style>
 </head>
 <body>
+<!-- SITE CHROME. Links are absolute because this file is served from two
+     origins: veravox.audio/technical.html (canonical) and the GitHub Pages
+     mirror kept alive for already-published press links. Relative links
+     would break on the mirror. -->
+<nav>
+  <a href="https://veravox.audio/" class="nav-logo">
+    <div class="nav-icon"><img src="https://veravox.audio/Images/VV_icon.png" alt="VeraVox"/></div>
+    <span class="nav-wm"><em>Vera</em>Vox</span>
+    <span class="nav-ver">1.x</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://veravox.audio/#features">Features</a></li>
+    <li><a href="https://veravox.audio/#stream-inspector">Tools</a></li>
+    <li><a href="https://veravox.audio/#formats">Formats</a></li>
+    <li><a href="https://veravox.audio/#audience">Audience</a></li>
+    <li><a href="https://veravox.audio/faq.html">FAQ</a></li>
+    <li><a href="https://veravox.audio/#pricing">Pricing</a></li>
+    <li><a href="https://veravox.audio/#pricing" class="nav-cta">Download VeraVox</a></li>
+  </ul>
+  <button class="nav-ham" id="nav-ham" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="mobile-menu" aria-hidden="true">
+  <ul>
+    <li><a href="https://veravox.audio/#features">Features</a></li>
+    <li><a href="https://veravox.audio/#stream-inspector">Tools</a></li>
+    <li><a href="https://veravox.audio/#formats">Formats</a></li>
+    <li><a href="https://veravox.audio/#audience">Audience</a></li>
+    <li><a href="https://veravox.audio/faq.html">FAQ</a></li>
+    <li><a href="https://veravox.audio/#pricing">Pricing</a></li>
+  </ul>
+  <a href="https://veravox.audio/#pricing" class="mm-cta">Download VeraVox</a>
+</div>
+<div id="nav-overlay" aria-hidden="true"></div>
+
 <div class="page">
 
 <!-- COVER -->
 <div class="cover">
-  <div class="cover-eyebrow">Technical Press Kit — Version 1.0</div>
-  <h1><em>Vera</em>Vox</h1>
+  <h1 class="cover-eyebrow">Technical Documentation</h1>
+  <p class="cover-wm"><em>Vera</em>Vox</p>
   <p class="cover-sub">The signal, untouched.</p>
   <p class="cover-desc">VeraVox is a bit-perfect audio player for macOS. It delivers every sample of your audio files directly to your DAC, with no DSP, no mixer, and no software volume <em>in the player path</em>. PCM up to 32-bit/768&thinsp;kHz and DSD up to DSD512 via DoP &mdash; on capable DACs &mdash; through a native CoreAudio IOProc running under exclusive Hog Mode. Everything downstream of the DAC is delegated to the chain you&rsquo;ve built.</p>
   <div class="cover-meta">
-    <div class="meta-item"><span class="meta-val">v1.0</span><span class="meta-lbl">Version</span></div>
+    <div class="meta-item"><span class="meta-val">v1.2.0</span><span class="meta-lbl">Version</span></div>
     <div class="meta-item"><span class="meta-val">macOS 14+</span><span class="meta-lbl">Requirement</span></div>
-    <div class="meta-item"><span class="meta-val">&euro;69</span><span class="meta-lbl">Price</span></div>
     <div class="meta-item"><span class="meta-val">30 days</span><span class="meta-lbl">Full-Feature Trial</span></div>
     <div class="meta-item"><span class="meta-val">Direct</span><span class="meta-lbl">Distribution</span></div>
   </div>
+  <div class="doc-meta">Last updated: <span>September 2026</span> &nbsp;&middot;&nbsp; Document version: <span>1.1</span></div>
   <div class="cover-specs">
     <div class="spec-item"><span class="spec-val">32-bit</span><span class="spec-lbl">Max Bit Depth</span></div>
     <div class="spec-item"><span class="spec-val">768&thinsp;kHz</span><span class="spec-lbl">Max Sample Rate</span></div>
@@ -224,7 +329,6 @@ p.body strong{color:var(--text);font-weight:600}
 <nav class="toc">
   <div class="toc-inner">
     <span class="toc-brand">VeraVox</span>
-    <a href="#coverage"  class="toc-link">Coverage</a>
     <a href="#glance"    class="toc-link">At a Glance</a>
     <a href="#philosophy" class="toc-link">Philosophy</a>
     <a href="#engine"    class="toc-link">Engine</a>
@@ -240,38 +344,10 @@ p.body strong{color:var(--text);font-weight:600}
     <a href="#upnp"      class="toc-link">UPnP</a>
     <a href="#tuneshine" class="toc-link">Tuneshine&reg;</a>
     <a href="#formats"   class="toc-link">Formats</a>
-    <a href="#pricing"   class="toc-link">Pricing</a>
   </div>
 </nav>
 
 <!-- COVERAGE -->
-<section id="coverage">
-  <div class="sec-eyebrow">Coverage</div>
-  <h2 class="sec-h">First independent coverage.</h2>
-  <p class="body">Chris Connaker (founder and editor of <em>Audiophile Style</em>) covered the VeraVox beta in the "Bits and Bytes" section on 3 June 2026.</p>
-  <article class="coverage-card">
-    <div class="cv-meta">
-      <span class="cv-outlet">Audiophile Style</span>
-      <span class="cv-dot" aria-hidden="true"></span>
-      <time datetime="2026-06-03">3 June 2026</time>
-    </div>
-    <hr class="cv-divider"/>
-    <blockquote class="cv-quote" cite="https://audiophilestyle.com/ca/bits-and-bytes/veravox-music-player-a-budding-rose-among-thorns-r1430/">
-      &ldquo;The simplicity enabled my brain to think about only the music. And, the sound was fantastic.&rdquo;
-    </blockquote>
-    <p class="cv-author">&ndash; <span class="cv-name">Chris Connaker</span></p>
-    <hr class="cv-divider"/>
-    <p class="cv-article">VeraVox Music Player &ndash; A Budding Rose Among Thorns</p>
-    <a class="cv-cta"
-       href="https://audiophilestyle.com/ca/bits-and-bytes/veravox-music-player-a-budding-rose-among-thorns-r1430/"
-       target="_blank"
-       rel="noopener noreferrer">
-      Read article on Audiophile Style
-      <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-  </article>
-</section>
-
 <!-- AT A GLANCE -->
 <section id="glance">
   <div class="sec-eyebrow">At a Glance</div>
@@ -354,17 +430,20 @@ p.body strong{color:var(--text);font-weight:600}
 
   <h3 class="sub-h">Bit-Perfect PCM Path</h3>
   <p class="body">PCM files are decoded via ExtAudioFile on a background DispatchQueue in 64&thinsp;KB chunks, written into a bounded ring buffer, and consumed by the IOProc. No full-file pre-load. The ring buffer is protected by a single <span class="chip">os_unfair_lock</span> — no kernel transition on the uncontended path.</p>
-  <p class="body"><strong>Format selection</strong> operates in two stages. Formats are filtered into priority tiers, then within each tier a score determines the preferred bit depth. Scores incorporate both mixability (primary factor: non-mixable 700–1000, mixable 0–300) and bit depth (secondary). 16-bit and 24-bit sources prefer the smallest container that carries the full signal without waste (24-bit aligned-high non-mixable scores 1000). 32-bit sources and Max Bit Depth mode prefer the largest available container (32-bit non-mixable scores 1000).</p>
+  <p class="body"><strong>Format selection</strong> operates in three stages. Formats are first filtered by frame stride: the exclusive path feeds the DAC from a 32-bit integer stream, so only 4-bytes-per-channel layouts (32-bit, or 24-bit aligned-high in a 32-bit container) are delivered directly, while 24-bit and 16-bit packed formats are a PCM-only fallback through a packing stage when no direct candidate exists at the rate. The direct candidates are then filtered into priority tiers, and within each tier a score determines the preferred bit depth. Scores incorporate both mixability (primary factor: non-mixable 700–1000, mixable 0–300) and bit depth (secondary). 16-bit and 24-bit sources prefer the smallest directly deliverable container that carries the full signal without waste (24-bit aligned-high non-mixable scores 1000). 32-bit sources and the Bit Depth setting at Maximum prefer the largest available container (32-bit non-mixable scores 1000). The third state, Match source, runs an exact-depth pass before the ranking and asks for the file's own depth when the DAC exposes it.</p>
 
   <h3 class="sub-h">Format Priority Tiers</h3>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Tier</th><th>Format Type</th><th>Bit-Perfect?</th></tr>
-    <tr><td>1 — Best</td><td>Non-mixable, signed integer, matching bit depth</td><td>Yes</td></tr>
+    <tr><td>1 — Best</td><td>Non-mixable, signed integer, 4-byte frame stride (32-bit, or 24-bit aligned-high)</td><td>Yes</td></tr>
+    <tr><td>1b / 1c</td><td>Non-mixable, signed integer, packed 24-bit then 16-bit (PCM only, through the packing stage when Tier 1 is empty at the rate)</td><td>Yes</td></tr>
     <tr><td>2</td><td>Non-mixable, floating-point</td><td>Yes (limited)</td></tr>
     <tr><td>3</td><td>Mixable, signed integer — system mixer active</td><td>No</td></tr>
     <tr><td>4</td><td>Any format at target sample rate</td><td>No</td></tr>
     <tr><td>5 — Last resort</td><td>Closest available sample rate</td><td>No</td></tr>
   </table>
+  </div>
 
   <h3 class="sub-h">Declared Decodes: HDCD &amp; CD De-Emphasis</h3>
   <p class="body">Two deliberate, declared exceptions to byte-identity — both defined by the medium itself, neither a taste control. <strong>HDCD</strong>: at playback start VeraVox pre-scans the first seconds of every 16-bit / 44.1&thinsp;kHz stereo track; only when the hidden control code is effectually present does the decoder engage (bundled BSD-licensed libhdcd, the foobar2000 / FFmpeg af_hdcd lineage), restoring Peak Extend and low-level detail on the reference &minus;6&thinsp;dB baseline. Decoding runs on the exclusive path by design: the code lives in the least-significant bits and any sample-rate conversion destroys it. With the toggle off, the bit-perfect path delivers the code stream intact to hardware HDCD DACs. <strong>CD de-emphasis</strong>: rips that declare pre-emphasis (PRE-EMPHASIS tag or CUE <span class="chip">FLAGS PRE</span>) receive the inverse 50/15&thinsp;µs curve (IEC 60908) — played flat they sound several dB too bright — via a runtime-designed filter within 0.06&thinsp;dB of the analytic curve at 44.1&thinsp;kHz, 64-bit processing, TPDF dither only on 16-bit-only DACs. While either decode is engaged, a vintage-style LED lights in the format badge (gold HDCD, amber DE-EMPH) and the Signal Path reports <strong>Faithful Decode</strong> — never "Bit-Perfect" while a stage is active. The Library marks affected albums: a PRE badge from the scanner, and a gold HDCD badge from the Dynamic Range pass, which also stores the DR of the decoded signal next to the as-stored figure.</p>
@@ -390,6 +469,7 @@ p.body strong{color:var(--text);font-weight:600}
   <p class="body">DSF files store DSD bits LSB-first; DoP expects MSB-first. Bit-reversal is applied inside the LUT itself — not as a separate pass. DFF files use a separate <span class="chip">lutDFF16</span> table without the reversal step, avoiding a runtime conditional in the inner loop. Marker alternation survives across chunk boundaries via a global frame index.</p>
 
   <h3 class="sub-h">DSD Rate Support</h3>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Format</th><th>DSD Sample Rate</th><th>DoP PCM Carrier</th><th>Stereo Buffer</th></tr>
     <tr><td>DSD64</td><td>2.8224 MHz</td><td>176.4 kHz</td><td>~11 MB at 8 s</td></tr>
@@ -397,6 +477,7 @@ p.body strong{color:var(--text);font-weight:600}
     <tr><td>DSD256</td><td>11.2896 MHz</td><td>705.6 kHz</td><td>~22 MB at 4 s</td></tr>
     <tr><td>DSD512</td><td>22.5792 MHz</td><td>1411.2 kHz</td><td>~45 MB at 4 s</td></tr>
   </table>
+  </div>
   <div class="note">Higher DSD rates via DoP require a DAC capable of accepting the corresponding PCM carrier. DSD256 needs 705.6 kHz; DSD512 needs 1411.2 kHz. Many USB DACs cap at 705.6 kHz or lower &mdash; check your device&rsquo;s spec sheet before assuming DSD512 support. The DAC Diagnostic panel reports the maximum non-mixable carrier your device exposes.</div>
 
   <h3 class="sub-h">Streaming Architecture &amp; SACD ISO</h3>
@@ -497,6 +578,7 @@ p.body strong{color:var(--text);font-weight:600}
 
   <h3 class="sub-h">FFT Engine — Dynamic Resolution</h3>
   <p class="body">The analyser uses Apple's Accelerate framework (vDSP). FFT window size is selected dynamically based on sample rate, maintaining approximately constant frequency resolution of 10–12&thinsp;Hz/bin. The Blackman-Harris window function (−92&thinsp;dB first sidelobe) provides the spectral isolation needed to detect an anti-aliasing brickwall filter — the diagnostic signature of upsampled content — against the noise floor.</p>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Sample Rate</th><th>FFT Size (N)</th><th>Freq Resolution</th><th>Bins in 2–16 kHz band</th></tr>
     <tr><td>≤ 48 kHz</td><td>4,096</td><td>~10.8–11.7 Hz/bin</td><td>~1,250</td></tr>
@@ -505,8 +587,10 @@ p.body strong{color:var(--text);font-weight:600}
     <tr><td>≤ 384 kHz</td><td>32,768</td><td>~5.9–11.7 Hz/bin</td><td>~8,700</td></tr>
     <tr><td>&gt; 384 kHz</td><td>65,536</td><td>~5.9–11.7 Hz/bin</td><td>~17,000</td></tr>
   </table>
+  </div>
 
   <h3 class="sub-h">Metrics Computed</h3>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Metric</th><th>Method</th><th>Interpretation</th></tr>
     <tr><td>Detected Bandwidth</td><td>Brickwall detection or natural rolloff point</td><td>Effective upper frequency limit. Well below Nyquist = likely upsampled.</td></tr>
@@ -515,11 +599,13 @@ p.body strong{color:var(--text);font-weight:600}
     <tr><td>DC Offset</td><td>Mean sample value across the file</td><td>Non-zero indicates a recording or conversion artefact. Reported in amplitude and dBFS.</td></tr>
     <tr><td>Bandwidth Type</td><td>Rolloff shape analysis</td><td>Brickwall (upsampling artifact), natural rolloff (normal recording), or unrestricted.</td></tr>
   </table>
+  </div>
   <p class="body">Results are presented in a colour-coded score card: <strong>green</strong> for metrics consistent with the container's claims, <strong>amber</strong> for values lower than expected but inconclusive, <strong>red</strong> for clear inconsistencies.</p>
   <div class="note">DSD files are excluded from FFT-based analysis by design. Sigma-delta noise shaping intentionally elevates the noise floor in the ultrasonic region — applying PCM-derived bit-depth heuristics to a 1-bit PDM stream produces meaningless results.</div>
 
   <h3 class="sub-h">Dynamic Range &mdash; Crest Factor DR &amp; EBU R128 LRA</h3>
   <p class="body">For every Library track VeraVox can compute, strictly on user request, two industry-standard measures of dynamic range. The values live in the local Library database only and are never written back to the source files. Four entry points: right-click a single track, right-click an album (multi-selection aware), right-click a Music Folder, or run a library-wide pass from the Tools menu. While analysis is in flight, affected rows and album cards render a spinner in place of the badge; when the run ends, VeraVox returns to silence. No background loop, no automatic scanning.</p>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Metric</th><th>Standard</th><th>Algorithm</th></tr>
     <tr><td>Crest Factor DR</td><td>Pleasurize Music Foundation TT DR Offline Meter</td><td>3 s RMS windows with 50&thinsp;% overlap, mono-summed signal, +3&thinsp;dB sine correction. Top 20&thinsp;% of windows, second-highest RMS vs second-highest peak. Reported as a single integer in dB (&ldquo;DR12&rdquo;, &ldquo;DR8&rdquo;).</td></tr>
@@ -527,6 +613,7 @@ p.body strong{color:var(--text);font-weight:600}
     <tr><td>LUFS-I (integrated)</td><td>ITU-R BS.1770-4</td><td>Same K-weighted pipeline, 400 ms momentary blocks with 75&thinsp;% overlap, cascaded gating (&minus;70 LUFS absolute, &minus;10 LU relative). Persisted alongside DR and LRA and surfaced in the Track Info panel.</td></tr>
     <tr><td>Sample Peak</td><td>File peak in dBFS</td><td>Largest absolute sample value, reported in dBFS. True Peak (BS.1770-4 Annex 2, 4&times; polyphase oversampling) not yet measured.</td></tr>
   </table>
+  </div>
   <p class="body">Multichannel material is handled per the respective standard: Crest Factor DR runs on a mono-summed signal (the Pleasurize convention), R128 LRA applies the full BS.1770 channel weighting (L,&thinsp;R,&thinsp;C,&thinsp;height = 1.0; LFE = 0; surrounds = &radic;2). The K-weighting filter is computed via the RBJ Audio EQ Cookbook bilinear transform; the deviation from the canonical BS.1770-4 digital coefficients tabulated at 48 kHz is under 0.5 dB on broadband material and is documented in the in-app Help.</p>
   <p class="body">DSD sources (DSF, DFF) are analysed via the same sinc-Kaiser FIR decimation used by the Library waveform scanner. Results are flagged with a trailing asterisk (&ldquo;DR12*&rdquo;) to remind the reader that 0 dBFS on DSD is a mastering convention, not a hardware ceiling. SACD ISO support is in progress.</p>
   <p class="body">Where the numbers appear: as compact monospaced badges next to the duration in every track list, as a MIN-of-tracks pill on the artwork of every album card in the Library grid (worst-master heuristic), as a discreet technical row beneath the now-playing artwork, and as a dedicated &ldquo;Dynamic Range&rdquo; card inside the Track Info panel. Two sort orders &mdash; &ldquo;Dynamic Range (DR)&rdquo; and &ldquo;Dynamic Range (R128)&rdquo; &mdash; surface the worst masters first in the Library lists.</p>
@@ -584,6 +671,7 @@ p.body strong{color:var(--text);font-weight:600}
 
   <h3 class="sub-h">Test Patterns</h3>
   <p class="body">Six patterns, each with real-time Tektronix-style rotary knobs for its specific parameters. All patterns share a level control (−40 to 0 dBFS, default −6 dBFS for safety).</p>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Pattern</th><th>Parameters</th><th>Use Case</th></tr>
     <tr><td>SINE</td><td>Frequency (20 Hz – 20 kHz, log), Phase (0 – 360°), Level</td><td>Phase correlation, room resonances, frequency response sweeps</td></tr>
@@ -593,19 +681,23 @@ p.body strong{color:var(--text);font-weight:600}
     <tr><td>IMPULSE</td><td>Channel (L / R / ALT), Rate (1 – 20 Hz), Level</td><td>Channel separation, crosstalk detection on the Vectorscope</td></tr>
     <tr><td>REF 0dB</td><td>None (1 kHz, 0 dBFS, L=sin R=cos)</td><td>Vectorscope graticule calibration — produces a perfect full-scale circle</td></tr>
   </table>
+  </div>
 
   <h3 class="sub-h">Source Mode &amp; Dual Display</h3>
   <p class="body">The SOURCE row selects what the Vectorscope CRT displays and what the meters analyse. In DUAL mode, both traces are rendered simultaneously on the same CRT — output in primary phosphor colour (green or amber), input in secondary colour (cyan or magenta) — via two Metal draw calls with additive blending.</p>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Mode</th><th>CRT Display</th><th>Capture</th><th>Meters</th></tr>
     <tr><td>OUTPUT</td><td>Generated signal only</td><td>Stopped</td><td>Disabled</td></tr>
     <tr><td>INPUT</td><td>Captured input only</td><td>Running</td><td>Active — input signal</td></tr>
     <tr><td>DUAL</td><td>Both overlaid</td><td>Running</td><td>Active — input signal</td></tr>
   </table>
+  </div>
   <p class="body">Input devices are enumerated via CoreAudio and include built-in microphones, USB audio interfaces, and virtual loopback drivers. A digital gain control (0 – 60 dB) amplifies low-level signals before display and measurement.</p>
 
   <h3 class="sub-h">Measurement Engine</h3>
   <p class="body">The measurement engine operates on a dual circular buffer architecture — input (AUHAL callback) and output (render callback), both 4096 samples per channel, protected by the same <span class="chip">os_unfair_lock</span> for atomic snapshot. Measurements are computed on the main thread at 30 fps from linearised snapshots.</p>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Meter</th><th>Algorithm</th><th>Accuracy</th></tr>
     <tr><td>LEVEL</td><td>vDSP_rmsqv + EMA (α = 0.30), with optional IEC 61672 A/C weighting via biquad cascade</td><td>0.1 dB resolution</td></tr>
@@ -615,14 +707,17 @@ p.body strong{color:var(--text);font-weight:600}
     <tr><td>BPT</td><td>Sample-by-sample output vs. input comparison after latency alignment</td><td>PASS = every sample identical</td></tr>
     <tr><td>Φ I/O</td><td>Goertzel on aligned output and input regions, latency-compensated</td><td>Reveals DAC reconstruction filter phase response</td></tr>
   </table>
+  </div>
 
   <h3 class="sub-h">Analysis Settings</h3>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Control</th><th>Options</th><th>Effect</th></tr>
     <tr><td>WINDOW</td><td>OFF / Hann / Blackman-Harris</td><td>Reduces spectral leakage for frequency and phase. BH provides 92 dB sidelobe rejection. Not applied to level or BPT.</td></tr>
     <tr><td>AVG</td><td>OFF, 2×, 4×, 8×, 16×, 32×</td><td>Averages N snapshots before measuring. Reduces noise, slows updates. BPT auto-disabled when active.</td></tr>
     <tr><td>WEIGHT</td><td>FLAT / A / C</td><td>IEC 61672 frequency weighting — 4 biquads for A (HP2+HP1+HP1+LP2), 2 for C (HP2+LP2). Normalised 0 dB at 1 kHz.</td></tr>
   </table>
+  </div>
 
   <h3 class="sub-h">Latency Calibration</h3>
   <p class="body">Before using BPT or Φ I/O, the round-trip latency must be calibrated. Press CALIBRATE — the engine injects a Hann-windowed 4 kHz burst (128 samples) surrounded by silence into the audio output. Both output and input circular buffers are snapshotted atomically under the same lock. Brute-force cross-correlation (O(N×M) via vDSP_dotpr) locates the burst in each buffer; the difference gives the latency in samples. Typical values: 20–40 ms for digital loopback, hardware-dependent for analogue paths.</p>
@@ -641,6 +736,7 @@ p.body strong{color:var(--text);font-weight:600}
 
   <h3 class="sub-h">Volume Health Monitoring</h3>
   <p class="body">A dedicated VolumeHealthMonitor classifies every mounted volume by type (local, network, removable) and tracks its online/offline status in real time. The Folder Manager displays colour-coded status dots: green (online), red (offline), orange (connecting), blue (scanning).</p>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Volume Type</th><th>Change Detection</th><th>Preload Window</th></tr>
     <tr><td>Local (< 2 ms)</td><td>FSEvents — near-instant</td><td>10 seconds</td></tr>
@@ -648,6 +744,7 @@ p.body strong{color:var(--text);font-weight:600}
     <tr><td>Slow network (> 20 ms)</td><td>Polling every 30 s</td><td>30 seconds</td></tr>
     <tr><td>Removable</td><td>FSEvents</td><td>10 seconds</td></tr>
   </table>
+  </div>
 
   <h3 class="sub-h">Automatic Reconnection</h3>
   <p class="body">When a previously offline volume comes back online (NAS wakes from sleep, USB drive re-plugged, file server reboots), VeraVox brings the folder back automatically, without needing to play a track first. For network shares it probes the server with a lightweight reachability check and remounts the share as soon as it answers; it also reacts to system mount events. The status badge transitions from red to green, the security-scoped bookmark is re-resolved, and an incremental scan picks up new files. A Reconnect button forces an immediate retry. Tracks and albums whose source volume is offline appear dimmed across the Queue and Library, clearing automatically when the volume returns.</p>
@@ -670,6 +767,7 @@ p.body strong{color:var(--text);font-weight:600}
   <p class="body">Web Remote turns VeraVox into a local HTTP server that serves a Progressive Web App. Open the URL from any device on the same Wi-Fi network — no app installation, no App Store, no internet access required. On iOS, tap Share → Add to Home Screen for a fullscreen experience without browser chrome.</p>
 
   <h3 class="sub-h">Remote Capabilities</h3>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Feature</th><th>Description</th></tr>
     <tr><td>Now Playing</td><td>Full-size artwork, track info, format badge (DSD128, FLAC 24/96, etc.), seek bar, and transport controls: shuffle, previous, stop, play/pause, next, repeat.</td></tr>
@@ -677,11 +775,13 @@ p.body strong{color:var(--text);font-weight:600}
     <tr><td>Library</td><td>Nine sub-tabs — Albums (cover art grid), Artists (alphabetical list), Tracks (flat track list), Genres, Composers, Tags, Folders, Playlists, Smart — with a persistent search bar that filters the active view in place, mirroring the desktop Library FTS5 behaviour. Tap an album to see its tracks. Tap an artist to open a grid of that artist's albums with cover art (mirroring the desktop Artist view), then drill in or use Play All / Add to Queue for the artist's entire discography. The Folders tab browses the on-disk folder structure to any depth, mirroring the desktop Folder View.</td></tr>
     <tr><td>Device Select</td><td>See all audio output devices with capability badges (Exclusive Ready, Shared Output, Lossy). Tap to switch the active device.</td></tr>
   </table>
+  </div>
 
   <h3 class="sub-h">Architecture</h3>
   <p class="body">Built on Apple's Network.framework (<span class="chip">NWListener</span>) — no external dependencies. HTTP/1.1 request parsing, RFC 6455 WebSocket upgrade, and Bonjour/mDNS advertisement (<span class="chip">_veravox._tcp</span>) for automatic discovery. REST API for commands, WebSocket for real-time state updates (position every 500 ms; frontend interpolates at 60 fps for a smooth seek bar). The server runs on a dedicated DispatchQueue, not @MainActor.</p>
 
   <h3 class="sub-h">Security</h3>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Mechanism</th><th>Detail</th></tr>
     <tr><td>Local network only</td><td>Server binds to the LAN interface. Not accessible from the internet.</td></tr>
@@ -689,6 +789,7 @@ p.body strong{color:var(--text);font-weight:600}
     <tr><td>Token-based sessions</td><td>After PIN entry, a UUID token is stored in the browser — subsequent connections re-authenticate automatically.</td></tr>
     <tr><td>Disconnect All</td><td>One button in the settings panel revokes all active tokens and disconnects all clients instantly.</td></tr>
   </table>
+  </div>
   <div class="callout">Web Remote is read-only with respect to the audio engine: it sends commands via the same API used by the media keys and Mini Player. No audio signal processing is involved — the "Signal Untouched" philosophy is fully preserved.</div>
 </section>
 
@@ -700,6 +801,7 @@ p.body strong{color:var(--text);font-weight:600}
 
   <h3 class="sub-h">Sending — Control Point + Media Server</h3>
   <p class="body">As a control point, VeraVox acts as both a <strong>UPnP Control Point</strong> and a lightweight <strong>Media Server</strong>:</p>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Component</th><th>Implementation</th><th>Role</th></tr>
     <tr><td>SSDPDiscovery</td><td>POSIX UDP multicast, GCD dispatch source</td><td>M-SEARCH queries to 239.255.255.250:1900 every 30 s</td></tr>
@@ -709,25 +811,30 @@ p.body strong{color:var(--text);font-weight:600}
     <tr><td>MediaServer</td><td>HTTP file server</td><td>Range requests, DLNA headers, chunked streaming, security-scoped bookmarks</td></tr>
     <tr><td>UPnPPlaybackController</td><td>@MainActor playback controller</td><td>Position polling (1 Hz), reconnection, gapless orchestration</td></tr>
   </table>
+  </div>
 
   <h3 class="sub-h">Renderer Selection</h3>
   <p class="body">Discovered renderers appear automatically in the output device picker under "Network Renderers" with a blue dot. The device icon changes to a network symbol when a UPnP renderer is active. The selected renderer UID persists across launches.</p>
 
   <h3 class="sub-h">Format Support</h3>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Format</th><th>Support</th></tr>
     <tr><td>PCM (FLAC, WAV, AIFF, ALAC, WavPack, MP3, AAC)</td><td>Widely supported by all UPnP renderers.</td></tr>
     <tr><td>DSD (DSF, DFF, WavPack DSD)</td><td>Native DSD streaming for capable renderers. GetProtocolInfo check before playback begins.</td></tr>
   </table>
+  </div>
   <div class="note">VeraVox serves files in their native format. No transcoding. If the renderer does not support DSD natively, playback will be rejected — use local output with DoP instead.</div>
 
   <h3 class="sub-h">Gapless Playback</h3>
   <p class="body">Two-tier gapless mechanism for network renderers:</p>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Tier</th><th>Mechanism</th><th>Result</th></tr>
     <tr><td>Primary</td><td>SetNextAVTransportURI — pre-loads the next track while the current track plays</td><td>Seamless transition, no gap</td></tr>
     <tr><td>Fallback</td><td>Natural end detection — renderer stops near the end of the track without VeraVox sending Stop</td><td>Brief transition gap</td></tr>
   </table>
+  </div>
   <p class="body">VeraVox detects when the renderer has promoted a pre-loaded track and skips the Stop/re-serve cycle entirely, preserving the renderer's gapless buffer.</p>
 
   <h3 class="sub-h">Connection Recovery</h3>
@@ -739,6 +846,7 @@ p.body strong{color:var(--text);font-weight:600}
 
   <h3 class="sub-h">Renderer Mode — VeraVox as the endpoint</h3>
   <p class="body">The same machinery runs in reverse. Turned on as an opt-in (off by default), VeraVox advertises itself on the network as a UPnP/DLNA MediaRenderer. A control app pushes a track to it &mdash; the practical way to play a streaming service through VeraVox&rsquo;s engine, since the control app supplies the music and VeraVox renders it untouched. The defining design choice: a received stream takes the <strong>exact same path as a local file</strong>. The pushed URI is materialised and handed to the very same <code>AudioPlayer</code> local playback uses &mdash; format dispatch, Hog Mode / bit-perfect selection, ring buffer, channel routing, Signal Path, fade. Renderer mode is a new entry point for the signal, not a separate playback engine.</p>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Aspect</th><th>Behaviour</th></tr>
     <tr><td>Same engine</td><td>Identical bit-perfect path to the DAC as a local file — no parallel, lesser chain.</td></tr>
@@ -747,6 +855,7 @@ p.body strong{color:var(--text);font-weight:600}
     <tr><td>Eventing</td><td>A GENA server emits LastChange NOTIFYs so the control point&rsquo;s state tracks VeraVox live; transport controls are bidirectional.</td></tr>
     <tr><td>Resilience</td><td>A dropped control point, a dead source, a disconnected device, or turning the mode off mid-stream all stop playback in an orderly way — the renderer is never left orphaned.</td></tr>
   </table>
+  </div>
   <h3 class="sub-h">Signal Provenance</h3>
   <p class="body">For a received stream, VeraVox reports the truth about what arrived: the format, sample rate and bit depth it <strong>probed from the file itself</strong> — not the values the metadata declared — and a verdict on whether the delivery is lossless or was re-encoded upstream by the control point. A transcode is made visible rather than silently inherited, which is also the clearest defence against misattributed blame. As far as we are aware, surfacing this provenance is uncommon among software renderers; we state it plainly, not as a claim of superiority.</p>
   <div class="callout">VeraVox renders faithfully and tells you how faithful the delivery was. The signal, and the truth about it &mdash; untouched.</div>
@@ -758,6 +867,7 @@ p.body strong{color:var(--text);font-weight:600}
   <h2 class="sec-h">The cover you own, on a display across the room.</h2>
   <p class="body">Tuneshine&reg; is an LED display in a wooden case, made by Tobias Butler, that shows the album art of what is playing. VeraVox drives it directly over the local network, and it is the first hardware integration built against Tuneshine&rsquo;s own HTTP API rather than through a music service.</p>
   <p class="body">That distinction is the point. The display&rsquo;s built-in integrations identify music by looking it up online, which serves the mainstream catalogue and quietly fails for a self-made rip, a limited pressing, or a recording no database has catalogued. VeraVox sends the artwork <strong>embedded in the listener&rsquo;s own file</strong>, so what appears on the display is the cover that shipped with the music.</p>
+  <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Aspect</th><th>Detail</th></tr>
     <tr><td>Discovery</td><td>VeraVox browses for displays on the local network and lists what it finds; an address can also be entered by hand. The resolved <span class="chip">.local</span> name is stored rather than a numeric address, so the link survives a DHCP reassignment.</td></tr>
@@ -765,6 +875,7 @@ p.body strong{color:var(--text);font-weight:600}
     <tr><td>Where it runs</td><td>Entirely on the local network. No account, no cloud service, no internet connection. The integration is off by default and inert until a display is named.</td></tr>
     <tr><td>Cost to playback</td><td>None. It sits outside the real-time audio path: one image resize and one small HTTP request per track change, on the same track-change signal the Web Remote and the system Now Playing panel already observe.</td></tr>
   </table>
+  </div>
   <div class="callout">The same principle as the rest of the player, applied to metadata: show what the file actually contains, and never invent what it does not.</div>
   <p class="body" style="font-size:12px;opacity:.7">Tuneshine and the Tuneshine wordmark are trademarks of Tuneshine, Inc.</p>
 </section>
@@ -843,49 +954,55 @@ p.body strong{color:var(--text);font-weight:600}
 </section>
 
 <!-- PRICING -->
-<section id="pricing">
-  <div class="sec-eyebrow">Pricing &amp; Availability</div>
-  <h2 class="sec-h">Own it. No subscription, no account.</h2>
-  <p class="body">VeraVox is a one-time purchase. All 1.x updates — feature additions, bug fixes, and macOS compatibility releases — are included. Future major versions will be sold separately. No subscription, no cloud account required, no telemetry. Distributed directly from <a href="https://veravox.audio" style="color:var(--green);text-decoration:none;">veravox.audio</a>, outside the Mac App Store.</p>
-  <div class="pricing-card">
-    <div class="pricing-hdr">
-      <div class="pricing-name">VeraVox</div>
-      <div class="pricing-num"><span class="pricing-amt">&euro;69</span></div>
-      <div class="pricing-cycle">one-time purchase &middot; tax included</div>
-      <div class="pricing-trial">◆ 30-day free trial — full features, no account</div>
-    </div>
-    <div class="pricing-feats">
-      <div class="pf"><div class="pch">✓</div>PCM bit-perfect up to 32-bit / 768&thinsp;kHz</div>
-      <div class="pf"><div class="pch">✓</div>DSD64 → DSD512 via DoP (DSF, DFF, SACD ISO, WavPack)</div>
-      <div class="pf"><div class="pch">✓</div>Hog Mode exclusive hardware access</div>
-      <div class="pf"><div class="pch">✓</div>Stream Inspector, Vectorscope, Spectrum Analyzer, Spectrogram, VU Meter, Surround Sound Scope, Audio Forensics</div>
-      <div class="pf"><div class="pch">✓</div>Signal Generator with dual-channel measurement engine</div>
-      <div class="pf"><div class="pch">✓</div>DAC Warm-Up, Polarity Inversion (ø), DAC Diagnostic</div>
-      <div class="pf"><div class="pch">✓</div>3-level sample-accurate gapless playback</div>
-      <div class="pf"><div class="pch">✓</div>Music Library, Queue, Mini Player, Metadata Viewer</div>
-      <div class="pf"><div class="pch">✓</div>NAS &amp; network storage with adaptive buffering</div>
-      <div class="pf"><div class="pch">✓</div>Web Remote — control from any device on the network</div>
-      <div class="pf"><div class="pch">✓</div>UPnP/DLNA both ways: stream to renderers, or be one (with signal provenance)</div>
-      <div class="pf"><div class="pch">✓</div>No DSP, no mixer, no software volume in the player path</div>
-    </div>
-    <div class="pricing-note">
-      macOS 14 Sonoma or later &nbsp;·&nbsp; Apple Silicon &amp; Intel &nbsp;·&nbsp; Direct download &nbsp;·&nbsp; v1.x updates included<br/>
-      USB / Thunderbolt DAC with non-mixable integer format support required for bit-perfect playback
-    </div>
-  </div>
-</section>
-
 <!-- FOOTER -->
-<footer>
-  <div class="doc-footer">
-    <div class="footer-brand"><em>Vera</em>Vox</div>
-    <div class="footer-meta">
-      Technical Press Kit — Version 1.0<br/>
-      <a href="https://veravox.audio">veravox.audio</a> &nbsp;&middot;&nbsp; <a href="mailto:hello@veravox.audio">hello@veravox.audio</a>
-    </div>
-  </div>
-</footer>
 
 </div>
+<footer>
+  <p class="foot-copy">&copy; 2026 Riccardo Paterniti &nbsp;&middot;&nbsp; VeraVox is a trade name of Riccardo Paterniti &nbsp;&middot;&nbsp; All rights reserved</p>
+  <ul class="foot-links">
+    <li><a href="https://veravox.audio/">Home</a></li>
+    <li><a href="https://veravox.audio/faq.html">FAQ</a></li>
+    <li><a href="https://veravox.audio/release-notes.html">Release Notes</a></li><li><a href="https://veravox.audio/technical.html" aria-current="page">Technical Details</a></li>
+    <li><a href="https://veravox.audio/privacy.html">Privacy</a></li>
+    <li><a href="https://veravox.audio/terms.html">Terms</a></li>
+    <li><a href="https://veravox.audio/eula.html">EULA</a></li>
+    <li><a href="https://veravox.audio/refund.html">Refunds</a></li>
+    <li><a href="mailto:privacy@veravox.audio">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+function openMobileMenu(){
+  const m = document.getElementById('mobile-menu');
+  const o = document.getElementById('nav-overlay');
+  const b = document.getElementById('nav-ham');
+  if(!m) return;
+  m.classList.add('open'); m.setAttribute('aria-hidden','false');
+  if(o){ o.style.display='block'; requestAnimationFrame(()=>o.classList.add('open')); }
+  if(b){ b.classList.add('open'); b.setAttribute('aria-expanded','true'); }
+  document.body.style.overflow='hidden';
+}
+function closeMobileMenu(){
+  const m = document.getElementById('mobile-menu');
+  const o = document.getElementById('nav-overlay');
+  const b = document.getElementById('nav-ham');
+  if(!m) return;
+  m.classList.remove('open'); m.setAttribute('aria-hidden','true');
+  if(o){ o.classList.remove('open'); setTimeout(()=>{ o.style.display='none'; }, 260); }
+  if(b){ b.classList.remove('open'); b.setAttribute('aria-expanded','false'); }
+  document.body.style.overflow='';
+}
+(function(){
+  const btn = document.getElementById('nav-ham');
+  if(btn) btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    const m = document.getElementById('mobile-menu');
+    m && m.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
+  });
+  const overlay = document.getElementById('nav-overlay');
+  if(overlay) overlay.addEventListener('click', closeMobileMenu);
+  document.querySelectorAll('#mobile-menu a').forEach(a => a.addEventListener('click', closeMobileMenu));
+})();
+</script>
 </body>
 </html>
