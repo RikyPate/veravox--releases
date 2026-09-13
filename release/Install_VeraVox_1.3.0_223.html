@@ -1,0 +1,114 @@
+<h2>VeraVox 1.3.0</h2>
+
+<p>A wide update: playback settings, the queue, the Library drawer, and a long
+list of smaller things. Your library, queues, saved playlists and settings are
+untouched, and there is nothing you need to do.</p>
+
+<h3>Playback</h3>
+
+<ul>
+  <li>Bit Depth in Settings is now a choice of three: Match source, Prefer
+      24-bit (the default, and what VeraVox has always done) and Maximum. With
+      Match source a 16-bit file reaches the DAC as 16 bits, and a DAC that
+      displays its input depth shows the file's. If you had Max Bit Depth
+      switched on you will find Maximum selected; if you change nothing,
+      nothing changes.</li>
+  <li>An amber line under the picker may say that two of the settings deliver
+      the same depth on your DAC, at some sample rates or at all, even when the
+      DAC's format list shows that depth. It is not a fault. What counts is not
+      only which depths a DAC lists but how each one is laid out: VeraVox keeps
+      every sample in a 32-bit word, Prefer 24-bit and Maximum take only the
+      formats that word is copied into as it is, and a 24-bit format packed
+      into three bytes is not one of them, so on such a DAC both deliver 32
+      bits. Match source is the one setting that repacks to reach the file's
+      exact depth, and where the DAC has no 16-bit format it lands where Prefer
+      24-bit does. In every case your bits travel unmodified, with zeros below
+      them when the word is wider: bit-perfect either way. The line only tells
+      you in advance which settings your DAC cannot tell apart.</li>
+  <li>A 24-bit ALAC on a DAC that offers only 16-bit exclusive formats at that
+      rate used to go out truncated under the Bit-Perfect label. It now takes
+      the Shared path and says so. Nothing changes for any other file.</li>
+  <li>Audio interfaces with no 2-channel output format, as most recording
+      interfaces are, could not play FLAC, WavPack and RF64 files: noise in
+      Exclusive, several times too fast in Shared. They play normally on both
+      paths now; in Exclusive the Signal Path shows Enhanced with a Format
+      Conversion step.</li>
+  <li>The DAC Diagnostic panel's table of physical formats gains a Packing
+      column, and the tag beside the format says when the Bit Depth choice made
+      no difference at that rate.</li>
+</ul>
+
+<h3>The queue</h3>
+
+<ul>
+  <li>Each row reads like a Library row: artist and album under the title, a
+      short format badge such as 24/96 or DSD64, the duration in a straight
+      column, and the title with all the room at every width. Composer and year
+      follow the same Settings switch as the Library.</li>
+  <li>The heart and the stars are live, as in Now Playing. A title that does
+      not fit unfolds whole when you rest the pointer on it.</li>
+  <li>Right-click a row: Play, Play Next, Move to Top, Move to End, Remove from
+      Queue, Favorites and Rating, Add to Saved Playlist, Show in Library, Get
+      Info, Show in Finder. With several rows selected it acts on all of them
+      and says how many.</li>
+  <li>The Web Remote's queue shows the album and the same short badge.</li>
+</ul>
+
+<h3>The Library and its drawer</h3>
+
+<ul>
+  <li>The Library comes back on the tab you were using: after a relaunch,
+      after &#8984;L, and after moving it between the drawer and its own
+      window.</li>
+  <li>The drawer can be as wide as the window allows. The album grid shows as
+      many columns as fit at your cover size, and the zoom slider appears in
+      the drawer's status bar once there is room for it. At the usual widths
+      nothing changes.</li>
+  <li>The drawer can no longer be squeezed until its title and search field are
+      cut off. If you had saved a narrower drawer, it opens at the new
+      minimum.</li>
+  <li>The summary line under the Library reads whole at any width, and while
+      you search it counts what the tab is showing rather than matches hidden
+      in genre, composer, year or comments.</li>
+</ul>
+
+<h3>Booklets and the Web Remote</h3>
+
+<ul>
+  <li>If an album folder holds more than one PDF, you see them all: tabs above
+      the pages on the Mac (&#8963;Tab and &#8963;&#8679;Tab step through
+      them), chips on the Web Remote. A box set with a booklet per disc lists
+      all of them from the album page.</li>
+  <li>On the Web Remote, a cover you have changed updates without restarting
+      VeraVox.</li>
+</ul>
+
+<h3>Network renderers and the diagnostic report</h3>
+
+<ul>
+  <li>A renderer that states its service addresses in relative form, as the
+      UPnP standard prescribes, used to appear in the picker and answer no
+      command. It works now; renderers that already worked are untouched.</li>
+  <li>The diagnostic report stays readable after hours on the network: a silent
+      device is reported once rather than every five minutes, a device
+      announcing itself under a dozen names appears as one, a control point
+      polling for position is one line per streak, and a Mac that cannot send
+      multicast says so once. Nothing changes on the network or in the
+      audio.</li>
+</ul>
+
+<h3>Backups</h3>
+
+<ul>
+  <li>Restoring a backup made by an older VeraVox brings the library up to
+      today's model, where before compilations could come back split, or some
+      covers and tags missing. If you never restore a backup, nothing
+      changes.</li>
+  <li>A search index that has fallen behind the library is now noticed at
+      launch and rebuilt in the background.</li>
+</ul>
+
+<p>Several of the improvements above began with someone taking the time to
+write in and describe what they saw.</p>
+
+<p><a href="https://veravox.audio">veravox.audio</a></p>
