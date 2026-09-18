@@ -1,0 +1,131 @@
+<h2>VeraVox 1.4.0</h2>
+
+<p>A large update: a cover of your choosing, a text size for the whole
+interface, album favourites, text documents in the Booklet, the Signal Path on
+the Web Remote, and corrections in the Library, on HDMI outputs and in the
+Signal Generator. Your library, queues, saved playlists and settings are
+untouched. The first library update after installing takes a little longer
+than usual; the reason is under The Library.</p>
+
+<h3>Covers</h3>
+
+<ul>
+  <li>You choose which image is the cover of an album, or of one disc of a box
+      set: right-click the cover in the player or the mini player, an album in
+      the Library or a disc header, and pick any image found in the album's
+      folders or any image file on disk. VeraVox shows it everywhere it shows
+      a cover, the Web Remote, the macOS Now Playing display and a Tuneshine
+      included. Automatic brings back the cover your files give. Your files
+      and folders are never written.</li>
+  <li>A box set whose files carry two covers no longer needs the tag-order
+      trick: choose the disc's cover for playback and keep the box on the
+      album's tile.</li>
+  <li>Tools &#9656; Cover Window (&#8984;&#8997;C) shows the current cover
+      large while you listen; the arrow keys leaf through the album's
+      images.</li>
+</ul>
+
+<h3>Text size</h3>
+
+<ul>
+  <li>Settings has a Text Size card with four steps: Small, Default, Large and
+      Larger. Every window follows at once and nothing is clipped, because
+      rows, columns and popovers grow with the text. If you change nothing,
+      nothing changes. The instrument panels and the Mini Player keep their own
+      lettering; the Help window keeps its own zoom on top.</li>
+</ul>
+
+<h3>The Library</h3>
+
+<ul>
+  <li>A whole album goes into Favorites, and out, with one click: right-click
+      one or more covers, use the &#9829; in the album's header, or the heart
+      in the album header of the Web Remote. Hearts and stars in the lists now
+      sit in one column, whatever the figures beside them.</li>
+  <li>The scroll bar is back at the right edge, where every Mac window puts
+      it, with the A-Z index just inside.</li>
+  <li>Text files kept beside the music (.txt notes, a .md readme, a release
+      .nfo) join the Booklet after the PDFs, on the Mac and on the Web Remote:
+      an album with notes and no PDF gets the book badge, and a text file
+      opens in a monospaced pane with search and zoom. Per-track lyrics files
+      stay out. After installing, the first library update re-checks every
+      folder once so the badges appear.</li>
+  <li>Three tag corrections. WAV files written by a TagLib-based tag editor
+      now sort by their Sort Artist and Sort Album Artist tags, as FLAC and
+      AIFF already did. Compilations credited to Various Artists sort under V
+      even when every track carries its own performer's sort tag. AIFF and MP3
+      files tagged in Music, or in iTunes before it, arrive with album artist,
+      track numbers, year, genre, composer and compilation flag, so those
+      compilations stay together. Files already in the library take the
+      corrections after Rebuild This Folder in the Folder Manager, since an
+      ordinary update does not re-read files that have not changed.</li>
+</ul>
+
+<h3>Playback and devices</h3>
+
+<ul>
+  <li>An HDMI or optical output whose only exclusive formats are the Dolby and
+      DTS bitstream carriers used to show as Exclusive Ready, and with
+      Exclusive Mode on a multichannel file above 48 kHz could come out as
+      loud distortion. Such an output now shows as Shared Output, Exclusive is
+      not offered on it, and every file takes the shared path that already
+      played cleanly; the DAC Diagnostic panel lists those carriers as
+      Encoded. If your receiver is connected this way, the new label is the
+      correction, not a loss.</li>
+  <li>With Exclusive Mode on, a multichannel file on a device that can carry
+      every channel but has exclusive formats for stereo only used to start
+      in exclusive stereo without asking, surrounds lost. VeraVox now asks and
+      offers Play All Channels (Shared Output) first; Play L/R Only remains.
+      Stereo DACs and virtual devices are not affected.</li>
+  <li>If you run a convolver or room correction after VeraVox, the Signal
+      Path used to say High Quality for the handoff to your virtual device.
+      It now says Bit-Perfect Handoff when the device runs at the file's rate,
+      and the popover explains that what comes after the device is yours. It
+      stays High Quality, with the conversion step in view, when the device
+      resamples or the source is DSD.</li>
+</ul>
+
+<h3>Signal Generator</h3>
+
+<ul>
+  <li>While the generator plays, the player shows a Signal Generator card with
+      the output device, the path and the format badge with the Signal Path
+      LED, and the drawer has a DEVICE line reading HOG, SHARED or FAILED.
+      Before, the player showed its empty face and the drawer never said
+      where the signal was going.</li>
+  <li>The generator stops together with the sound: Stop from anywhere, or a
+      track started from the queue, switches it off, where before the drawer
+      and the Vectorscope kept drawing a figure that was no longer there. The
+      queue stays neutral while it plays, and the Web Remote says so instead
+      of showing the previous track.</li>
+  <li>In the Modern theme the RATE and DEPTH menus have a readable chevron,
+      RESET, REF 0dB and IMPULSE respond, the bezel keeps its round corners
+      with the drawer open, and the DAC Diagnostic panel's ALL PHYSICAL
+      FORMATS row shows the triangle that opens it.</li>
+</ul>
+
+<h3>Web Remote</h3>
+
+<ul>
+  <li>The format badge carries the same coloured Signal Path LED as the Mac;
+      tapping it opens the full chain, from the source file to the output
+      device, with the same label and steps. In the Output tab, local devices
+      show their tier: Exclusive Ready, Shared Output or Lossy.</li>
+  <li>The Settings tab reads like the rest of VeraVox: devices in grouped
+      panels with the picker's LED and a tick on the active output, switches
+      for Composer, Year and Group by Work, two equal segmented controls for
+      Theme and Waveform. Nothing changes in what the settings do.</li>
+  <li>When nothing is playing, Now Playing shows the VeraVox mark in the
+      artwork frame with a hint to pick a track. The album, disc, composer and
+      device names under the title are as readable as the artist's, in both
+      themes and under any cover.</li>
+  <li>On an iPad held in landscape, the Playing tab puts the cover on the left
+      and the title, waveform and controls on the right, nothing hidden under
+      the tab bar. The Library ends with the same status line the Mac shows:
+      albums, tracks and total playing time of what the tab lists.</li>
+</ul>
+
+<p>Most of the improvements above began with someone taking the time to write
+in and describe what they saw.</p>
+
+<p><a href="https://veravox.audio">veravox.audio</a></p>
