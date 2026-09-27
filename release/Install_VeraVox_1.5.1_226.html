@@ -1,0 +1,58 @@
+<h2>VeraVox 1.5.1</h2>
+
+<p>VeraVox 1.5.0 was one of our richest updates, and the feedback you
+sent after installing it helped us spot a few small things we wanted to put
+right without waiting. This update takes care of them, and rounds off some
+of the features 1.5.0 introduced. Your library, queues, saved playlists and
+settings are untouched.</p>
+
+<h3>The Signal Path</h3>
+
+<ul>
+  <li>Since 1.5.0 the Signal Path also shows what happens to a file stored
+      in floating point, such as a 32-bit float WAV, AIFF or WavPack, played
+      in exclusive mode. Your DAC receives integer samples, so VeraVox
+      delivers the music as integers at the highest resolution your DAC
+      offers, without ever touching your file. The Signal Path says so, with
+      Faithful Decode and a Float &#8594; Integer step instead of
+      Bit-Perfect: not a compromise, but VeraVox telling you exactly what
+      reaches your DAC, as it always does. The Stream Inspector and the Web
+      Remote say the same.</li>
+  <li>This update corrects how ALAC files are shown. They are integer files
+      that reach your DAC bit-perfect, and the Signal Path now shows them as
+      Bit-Perfect, keeping Faithful Decode for files that really are in
+      floating point. Their sound was never affected.</li>
+</ul>
+
+<h3>The Library</h3>
+
+<ul>
+  <li>Inside an artist, a genre, a composer, a Smart Playlist or a search,
+      an album counts the tracks that belong there, opens on them and plays
+      them. When they are only part of the album it says so, as in "3 of 12
+      tracks", and Whole Album in its header shows the rest. The Web Remote
+      does the same.</li>
+  <li>In the Columns layout of the Artists tab, select several albums, or
+      All Albums, and the track list below follows.</li>
+  <li>Export the Dynamic Range reports of several albums in one go, with
+      Export Dynamic Range Reports&#8230; in the right-click menu of a
+      selection. Each report goes into its album's folder, or all into a
+      folder you choose, and tracks not yet analysed can be measured in the
+      same pass. The work runs in the background, from a NAS too, and a new
+      export picks up where the last one stopped.</li>
+</ul>
+
+<h3>Other fixes</h3>
+
+<ul>
+  <li>On macOS 27, the Mini Player and the diagnostic panels move again
+      when you drag them from anywhere that isn't a control.</li>
+  <li>Smart Playlists sorted by Play Count or Last Played, Play Count rules
+      and the sort direction all work as they should.</li>
+  <li>Single-file CUE albums in ALAC reach network renderers at full
+      resolution.</li>
+  <li>Tuneshine displays that are slow to respond get their cover more
+      reliably.</li>
+</ul>
+
+<p><a href="https://veravox.audio">veravox.audio</a></p>

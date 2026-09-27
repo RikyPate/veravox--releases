@@ -4,6 +4,81 @@
         <title>VeraVox Updates</title>
         <language>en</language>
         <item>
+            <title>1.5.1</title>
+            <pubDate>Sun, 27 Sep 2026 18:40:22 +0200</pubDate>
+            <sparkle:fullReleaseNotesLink>https://veravox.audio/release-notes.html</sparkle:fullReleaseNotesLink>
+            <sparkle:version>226</sparkle:version>
+            <sparkle:shortVersionString>1.5.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h2>VeraVox 1.5.1</h2>
+
+<p>VeraVox 1.5.0 was one of our richest updates, and the feedback you
+sent after installing it helped us spot a few small things we wanted to put
+right without waiting. This update takes care of them, and rounds off some
+of the features 1.5.0 introduced. Your library, queues, saved playlists and
+settings are untouched.</p>
+
+<h3>The Signal Path</h3>
+
+<ul>
+  <li>Since 1.5.0 the Signal Path also shows what happens to a file stored
+      in floating point, such as a 32-bit float WAV, AIFF or WavPack, played
+      in exclusive mode. Your DAC receives integer samples, so VeraVox
+      delivers the music as integers at the highest resolution your DAC
+      offers, without ever touching your file. The Signal Path says so, with
+      Faithful Decode and a Float &#8594; Integer step instead of
+      Bit-Perfect: not a compromise, but VeraVox telling you exactly what
+      reaches your DAC, as it always does. The Stream Inspector and the Web
+      Remote say the same.</li>
+  <li>This update corrects how ALAC files are shown. They are integer files
+      that reach your DAC bit-perfect, and the Signal Path now shows them as
+      Bit-Perfect, keeping Faithful Decode for files that really are in
+      floating point. Their sound was never affected.</li>
+</ul>
+
+<h3>The Library</h3>
+
+<ul>
+  <li>Inside an artist, a genre, a composer, a Smart Playlist or a search,
+      an album counts the tracks that belong there, opens on them and plays
+      them. When they are only part of the album it says so, as in "3 of 12
+      tracks", and Whole Album in its header shows the rest. The Web Remote
+      does the same.</li>
+  <li>In the Columns layout of the Artists tab, select several albums, or
+      All Albums, and the track list below follows.</li>
+  <li>Export the Dynamic Range reports of several albums in one go, with
+      Export Dynamic Range Reports&#8230; in the right-click menu of a
+      selection. Each report goes into its album's folder, or all into a
+      folder you choose, and tracks not yet analysed can be measured in the
+      same pass. The work runs in the background, from a NAS too, and a new
+      export picks up where the last one stopped.</li>
+</ul>
+
+<h3>Other fixes</h3>
+
+<ul>
+  <li>On macOS 27, the Mini Player and the diagnostic panels move again
+      when you drag them from anywhere that isn't a control.</li>
+  <li>Smart Playlists sorted by Play Count or Last Played, Play Count rules
+      and the sort direction all work as they should.</li>
+  <li>Single-file CUE albums in ALAC reach network renderers at full
+      resolution.</li>
+  <li>Tuneshine displays that are slow to respond get their cover more
+      reliably.</li>
+</ul>
+
+<p><a href="https://veravox.audio">veravox.audio</a></p>
+]]></description>
+            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-226/Install_VeraVox_1.5.1_226.dmg" length="22355631" type="application/octet-stream" sparkle:edSignature="XcOGOoEcvSCaYa6Si2JfKjsPbUZFamDHQnoksNIkrg9HsgMqpFLWcc/vl6G5M3kwxA2uXlToEgllnMIEeszVDg=="/>
+            <sparkle:deltas>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-226/VeraVox226-225.delta" sparkle:deltaFrom="225" length="2949246" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="/DXZO/sfllPpKd2TlHnpahOZGZkMr7nVxxblIkJs84vxYDODbFBnRRpX/2ygQewtYOpHukRA3FxyxBNr1uZlAA=="/>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-226/VeraVox226-224.delta" sparkle:deltaFrom="224" length="4162090" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="bHpE3qdE8JOS3+uB2A0vZO3M334eXfBDXgEgV2t9+bIQNlzVrLfv2Gyu/9JWwaemr6HevnQnmOk0wWnVlMx9Dg=="/>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-226/VeraVox226-223.delta" sparkle:deltaFrom="223" length="11854794" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="XiRwuZ6y+SKanLE4ink5ehGOBrIw/KPiLThDAv8WgIpoU4hBcayGAja+tvn0Jsx+sD6/JUNnbexsFIg7mI1JAg=="/>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-226/VeraVox226-222.delta" sparkle:deltaFrom="222" length="11983426" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="jB7wKfsoAge87kjm8bfa/0hWehCVbftFi9pu9iAa/dNNT4g2FfdjzlVR6dnV+R2pr3t8hmuHdljwWxiUZyzZAg=="/>
+                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-226/VeraVox226-221.delta" sparkle:deltaFrom="221" length="12104366" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="mQfnbzuIjujsjvFJMj7u4MAr6AG3SeC4diQ7SQc2qElYCTBbNyJpylB5RUjGlhGqWmiUAAcAiKYbKBgU0BBDCA=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.5.0</title>
             <pubDate>Fri, 25 Sep 2026 18:37:40 +0200</pubDate>
             <sparkle:fullReleaseNotesLink>https://veravox.audio/release-notes.html</sparkle:fullReleaseNotesLink>
@@ -102,7 +177,7 @@ in and describe what they saw.</p>
 
 <p><a href="https://veravox.audio">veravox.audio</a></p>
 ]]></description>
-            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-225/Install_VeraVox_1.5.0_225.dmg" length="22105156" type="application/octet-stream" sparkle:edSignature="a8IHuq1wN7idnGumUpwTQfy+oP4lJW1j7VUlSne5CSJGp8eP53jq2gqIOA+ZEbcQuoBzh8g9jrWxhDebk5XiCQ=="/>
+            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-226/Install_VeraVox_1.5.0_225.dmg" length="22105156" type="application/octet-stream" sparkle:edSignature="a8IHuq1wN7idnGumUpwTQfy+oP4lJW1j7VUlSne5CSJGp8eP53jq2gqIOA+ZEbcQuoBzh8g9jrWxhDebk5XiCQ=="/>
             <sparkle:deltas>
                 <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-225/VeraVox225-224.delta" sparkle:deltaFrom="224" length="3785038" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="DJNEaxbOGULZ9WpRbHqCLzi1qqGiii2LRVccXzbokdCrEUvSayXgfEnJPoGAgy7/flkSkH9XHUMDh7mAB3TTBg=="/>
                 <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-225/VeraVox225-223.delta" sparkle:deltaFrom="223" length="11653714" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="GmSQiu1M2dCL+9WVwluchy6Cya8M2s2wCodUbQjIU31AsGfTxuuz7joyZHo3T7n3Vs9hS0h/sSs8KvGDa0A/Bg=="/>
@@ -250,144 +325,13 @@ in and describe what they saw.</p>
 
 <p><a href="https://veravox.audio">veravox.audio</a></p>
 ]]></description>
-            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-225/Install_VeraVox_1.4.0_224.dmg" length="21567823" type="application/octet-stream" sparkle:edSignature="JJ/n012y+efQXlEUW3+B9qTlbIyy0JVn1lJWKrdcsfDwWMpjvnVhMdEs/zRLAZGmBPuMaP/oqmpFKM9FLN8DBA=="/>
+            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-226/Install_VeraVox_1.4.0_224.dmg" length="21567823" type="application/octet-stream" sparkle:edSignature="JJ/n012y+efQXlEUW3+B9qTlbIyy0JVn1lJWKrdcsfDwWMpjvnVhMdEs/zRLAZGmBPuMaP/oqmpFKM9FLN8DBA=="/>
             <sparkle:deltas>
                 <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-224/VeraVox224-223.delta" sparkle:deltaFrom="223" length="10911802" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="J/GWBk7YAFiRpy2iGAYQiQUbrbiGwK6xLK+LfRB195Ou527nqbRNd/B1+mmmNxpmSKntclT7/OPklF2JFry8AA=="/>
                 <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-224/VeraVox224-222.delta" sparkle:deltaFrom="222" length="11058238" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="xhp1CuGu0V+OMk5+VeCdPGiue1rXnE6/AVgFLw/vGxObiqOubUP1K1FWC4J/XACH34p1hnFLwBqDz0FHdPU4AA=="/>
                 <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-224/VeraVox224-221.delta" sparkle:deltaFrom="221" length="11220874" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="m4ds0HlqgnsjSk+OD71MdO0hbXb7BGRN5aO8iAwm4IlHbPbHAHWltS+L+MMJ2/NiHssN6vWwt0gpGeOHH0LCBA=="/>
                 <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-224/VeraVox224-220.delta" sparkle:deltaFrom="220" length="11354558" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="D1dO8H4uTDIgJ4oxgpx8Dph7TMD+3p0DyBKeB6vC+WvFehuJbHYC5ACMQletHjw0MifhwrXXykfIk9m/hnqZDg=="/>
                 <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-224/VeraVox224-219.delta" sparkle:deltaFrom="219" length="11375842" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="za2QGsi9NwI8CHkWPGEgy/jQ+FlV4r7y5boxnkzpeYLcSQlMTT92MU0LSUI6xFHdx0zzZ4SxBUrNi12OXULKDw=="/>
-            </sparkle:deltas>
-        </item>
-        <item>
-            <title>1.3.0</title>
-            <pubDate>Sun, 13 Sep 2026 12:03:46 +0200</pubDate>
-            <sparkle:fullReleaseNotesLink>https://veravox.audio/release-notes.html</sparkle:fullReleaseNotesLink>
-            <sparkle:version>223</sparkle:version>
-            <sparkle:shortVersionString>1.3.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[<h2>VeraVox 1.3.0</h2>
-
-<p>A wide update: playback settings, the queue, the Library drawer, and a long
-list of smaller things. Your library, queues, saved playlists and settings are
-untouched, and there is nothing you need to do.</p>
-
-<h3>Playback</h3>
-
-<ul>
-  <li>Bit Depth in Settings is now a choice of three: Match source, Prefer
-      24-bit (the default, and what VeraVox has always done) and Maximum. With
-      Match source a 16-bit file reaches the DAC as 16 bits, and a DAC that
-      displays its input depth shows the file's. If you had Max Bit Depth
-      switched on you will find Maximum selected; if you change nothing,
-      nothing changes.</li>
-  <li>An amber line under the picker may say that two of the settings deliver
-      the same depth on your DAC, at some sample rates or at all, even when the
-      DAC's format list shows that depth. It is not a fault. What counts is not
-      only which depths a DAC lists but how each one is laid out: VeraVox keeps
-      every sample in a 32-bit word, Prefer 24-bit and Maximum take only the
-      formats that word is copied into as it is, and a 24-bit format packed
-      into three bytes is not one of them, so on such a DAC both deliver 32
-      bits. Match source is the one setting that repacks to reach the file's
-      exact depth, and where the DAC has no 16-bit format it lands where Prefer
-      24-bit does. In every case your bits travel unmodified, with zeros below
-      them when the word is wider: bit-perfect either way. The line only tells
-      you in advance which settings your DAC cannot tell apart.</li>
-  <li>A 24-bit ALAC on a DAC that offers only 16-bit exclusive formats at that
-      rate used to go out truncated under the Bit-Perfect label. It now takes
-      the Shared path and says so. Nothing changes for any other file.</li>
-  <li>Audio interfaces with no 2-channel output format, as most recording
-      interfaces are, could not play FLAC, WavPack and RF64 files: noise in
-      Exclusive, several times too fast in Shared. They play normally on both
-      paths now; in Exclusive the Signal Path shows Enhanced with a Format
-      Conversion step.</li>
-  <li>The DAC Diagnostic panel's table of physical formats gains a Packing
-      column, and the tag beside the format says when the Bit Depth choice made
-      no difference at that rate.</li>
-</ul>
-
-<h3>The queue</h3>
-
-<ul>
-  <li>Each row reads like a Library row: artist and album under the title, a
-      short format badge such as 24/96 or DSD64, the duration in a straight
-      column, and the title with all the room at every width. Composer and year
-      follow the same Settings switch as the Library.</li>
-  <li>The heart and the stars are live, as in Now Playing. A title that does
-      not fit unfolds whole when you rest the pointer on it.</li>
-  <li>Right-click a row: Play, Play Next, Move to Top, Move to End, Remove from
-      Queue, Favorites and Rating, Add to Saved Playlist, Show in Library, Get
-      Info, Show in Finder. With several rows selected it acts on all of them
-      and says how many.</li>
-  <li>The Web Remote's queue shows the album and the same short badge.</li>
-</ul>
-
-<h3>The Library and its drawer</h3>
-
-<ul>
-  <li>The Library comes back on the tab you were using: after a relaunch,
-      after &#8984;L, and after moving it between the drawer and its own
-      window.</li>
-  <li>The drawer can be as wide as the window allows. The album grid shows as
-      many columns as fit at your cover size, and the zoom slider appears in
-      the drawer's status bar once there is room for it. At the usual widths
-      nothing changes.</li>
-  <li>The drawer can no longer be squeezed until its title and search field are
-      cut off. If you had saved a narrower drawer, it opens at the new
-      minimum.</li>
-  <li>The summary line under the Library reads whole at any width, and while
-      you search it counts what the tab is showing rather than matches hidden
-      in genre, composer, year or comments.</li>
-</ul>
-
-<h3>Booklets and the Web Remote</h3>
-
-<ul>
-  <li>If an album folder holds more than one PDF, you see them all: tabs above
-      the pages on the Mac (&#8963;Tab and &#8963;&#8679;Tab step through
-      them), chips on the Web Remote. A box set with a booklet per disc lists
-      all of them from the album page.</li>
-  <li>On the Web Remote, a cover you have changed updates without restarting
-      VeraVox.</li>
-</ul>
-
-<h3>Network renderers and the diagnostic report</h3>
-
-<ul>
-  <li>A renderer that states its service addresses in relative form, as the
-      UPnP standard prescribes, used to appear in the picker and answer no
-      command. It works now; renderers that already worked are untouched.</li>
-  <li>The diagnostic report stays readable after hours on the network: a silent
-      device is reported once rather than every five minutes, a device
-      announcing itself under a dozen names appears as one, a control point
-      polling for position is one line per streak, and a Mac that cannot send
-      multicast says so once. Nothing changes on the network or in the
-      audio.</li>
-</ul>
-
-<h3>Backups</h3>
-
-<ul>
-  <li>Restoring a backup made by an older VeraVox brings the library up to
-      today's model, where before compilations could come back split, or some
-      covers and tags missing. If you never restore a backup, nothing
-      changes.</li>
-  <li>A search index that has fallen behind the library is now noticed at
-      launch and rebuilt in the background.</li>
-</ul>
-
-<p>Several of the improvements above began with someone taking the time to
-write in and describe what they saw.</p>
-
-<p><a href="https://veravox.audio">veravox.audio</a></p>
-]]></description>
-            <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-225/Install_VeraVox_1.3.0_223.dmg" length="21377580" type="application/octet-stream" sparkle:edSignature="THefFW5e734t/a6cmodgYxeuIEFl93FLDnAsgNA67RTLsGLP6KNUOYHoEBdV7bXqJBflzGKnC0ZuqtYsLPXnCA=="/>
-            <sparkle:deltas>
-                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-223/VeraVox223-222.delta" sparkle:deltaFrom="222" length="2580866" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="OE0k5C2ACtYoKYY0mt2mjwDsYrDDyJKWTh7sYyzF3pA5mvwFS67VBXPhRi2nngjK1ly1NQncn/jxgICO+TrrDQ=="/>
-                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-223/VeraVox223-221.delta" sparkle:deltaFrom="221" length="3300830" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="rWz3lyFyFD8JVQqYmhrQkX0Lf0g28589B7x8oK22KVEfflAMEYY+VlOnK2d4AtybTS2L3ipP5fqPq1oRWe1CDQ=="/>
-                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-223/VeraVox223-220.delta" sparkle:deltaFrom="220" length="3739642" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="DrALKQUPmbdE96NaZc5IwPF9WiJ1v2oQFTaMgmjmNrgzGGRPa5F8MAFYXUVZ/dIGthBAusoI3RInC9V2/c+lCg=="/>
-                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-223/VeraVox223-219.delta" sparkle:deltaFrom="219" length="3873118" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="BPv82s9sXPWIiRRZczZSVFMcJgXDinEbth2AUjXyncDq679q3m0FK9lnSMVJOZHdAqRIjfab7Lu1j6z4JInVBQ=="/>
-                <enclosure url="https://github.com/RikyPate/veravox--releases/releases/download/release-223/VeraVox223-218.delta" sparkle:deltaFrom="218" length="4119590" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="977840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="91+dJIpk2CDODsTkihrSYb5zmK1+xXW5A0uP3IxfXApQk273YDeDdXCHzHt7Iz8+UYcYBKB9nbExpywgYIdsAg=="/>
             </sparkle:deltas>
         </item>
     </channel>

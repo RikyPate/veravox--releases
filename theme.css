@@ -1,0 +1,161 @@
+/* ============================================================================
+   VeraVox site theme: the palette of every page, dark and light, the window
+   material the pages are drawn on, and the switch in the site header.
+
+   Both themes come from the app's own window (VXWindowMaterial in
+   DesignTokens.swift). Dark is the anthracite its glass shows, with the two
+   coloured reflections it draws over it; light is the app's light reading
+   surface, with its own two reflections. The accents are the app's
+   instruments: the phosphor green and amber on dark, a darker green and
+   amber that hold their contrast on light. Dark is the default; theme.js
+   puts data-theme="light" on <html> before the first paint when the reader
+   chooses light.
+
+   Every page takes its colours from here. The translucent tints are written
+   as rgba(var(--green-rgb,46,255,107),a) and a few surfaces as
+   var(--sheet,#0a0f0c): the fallback is the colour the page had before this
+   file existed, and only shows if the file fails to load.
+   ========================================================================= */
+
+/* ── Dark, the default; also the palette of anything marked .stays-dark
+      (an instrument display) when the page is light. ─────────────────────── */
+:root,
+:root[data-theme="light"] .stays-dark{
+  color-scheme:dark;
+  --bg:#242529;
+  /* Opaque, like the app's content areas: the grids draw their lines as the
+     background showing between cells, which a translucent cell would tint. */
+  --panel:#2C2D31;--panel2:#33343A;--panel3:#1F2023;
+  --border:rgba(46,255,107,.16);--bdim:rgba(46,255,107,.09);
+  --green:#2EFF6B;--gdim:#24A24C;--gbg:rgba(46,255,107,.05);
+  --amber:#FFB21A;--adim:#8A5E10;--abg:rgba(255,178,26,.07);
+  --yellow:#E8D46A;--ybg:rgba(232,212,106,.07);
+  --red:#FF3832;--teal:#00BDD4;--purple:#C380FF;
+  --text:#ECEFEC;--tbody:#C3CBC5;--tmid:#9DAEA1;--tdim:#7B8B80;
+  --codebg:rgba(46,255,107,.07);--stripe:rgba(255,255,255,.025);
+  --hover:rgba(46,255,107,.09);--glow:rgba(46,255,107,.14);
+  --markbg:rgba(46,255,107,.24);--barbg:rgba(34,35,39,.9);
+  /* The header, and the menu that drops from it on a phone: nearly opaque,
+     since it covers the page rather than the empty band above it. */
+  --navbg:rgba(32,33,37,.84);--menubg:rgba(32,33,37,.96);
+  /* Text on a solid green fill: black on the neon green, white on the dark one. */
+  --on-green:#000;
+  /* Opaque surfaces: drawers and dialogs (sheet), the recessed boxes inside
+     them (well), form fields (field), the image viewer (viewer). */
+  --sheet:#2A2B2F;--well:rgba(0,0,0,.2);--field:rgba(0,0,0,.24);--viewer:rgba(22,23,26,.96);
+  /* The app's Signal Path LED colours, as text on the page. */
+  --led-green:rgba(46,255,107,.9);--led-yellow:#f5c542;--led-teal:#26D99E;
+  --led-blue:#4dabf7;--led-lightblue:#66bfff;--led-red:#ff4444;
+  /* Channels of the translucent tints. Ink is what is written in the colour
+     of the text (hairlines, faint fills), surface the colour of the page. */
+  --green-rgb:46,255,107;--amber-rgb:255,178,26;--teal-rgb:0,189,212;
+  --red-rgb:255,56,50;--purple-rgb:150,80,255;
+  --ink-rgb:255,255,255;--surface-rgb:36,37,41;--text-rgb:236,239,236;
+  /* The hot core of the home's oscilloscope beam. */
+  --beam-core-rgb:214,255,228;
+  /* The window: the anthracite the app's glass shows (measured on macOS 26
+     and taken a step darker, towards the more tinted glass macOS 27 draws
+     by default), and its reflections: the Mac's accent colour (blue unless
+     the user chose another) top left, purple bottom right. */
+  --mat-base:linear-gradient(135deg,#26272B 0%,#252529 50%,#212226 100%);
+  --mat-r1:rgba(10,132,255,.20);
+  --mat-r2:rgba(191,90,242,.15);
+}
+
+/* ── Light ─────────────────────────────────────────────────────────────── */
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#EFF1F7;
+  --panel:rgba(255,255,255,.72);--panel2:#ffffff;--panel3:rgba(255,255,255,.6);
+  --border:rgba(11,122,52,.24);--bdim:rgba(30,40,60,.11);
+  --green:#0B7A34;--gdim:#2E9C55;--gbg:rgba(11,122,52,.07);
+  --amber:#A35400;--adim:#D9A35A;--abg:rgba(255,149,0,.10);
+  --yellow:#7A5E00;--ybg:rgba(255,204,0,.16);
+  --red:#C62828;--teal:#00798A;--purple:#7A3FD0;
+  --text:#1B1E1C;--tbody:#2B302D;--tmid:#5A625C;--tdim:#8B928C;
+  --codebg:rgba(30,40,60,.06);--stripe:rgba(30,40,60,.025);
+  --hover:rgba(11,122,52,.09);--glow:rgba(11,122,52,.12);
+  --markbg:rgba(255,214,10,.45);--barbg:rgba(240,242,248,.9);
+  --navbg:rgba(240,242,248,.84);--menubg:rgba(240,242,248,.96);
+  --on-green:#fff;
+  --sheet:#F7F8FB;--well:rgba(30,40,60,.045);--field:#fff;--viewer:rgba(240,242,248,.96);
+  /* The LEDs glow on dark; on a light page the same hues need more weight. */
+  --led-green:#0B7A34;--led-yellow:#8A6A00;--led-teal:#0A8660;
+  --led-blue:#1A62B0;--led-lightblue:#2F7FC0;--led-red:#C62828;
+  --green-rgb:11,122,52;--amber-rgb:255,149,0;--teal-rgb:0,121,138;
+  --red-rgb:198,40,40;--purple-rgb:110,60,200;
+  --ink-rgb:30,40,60;--surface-rgb:246,247,251;--text-rgb:27,30,28;
+  --beam-core-rgb:11,122,52;
+  /* The app's light solid surface, with its reflections: the accent colour
+     top left and blue bottom right. */
+  --mat-base:linear-gradient(135deg,#EDF0F7 0%,#F2EDF7 50%,#F0F2FA 100%);
+  --mat-r1:rgba(0,122,255,.20);
+  --mat-r2:rgba(0,122,255,.12);
+}
+
+/* ── The window material, behind every page ───────────────────────────────
+   The base on the root, fixed to the viewport like the app's is to its
+   window (iOS ignores a fixed background and lets it scroll, which on a
+   gradient this faint does not show). The two reflections on a layer of
+   their own, a little larger than the screen, that turns and breathes very
+   slowly: a transform, so the compositor moves it without repainting. */
+html{background-color:var(--bg);background-image:var(--mat-base);background-attachment:fixed}
+html::before{
+  content:'';position:fixed;inset:-10vmax;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(circle at calc(10vmax + 29vw) calc(10vmax + 22vh),var(--mat-r1) 0,var(--mat-r1) 6vmax,transparent 36vmax),
+    radial-gradient(circle at calc(10vmax + 79vw) calc(10vmax + 85vh),var(--mat-r2) 0,var(--mat-r2) 7vmax,transparent 42vmax);
+  animation:vv-reflections 34s ease-in-out infinite alternate;
+  will-change:transform;
+}
+@keyframes vv-reflections{
+  0%  {transform:rotate(0deg) scale(1)}
+  50% {transform:rotate(4deg) scale(1.04) translate(1.5vmax,-1vmax)}
+  100%{transform:rotate(-3deg) scale(.99) translate(-1vmax,1.5vmax)}
+}
+@media (prefers-reduced-motion:reduce){html::before{animation:none}}
+
+/* The header's drop-down menu is the same glass as the header. */
+#mobile-menu{backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4)}
+
+/* Neon glows are a dark-room effect: on a light page they only blur the text. */
+:root[data-theme="light"] body *{text-shadow:none}
+
+/* Drawings that name the brand colours in their attributes (the icons of the
+   home and of its drawer) take the brand colours of the theme they are in. */
+[stroke="#2EFF6B" i]{stroke:var(--green)}
+[fill="#2EFF6B" i]{fill:var(--green)}
+[stroke="#FFB21A" i]{stroke:var(--amber)}
+[fill="#FFB21A" i]{fill:var(--amber)}
+
+/* Swapping every colour at once reads as one change. The hover transitions
+   the pages declare would otherwise fade some colours and snap the rest. */
+.theme-swap *,
+.theme-swap *::before,
+.theme-swap *::after{transition:none!important}
+
+/* ── The switch ─────────────────────────────────────────────────────────────
+   The app's own convention (its toolbar's sun and moon): the icon shows the
+   appearance a click switches to, a sun on the dark site and a moon on the
+   light one. One per page, in the header, visible at every width: after the
+   links on a wide screen, next to the menu button on a phone. The links take
+   the free space, so on a wide screen the switch sits right after them; when
+   the phone layout hides them, its own auto margin pushes it to the right. */
+body > nav .nav-links{flex:1 1 auto;justify-content:flex-end;margin-right:14px}
+.theme-switch{
+  appearance:none;-webkit-appearance:none;
+  flex-shrink:0;width:34px;height:34px;margin:0 0 0 auto;padding:0;
+  display:flex;align-items:center;justify-content:center;
+  background:none;border:0;border-radius:8px;cursor:pointer;
+  color:var(--tmid);-webkit-tap-highlight-color:transparent;
+  transition:color .2s,background .2s;
+}
+.theme-switch:hover{color:var(--text);background:rgba(var(--ink-rgb),.06)}
+.theme-switch:focus-visible{outline:2px solid var(--gdim);outline-offset:1px}
+.theme-switch svg{width:17px;height:17px;display:block}
+.theme-switch + .nav-ham{margin-left:4px}
+/* Drawn from the attribute on <html>, set before the first paint, so the
+   right icon is there from the first frame. */
+.ts-moon{display:none!important}
+:root[data-theme="light"] .ts-sun{display:none!important}
+:root[data-theme="light"] .ts-moon{display:block!important}

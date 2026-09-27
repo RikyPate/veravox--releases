@@ -15,6 +15,10 @@
 <meta property="og:locale" content="en_US"/>
 <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png"/>
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png"/>
+  <!-- Site palette and theme: dark (the default) or light, chosen with the
+       switch in the header. theme.js runs before the first paint; see theme.css. -->
+  <link rel="stylesheet" href="theme.css"/>
+  <script src="theme.js"></script>
 <style>
 /* Self-hosted fonts (same .ttf as the main site) so the wordmark+pay-off
    lockup always renders in DM Serif Display and never falls back to Georgia
@@ -27,12 +31,12 @@
 @font-face{font-family:'DM Mono';src:url('Fonts/DMMono-Medium.ttf') format('truetype');font-weight:500;font-style:normal;font-display:swap}
 @font-face{font-family:'Instrument Sans';src:url('Fonts/InstrumentSans-VariableFont_wdth,wght.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
 @font-face{font-family:'Instrument Sans';src:url('Fonts/InstrumentSans-Italic-VariableFont_wdth,wght.ttf') format('truetype');font-weight:100 900;font-style:italic;font-display:swap}
-:root{--bg:#0a0d0b;--panel:#0d1310;--panel2:#111a15;--border:rgba(46,255,107,.13);--bdim:rgba(46,255,107,.06);--green:#2EFF6B;--gdim:#15883a;--gbg:rgba(46,255,107,.04);--amber:#FFB21A;--adim:#7a5208;--abg:rgba(255,178,26,.04);--teal:#00BDD4;--red:#FF4444;--text:#e8ede9;--tmid:#8fa893;--tdim:#445a4a;--mono:'DM Mono','Menlo',monospace;--serif:'DM Serif Display',Georgia,serif;--sans:'Instrument Sans',sans-serif;--r:8px}
+:root{/* Colours: theme.css, dark and light. */--mono:'DM Mono','Menlo',monospace;--serif:'DM Serif Display',Georgia,serif;--sans:'Instrument Sans',sans-serif;--r:8px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.018;pointer-events:none;z-index:0}
-.page{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 40px 100px}
+.page{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 40px 100px;overflow-wrap:break-word}
 .cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:80px 0 60px;border-bottom:1px solid var(--bdim)}
 .cover-eyebrow{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:10px;margin-bottom:28px;opacity:0;animation:fadeUp .7s .1s ease forwards}
 .cover-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--gdim)}
@@ -49,13 +53,13 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .meta-item{display:flex;flex-direction:column;gap:3px}
 .meta-val{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--green);letter-spacing:.04em}
 .meta-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--tdim)}
-.cover-specs{margin-top:48px;display:flex;flex-wrap:wrap;border:1px solid var(--bdim);border-radius:var(--r);overflow:hidden;background:rgba(13,19,16,.6);opacity:0;animation:fadeUp .7s .5s ease forwards}
+.cover-specs{margin-top:48px;display:flex;flex-wrap:wrap;border:1px solid var(--bdim);border-radius:var(--r);overflow:hidden;background:rgba(var(--surface-rgb,13,19,16),.6);opacity:0;animation:fadeUp .7s .5s ease forwards}
 .spec-item{padding:14px 22px;border-right:1px solid var(--bdim);display:flex;flex-direction:column;gap:4px;min-width:100px}
 .spec-item:last-child{border-right:none}
-.spec-val{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--green);letter-spacing:.04em;text-shadow:0 0 8px rgba(46,255,107,.5),0 0 20px rgba(46,255,107,.2)}
-.spec-val.amber{color:var(--amber);text-shadow:0 0 8px rgba(255,178,26,.5)}
+.spec-val{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--green);letter-spacing:.04em;text-shadow:0 0 8px rgba(var(--green-rgb,46,255,107),.5),0 0 20px rgba(var(--green-rgb,46,255,107),.2)}
+.spec-val.amber{color:var(--amber);text-shadow:0 0 8px rgba(var(--amber-rgb,255,178,26),.5)}
 .spec-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--tdim)}
-.toc{position:sticky;top:0;z-index:99;background:rgba(10,13,11,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdim);margin:0 -40px}
+.toc{position:sticky;top:0;z-index:99;background:var(--barbg,rgba(10,13,11,.96));backdrop-filter:blur(16px);border-bottom:1px solid var(--bdim);margin:0 -40px}
 .toc-inner{max-width:860px;margin:0 auto;padding:0 40px;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none}
 .toc-inner::-webkit-scrollbar{display:none}
 .toc-brand{font-family:var(--serif);font-size:15px;color:var(--tmid);padding:14px 20px 14px 0;border-right:1px solid var(--bdim);margin-right:16px;white-space:nowrap;flex-shrink:0}
@@ -77,8 +81,8 @@ p.body a:hover{border-color:var(--green)}
 .glance-cell{background:var(--panel);padding:22px;transition:background .2s}
 .glance-cell:hover{background:var(--panel2)}
 .gc-icon{font-family:var(--mono);font-size:11px;color:var(--green);background:var(--gbg);border:1px solid var(--border);border-radius:4px;padding:2px 8px;display:inline-block;margin-bottom:10px;letter-spacing:.08em}
-.gc-icon.am{color:var(--amber);background:var(--abg);border-color:rgba(255,178,26,.2)}
-.gc-icon.cy{color:var(--teal);background:rgba(0,189,212,.06);border-color:rgba(0,189,212,.2)}
+.gc-icon.am{color:var(--amber);background:var(--abg);border-color:rgba(var(--amber-rgb,255,178,26),.2)}
+.gc-icon.cy{color:var(--teal);background:rgba(var(--teal-rgb,0,189,212),.06);border-color:rgba(var(--teal-rgb,0,189,212),.2)}
 .gc-title{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--text);margin-bottom:6px}
 .gc-body{font-size:13px;line-height:1.65;color:var(--tmid)}
 .signal-chain{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:28px;font-family:var(--mono);font-size:12px;margin-top:32px}
@@ -87,14 +91,14 @@ p.body a:hover{border-color:var(--green)}
 .sc-row{display:flex;align-items:center;margin-bottom:14px}
 .sc-row:last-of-type{margin-bottom:0}
 .sc-node{border:1px solid var(--border);border-radius:5px;padding:6px 11px;background:var(--panel2);text-align:center;white-space:nowrap;flex-shrink:0}
-.sc-node.active{border-color:var(--green);background:rgba(46,255,107,.06);color:var(--green)}
-.sc-node.err{border-color:rgba(255,68,68,.35);color:rgba(255,68,68,.7)}
+.sc-node.active{border-color:var(--green);background:rgba(var(--green-rgb,46,255,107),.06);color:var(--green)}
+.sc-node.err{border-color:rgba(var(--red-rgb,255,68,68),.35);color:rgba(var(--red-rgb,255,68,68),.7)}
 .sc-node .sc-sub{font-size:9px;color:var(--tdim);margin-top:1px}
 .sc-node.active .sc-sub{color:var(--gdim)}
 .sc-arrow{flex:1;height:1px;background:var(--gdim);position:relative;min-width:12px}
 .sc-arrow::after{content:'▶';position:absolute;right:-1px;top:50%;transform:translateY(-50%);font-size:7px;color:var(--gdim)}
-.sc-arrow.bad{background:rgba(255,68,68,.3)}
-.sc-arrow.bad::after{color:rgba(255,68,68,.5)}
+.sc-arrow.bad{background:rgba(var(--red-rgb,255,68,68),.3)}
+.sc-arrow.bad::after{color:rgba(var(--red-rgb,255,68,68),.5)}
 .sc-stats{display:flex;gap:24px;margin-top:20px;padding-top:16px;border-top:1px solid var(--bdim);flex-wrap:wrap}
 .sc-stat{font-size:11px}
 .sc-stat .dim{color:var(--tdim)}
@@ -105,26 +109,26 @@ p.body a:hover{border-color:var(--green)}
 .tech-table tr:last-child td{border-bottom:none}
 .tech-table td:first-child{color:var(--text);font-weight:500;white-space:nowrap}
 .tech-table td:last-child{color:var(--tmid)}
-.tech-table tr:hover td{background:rgba(46,255,107,.025)}
-.callout{font-family:var(--mono);font-size:13px;line-height:1.75;color:var(--green);border-left:2px solid var(--gdim);padding:16px 20px;background:rgba(46,255,107,.03);border-radius:0 var(--r) var(--r) 0;margin:28px 0}
+.tech-table tr:hover td{background:rgba(var(--green-rgb,46,255,107),.025)}
+.callout{font-family:var(--mono);font-size:13px;line-height:1.75;color:var(--green);border-left:2px solid var(--gdim);padding:16px 20px;background:rgba(var(--green-rgb,46,255,107),.03);border-radius:0 var(--r) var(--r) 0;margin:28px 0}
 .callout.am{color:var(--amber);border-left-color:var(--adim);background:var(--abg)}
 .note{font-size:12px;line-height:1.7;color:var(--tdim);border-left:2px solid var(--bdim);padding:10px 16px;margin:20px 0;font-family:var(--mono)}
 .format-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
 .fmt-block{background:var(--panel);border:1px solid var(--bdim);border-radius:var(--r);padding:20px}
 .fmt-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--bdim)}
 .fmt-title{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--tmid)}
-.fdot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 5px rgba(46,255,107,.6)}
-.fdot.am{background:var(--amber);box-shadow:0 0 5px rgba(255,178,26,.6)}
-.frow{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(46,255,107,.04);font-family:var(--mono);font-size:11px}
+.fdot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 5px rgba(var(--green-rgb,46,255,107),.6)}
+.fdot.am{background:var(--amber);box-shadow:0 0 5px rgba(var(--amber-rgb,255,178,26),.6)}
+.frow{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(var(--green-rgb,46,255,107),.04);font-family:var(--mono);font-size:11px}
 .frow:last-child{border-bottom:none}
 .fext{color:var(--text);font-weight:500}
 .fspec{color:var(--tdim);font-size:10px}
 .feat-list{list-style:none;margin-top:24px;display:flex;flex-direction:column}
 .feat-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--bdim)}
 .feat-item:last-child{border-bottom:none}
-.feat-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(46,255,107,.6);margin-top:8px;flex-shrink:0}
-.feat-dot.am{background:var(--amber);box-shadow:0 0 6px rgba(255,178,26,.6)}
-.feat-dot.cy{background:var(--teal);box-shadow:0 0 6px rgba(0,189,212,.6)}
+.feat-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(var(--green-rgb,46,255,107),.6);margin-top:8px;flex-shrink:0}
+.feat-dot.am{background:var(--amber);box-shadow:0 0 6px rgba(var(--amber-rgb,255,178,26),.6)}
+.feat-dot.cy{background:var(--teal);box-shadow:0 0 6px rgba(var(--teal-rgb,0,189,212),.6)}
 .feat-title{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--text);margin-bottom:3px}
 .feat-desc{font-size:13px;line-height:1.65;color:var(--tmid)}
 .rate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:2px;background:var(--bdim);border:1px solid var(--bdim);border-radius:var(--r);overflow:hidden;margin-top:24px}
@@ -143,17 +147,17 @@ p.body a:hover{border-color:var(--green)}
 .ib-row:last-child{border-bottom:none}
 .ib-key{color:var(--tmid)}
 .ib-val{color:var(--text);font-weight:500;text-align:right}
-.pricing-card{max-width:460px;background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:32px auto 0;box-shadow:0 0 60px rgba(46,255,107,.05)}
-.pricing-hdr{padding:28px 32px 22px;border-bottom:1px solid var(--bdim);background:linear-gradient(160deg,rgba(46,255,107,.04) 0%,transparent 100%);text-align:center}
+.pricing-card{max-width:460px;background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:32px auto 0;box-shadow:0 0 60px rgba(var(--green-rgb,46,255,107),.05)}
+.pricing-hdr{padding:28px 32px 22px;border-bottom:1px solid var(--bdim);background:linear-gradient(160deg,rgba(var(--green-rgb,46,255,107),.04) 0%,transparent 100%);text-align:center}
 .pricing-name{font-family:var(--serif);font-size:24px;color:var(--text);margin-bottom:14px}
 .pricing-num{display:flex;align-items:baseline;gap:4px;justify-content:center;margin-bottom:4px}
 .pricing-cur{font-family:var(--mono);font-size:18px;color:var(--gdim);align-self:flex-start;margin-top:8px}
-.pricing-amt{font-family:var(--mono);font-size:52px;font-weight:500;color:var(--green);letter-spacing:-.02em;text-shadow:0 0 20px rgba(46,255,107,.3)}
+.pricing-amt{font-family:var(--mono);font-size:52px;font-weight:500;color:var(--green);letter-spacing:-.02em;text-shadow:0 0 20px rgba(var(--green-rgb,46,255,107),.3)}
 .pricing-cycle{font-family:var(--mono);font-size:11px;color:var(--tdim)}
-.pricing-trial{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--amber);background:rgba(255,178,26,.07);border:1px solid rgba(255,178,26,.18);padding:5px 14px;border-radius:20px;margin-top:14px}
+.pricing-trial{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--amber);background:rgba(var(--amber-rgb,255,178,26),.07);border:1px solid rgba(var(--amber-rgb,255,178,26),.18);padding:5px 14px;border-radius:20px;margin-top:14px}
 .pricing-feats{padding:22px 32px}
 .pf{display:flex;align-items:flex-start;gap:10px;padding:6px 0;font-size:13px;color:var(--tmid)}
-.pch{width:14px;height:14px;border-radius:50%;background:rgba(46,255,107,.1);border:1px solid rgba(46,255,107,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-size:8px;color:var(--green)}
+.pch{width:14px;height:14px;border-radius:50%;background:rgba(var(--green-rgb,46,255,107),.1);border:1px solid rgba(var(--green-rgb,46,255,107),.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-size:8px;color:var(--green)}
 .pricing-note{padding:0 32px 24px;font-family:var(--mono);font-size:10px;color:var(--tdim);text-align:center;line-height:1.6}
 .chip{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:3px;border:1px solid var(--border);background:var(--gbg);color:var(--green);margin:0 2px}
 .doc-footer{padding:48px 0 0;border-top:1px solid var(--bdim);display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px}
@@ -197,15 +201,14 @@ p.body a:hover{border-color:var(--green)}
 
 }
 
-
 /* ── SITE CHROME ──────────────────────────────────────────────────────────
    Header, mobile menu and footer identical to every other secondary page,
    lifted verbatim from privacy.html. Scoped as `body > nav` upstream, so the
    .toc rail nested inside .page is untouched. The three offsets below make
    room for the 60px fixed bar. */
-body > nav{position:fixed;top:0;left:0;right:0;z-index:9998;padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(14,16,18,.95);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid var(--bdim)}
+body > nav{position:fixed;top:0;left:0;right:0;z-index:9998;padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between;background:var(--navbg,rgba(14,16,18,.95));backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid var(--bdim)}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-icon{width:28px;height:28px;border-radius:7px;overflow:hidden;flex-shrink:0;box-shadow:0 0 10px rgba(255,178,26,.2)}
+.nav-icon{width:28px;height:28px;border-radius:7px;overflow:hidden;flex-shrink:0;box-shadow:0 0 10px rgba(var(--amber-rgb,255,178,26),.2)}
 .nav-icon img{width:100%;height:100%;display:block}
 .nav-wm{font-family:var(--serif);font-size:20px;color:var(--text);font-weight:400;font-synthesis-weight:none}
 .nav-wm em{font-style:italic;color:var(--green)}
@@ -214,21 +217,21 @@ body > nav{position:fixed;top:0;left:0;right:0;z-index:9998;padding:0 32px;heigh
 .nav-links a{font-size:13px;font-weight:500;color:var(--tmid);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--text)}
 .nav-links a.active{color:var(--green)}
-.nav-cta{font-family:var(--mono)!important;font-size:12px!important;color:var(--green)!important;border:1px solid var(--border)!important;padding:6px 16px!important;border-radius:4px!important;background:var(--gbg,rgba(46,255,107,.04))!important;transition:background .2s,box-shadow .2s!important}
-.nav-cta:hover{background:rgba(46,255,107,.10)!important;box-shadow:0 0 12px rgba(46,255,107,.15)!important}
+.nav-cta{font-family:var(--mono)!important;font-size:12px!important;color:var(--green)!important;border:1px solid var(--border)!important;padding:6px 16px!important;border-radius:4px!important;background:var(--gbg,rgba(var(--green-rgb,46,255,107),.04))!important;transition:background .2s,box-shadow .2s!important}
+.nav-cta:hover{background:rgba(var(--green-rgb,46,255,107),.10)!important;box-shadow:0 0 12px rgba(var(--green-rgb,46,255,107),.15)!important}
 .nav-ham{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:4px;border-radius:6px}
 .nav-ham span{display:block;width:20px;height:1.5px;background:var(--tmid);border-radius:2px;transition:transform .25s,opacity .2s,background .2s;transform-origin:center}
 .nav-ham:hover span{background:var(--text)}
 .nav-ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
 .nav-ham.open span:nth-child(2){opacity:0}
 .nav-ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-#mobile-menu{position:fixed;top:60px;left:0;right:0;background:#0e1012;border-bottom:1px solid var(--border);z-index:9999;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .28s cubic-bezier(.25,.46,.45,.94),opacity .25s ease}
+#mobile-menu{position:fixed;top:60px;left:0;right:0;background:var(--menubg,#0e1012);border-bottom:1px solid var(--border);z-index:9999;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .28s cubic-bezier(.25,.46,.45,.94),opacity .25s ease}
 #mobile-menu.open{transform:translateY(0);opacity:1;pointer-events:all}
 #mobile-menu ul{list-style:none;padding:8px 0 4px;margin:0}
-#mobile-menu ul li a{display:block;padding:15px 24px;font-size:16px;font-weight:500;color:var(--tmid);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.04);-webkit-tap-highlight-color:rgba(46,255,107,.08);transition:color .15s,background .15s}
-#mobile-menu ul li a:active{color:var(--text);background:rgba(46,255,107,.05)}
-#mobile-menu .mm-cta{display:block;margin:12px 20px 20px;font-family:var(--mono);font-size:13px;color:var(--green);text-decoration:none;border:1px solid var(--border);padding:12px 20px;border-radius:6px;background:var(--gbg,rgba(46,255,107,.04));text-align:center;-webkit-tap-highlight-color:rgba(46,255,107,.1);transition:background .15s}
-#mobile-menu .mm-cta:active{background:rgba(46,255,107,.1)}
+#mobile-menu ul li a{display:block;padding:15px 24px;font-size:16px;font-weight:500;color:var(--tmid);text-decoration:none;border-bottom:1px solid rgba(var(--ink-rgb,255,255,255),.04);-webkit-tap-highlight-color:rgba(var(--green-rgb,46,255,107),.08);transition:color .15s,background .15s}
+#mobile-menu ul li a:active{color:var(--text);background:rgba(var(--green-rgb,46,255,107),.05)}
+#mobile-menu .mm-cta{display:block;margin:12px 20px 20px;font-family:var(--mono);font-size:13px;color:var(--green);text-decoration:none;border:1px solid var(--border);padding:12px 20px;border-radius:6px;background:var(--gbg,rgba(var(--green-rgb,46,255,107),.04));text-align:center;-webkit-tap-highlight-color:rgba(var(--green-rgb,46,255,107),.1);transition:background .15s}
+#mobile-menu .mm-cta:active{background:rgba(var(--green-rgb,46,255,107),.1)}
 #nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9998;opacity:0;transition:opacity .25s ease}
 #nav-overlay.open{display:block;opacity:1}
 footer{
@@ -248,14 +251,7 @@ footer{
 .foot-links a:hover{color:var(--tmid)}
 @media(max-width:600px){
       nav{padding:0 20px}}
-@media(max-width:560px){.nav-ham{display:flex}.nav-links{display:none!important}}
-/* Same scrollbar as every other page. The 14px width is also why this page
-   used to measure 14px wider than its siblings: it had no styled bar. */
-::-webkit-scrollbar{width:14px;background:transparent}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--gdim);border-radius:7px;border:5px solid transparent;background-clip:padding-box;min-height:30px;transition:background .4s ease-out,border-width .4s ease-out}
-::-webkit-scrollbar-thumb:hover{background:var(--green);border:3px solid transparent;background-clip:padding-box}
-::-webkit-scrollbar-thumb:active{background:var(--green);border:2px solid transparent;background-clip:padding-box}
+@media(max-width:920px){.nav-ham{display:flex}.nav-links{display:none!important}}
 
 /* offsets for the fixed bar */
 .page{padding-top:60px}
@@ -283,6 +279,10 @@ footer{
     <li><a href="https://veravox.audio/#pricing">Pricing</a></li>
     <li><a href="https://veravox.audio/#pricing" class="nav-cta">Download VeraVox</a></li>
   </ul>
+  <button type="button" class="theme-switch" aria-label="Switch to light theme" title="Switch to light theme">
+    <svg class="ts-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.6" fill="currentColor"/><path d="M12 1.8v2.6M12 19.6v2.6M1.8 12h2.6M19.6 12h2.6M4.8 4.8l1.8 1.8M17.4 17.4l1.8 1.8M4.8 19.2l1.8-1.8M17.4 6.6l1.8-1.8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>
+    <svg class="ts-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 14.6A9 9 0 1 1 9.4 3a7.2 7.2 0 0 0 11.6 11.6z" fill="currentColor"/></svg>
+  </button>
   <button class="nav-ham" id="nav-ham" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -613,7 +613,7 @@ footer{
     <tr><th>Metric</th><th>Standard</th><th>Algorithm</th></tr>
     <tr><td>Crest Factor DR</td><td>Pleasurize Music Foundation &ldquo;Measuring DR&rdquo; (Algorithmix, v1.3, 2009), the procedure of the TT DR Offline Meter and of the DR Database</td><td>Per channel, consecutive non-overlapping 3&thinsp;s blocks (3&thinsp;&middot;&thinsp;(fs&thinsp;+&thinsp;60) samples, 132480 at 44.1&thinsp;kHz), block RMS with the +3&thinsp;dB sine correction. Channel DR = second-highest block peak against the power mean of the loudest 20&thinsp;% of the block RMS values; track DR = mean of the channel DRs, rounded to a single integer in dB (&ldquo;DR12&rdquo;, &ldquo;DR8&rdquo;). Certified against the community&rsquo;s DR logs on a 366-track corpus (19 September 2026).</td></tr>
     <tr><td>RMS</td><td>The &ldquo;RMS&rdquo; column of the community DR logs</td><td>Power mean of every 3&thinsp;s block RMS of every channel (sine correction included, the trailing partial block among them), in dBFS; verified against 363 community log rows within 0.02&thinsp;dB.</td></tr>
-    <tr><td>Album report</td><td>Export per album</td><td>PDF (wordmark, cover, album and format, album DR as the rounded average of the track values with min and max, average LRA / LUFS-I / RMS, highest peak, a bar per track in the three DR bands, full table, notes) or the classic tabular text log; proposed as <code>VeraVox_DR_&lt;album&gt;</code> in the album&rsquo;s folder, where the Booklet viewer opens it.</td></tr>
+    <tr><td>Album report</td><td>Export per album, or for a selection of albums</td><td>PDF (wordmark, cover, album and format, album DR as the rounded average of the track values with min and max, average LRA / LUFS-I / RMS, highest peak, a bar per track in the three DR bands, full table, notes) or the classic tabular text log; proposed as <code>VeraVox_DR_&lt;album&gt;</code> in the album&rsquo;s folder, where the Booklet viewer opens it. A selection writes each report in its album&rsquo;s folder or all in one folder, analyses tracks never analysed first, and runs in the background (pages drawn off the main thread, files written on a queue of their own); exporting again resumes, keeping reports newer than their album&rsquo;s analysis.</td></tr>
     <tr><td>R128 LRA</td><td>EBU Tech 3342 (Loudness Range)</td><td>ITU-R BS.1770-4 K-weighted pipeline. 3 s short-term loudness blocks at 100 ms hop, absolute gate at &minus;70 LUFS, relative gate at &minus;20 LU below the abs-gated mean. LRA = p95 &minus; p10 of the surviving blocks, in Loudness Units.</td></tr>
     <tr><td>LUFS-I (integrated)</td><td>ITU-R BS.1770-4</td><td>Same K-weighted pipeline, 400 ms momentary blocks with 75&thinsp;% overlap, cascaded gating (&minus;70 LUFS absolute, &minus;10 LU relative). Persisted alongside DR and LRA and surfaced in the Track Info panel.</td></tr>
     <tr><td>Sample Peak</td><td>File peak in dBFS</td><td>Largest absolute sample value, reported in dBFS. True Peak (BS.1770-4 Annex 2, 4&times; polyphase oversampling) not yet measured.</td></tr>
@@ -777,7 +777,7 @@ footer{
     <tr><th>Feature</th><th>Description</th></tr>
     <tr><td>Now Playing</td><td>Full-size artwork, track info, format badge (DSD128, FLAC 24/96, etc.) carrying the same coloured Signal Path LED as the desktop while a track plays, with the full chain from source file to output device one tap away, seek bar, and transport controls: shuffle, previous, stop, play/pause, next, repeat.</td></tr>
     <tr><td>Queue</td><td>Browse the current queue, tap any track to play it, swipe to remove, or clear the entire queue.</td></tr>
-    <tr><td>Library</td><td>Nine sub-tabs — Albums (cover art grid), Artists (alphabetical list), Tracks (flat track list), Genres, Composers, Tags, Folders, Playlists, Smart — with a persistent search bar that filters the active view in place, mirroring the desktop Library FTS5 behaviour. Tap an album to see its tracks. Tap an artist to open a grid of that artist's albums with cover art (mirroring the desktop Artist view), then drill in or use Play All / Add to Queue for the artist's entire discography. The Folders tab browses the on-disk folder structure to any depth, mirroring the desktop Folder View. A status line at the foot of the list states how many albums and tracks the sub-tab lists and how long they play, the desktop's own Library status line.</td></tr>
+    <tr><td>Library</td><td>Nine sub-tabs — Albums (cover art grid), Artists (alphabetical list), Tracks (flat track list), Genres, Composers, Tags, Folders, Playlists, Smart — with a persistent search bar that filters the active view in place, mirroring the desktop Library FTS5 behaviour. Tap an album to see its tracks. Tap an artist to open a grid of that artist's albums with cover art (mirroring the desktop Artist view), then drill in or use Play All / Add to Queue for the tracks it lists, the whole discography unless a filter narrows it. The Folders tab browses the on-disk folder structure to any depth, mirroring the desktop Folder View. A status line at the foot of the list states how many albums and tracks the sub-tab lists and how long they play, the desktop's own Library status line.</td></tr>
     <tr><td>Device Select</td><td>See all audio output devices in the Settings tab, each with its tier LED and label (Exclusive Ready, Shared Output, Lossy) as in the desktop picker. Tap to switch the active device.</td></tr>
   </table>
   </div>
@@ -870,13 +870,13 @@ footer{
 <section id="tuneshine">
   <div class="sec-eyebrow">Partner Integration</div>
   <h2 class="sec-h">The cover you own, on a display across the room.</h2>
-  <p class="body">Tuneshine&reg; is an LED display in a wooden case, made by Tobias Butler, that shows the album art of what is playing. VeraVox drives it directly over the local network, and it is the first hardware integration built against Tuneshine&rsquo;s own HTTP API rather than through a music service.</p>
+  <p class="body">Tuneshine&reg; is an LED display in a wooden case, made by Tobias Butler, that shows the album art of what is playing. VeraVox drives it directly over the local network, through Tuneshine&rsquo;s own HTTP API rather than through a music service.</p>
   <p class="body">That distinction is the point. The display&rsquo;s built-in integrations identify music by looking it up online, which serves the mainstream catalogue and quietly fails for a self-made rip, a limited pressing, or a recording no database has catalogued. VeraVox sends the artwork <strong>embedded in the listener&rsquo;s own file</strong>, so what appears on the display is the cover that shipped with the music.</p>
   <div class="table-scroll">
   <table class="tech-table">
     <tr><th>Aspect</th><th>Detail</th></tr>
     <tr><td>Discovery</td><td>VeraVox browses for displays on the local network and lists what it finds; an address can also be entered by hand. The resolved <span class="chip">.local</span> name is stored rather than a numeric address, so the link survives a DHCP reassignment.</td></tr>
-    <tr><td>What is sent</td><td>On each track change: the track's cover as VeraVox shows it (the embedded art, a folder image, or the cover the listener chose for the album or the disc) resized to roughly 256 px, plus title, artist and album. On stop, VeraVox clears its own override and the display returns to its idle image. A track with no cover sends no image; VeraVox never invents artwork.</td></tr>
+    <tr><td>What is sent</td><td>On each track change: the track's cover as VeraVox shows it (the embedded art, a folder image, or the cover the listener chose for the album or the disc) resized to roughly 256 px, plus title, artist, album and the name of the output device. On stop, and when VeraVox quits, it clears its own override and the display returns to its idle image. A track with no cover sends no image; VeraVox never invents artwork.</td></tr>
     <tr><td>Where it runs</td><td>Entirely on the local network. No account, no cloud service, no internet connection. The integration is off by default and inert until a display is named.</td></tr>
     <tr><td>Cost to playback</td><td>None. It sits outside the real-time audio path: one image resize and one small HTTP request per track change, on the same track-change signal the Web Remote and the system Now Playing panel already observe.</td></tr>
   </table>
