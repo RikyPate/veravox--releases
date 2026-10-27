@@ -1,0 +1,145 @@
+<h2>VeraVox 1.6.0</h2>
+
+<p>Settings in a window of their own, a search for the queue, smooth fades
+and gapless playback for every format, and a deep overhaul of how VeraVox
+works with network renderers. Your library, queues, saved playlists and
+settings are untouched, except for the Dynamic Range figures of DSF files:
+see below.</p>
+
+<h3>Settings and the player</h3>
+
+<ul>
+  <li>Every setting now lives in one Settings window, built like the Help:
+      open it with &#8984;, or the gear, keep it beside the player, and search
+      it by word. Each card has a ? that opens its page in the Help. The
+      output and its Playback Mode, Group by Work and the time display are
+      there too, and the Web Remote panel is now a card, still at
+      &#8679;&#8984;R.</li>
+  <li>The player names the output it plays on, next to the output button,
+      and the Web Remote shows it too. The icon beside it always tells the
+      truth: an open padlock when VeraVox will take the DAC at Play, a closed
+      one while it holds it, a speaker when the DAC is shared. The mode is now
+      called Exclusive, and you choose it in the device picker or in
+      Settings: Tools &#9656; Playback Mode is gone.</li>
+  <li>The space bar plays and pauses, in the main window and in every panel.
+      The info and booklet icons over the cover appear when you point at
+      it.</li>
+</ul>
+
+<h3>The queue</h3>
+
+<ul>
+  <li>Find in Queue, with &#8984;F or the magnifier next to Queue, jumps to
+      the first matching row; Return or &#8984;G goes to the next, and Esc
+      leaves that row selected, ready to play. The Web Remote's queue has the
+      same search.</li>
+</ul>
+
+<h3>Playback</h3>
+
+<ul>
+  <li>Play, pause, seek, Stop and every change of track that is not gapless
+      now fade in or out over 50 milliseconds, on every format and output,
+      and DSD over DoP fades as cleanly as PCM. The reason is protection: a
+      stream that starts or stops abruptly sends a sudden jump through your
+      DAC to the amplifier and the speakers, and now your system only ever
+      receives music, silence or a smooth ramp between the two. A slow
+      source, such as a busy NAS, fades out, waits and picks up exactly where
+      it stopped.</li>
+  <li>Gapless playback works the same for every format and output path, DSD
+      included, and SACD ISO tracks begin and end exactly where the disc
+      says. DSF and DFF files start without being read in full, which helps
+      from a NAS.</li>
+  <li>In Exclusive, VeraVox still sets your DAC to each file's own rate
+      whenever the DAC offers it, with nothing converted. What changes is
+      Shared Output chosen on a DAC that also offers Exclusive: VeraVox now
+      leaves the DAC at the rate it has and converts the file itself, at its
+      highest quality, with the step shown in the Signal Path. If another app
+      changes that rate during playback, the music carries on.</li>
+  <li>The Signal Path no longer calls the signal lossless where VeraVox
+      can't guarantee it, as with a converted file or a wireless output.</li>
+  <li>A virtual audio device that accepts exclusive formats, such as the
+      bridge some audio software installs, is now Exclusive Ready like a DAC:
+      VeraVox asks at the first Play whether to use it in Exclusive or Shared
+      Output, and you can change the answer in the device picker or in
+      Settings &#9656; Output.</li>
+  <li>DSD1024 files of both rate families now play, and each DSD rate has one
+      name throughout the app.</li>
+</ul>
+
+<h3>Dynamic Range and the Booklet</h3>
+
+<ul>
+  <li>A DSF file usually ends with a short block of filler that isn't music,
+      and the Dynamic Range analysis used to read it as part of the track,
+      which could skew the figures, above all on quiet tracks. It now
+      measures the music alone. So that every figure comes from the same
+      measurement, the DR values of DSF tracks from earlier versions are
+      cleared once, at the first launch: right-click an album and choose
+      Compute Dynamic Range to measure it again, or measure everything at
+      once with Tools &#9656; Analyze Library Dynamic Range&#8230;, which on a
+      large collection may take a while.</li>
+  <li>The Booklet finds documents kept in a box set's folder, whatever the
+      disc folders are called. Their icons light up after the next library
+      update.</li>
+</ul>
+
+<h3>Network renderers</h3>
+
+<ul>
+  <li>VeraVox now follows the UPnP standard closely, as a control point and
+      in UPnP Renderer Mode. Renderers appear sooner and stay listed, your
+      last renderer is the output again right after launch, and the progress
+      bar follows what the renderer actually plays. The player says plainly
+      when a track cannot start, and why, and follows what the renderer does
+      on its own, such as a Stop from its remote or another app taking it
+      over. A CUE album plays on any renderer that accepts WAV, whatever the
+      format of its file.</li>
+  <li>In Renderer Mode, VeraVox shows up in control apps with its icon and
+      reappears as soon as the Mac wakes or the mode is switched back on. A
+      track it can't play is refused at once, so the control app can say
+      why, and a seek beyond what has arrived waits for it. It no longer
+      offers a volume control it never applied: set the volume on your DAC
+      or amplifier.</li>
+  <li>VeraVox holds to the UPnP specifications, and will keep holding to
+      them ever more closely: that rigour is what keeps it dependable among
+      the many ways devices can drift from the standard. As a result, a
+      renderer that departs from it may no longer appear in the list. If one
+      of yours disappears or behaves differently, please send us the log
+      from Help &#9656; Export Diagnostic Log&#8230;. If the cause lies in
+      VeraVox, we will fix it promptly, within the specifications; if it lies
+      in the renderer or in the control app, we will make a point of
+      reporting it to its maker.</li>
+</ul>
+
+<h3>Web Remote</h3>
+
+<ul>
+  <li>The colours of the app's window, a Library header like the Mac's, a
+      waveform that always reaches the end of the bar with a thin line where
+      the played part ends, and screens that start below the status bar on
+      iPad and iPhone.</li>
+</ul>
+
+<h3>Other fixes</h3>
+
+<ul>
+  <li>More reliable stops, skips and seeks with DSD files, and when a DAC is
+      unplugged during playback.</li>
+  <li>De-emphasis for CD rips that declare it is applied the same way on
+      every output path.</li>
+  <li>Albums spread over two disc images or two CUE sheets play one disc
+      after the other, a folder dropped on the queue arrives album by album,
+      and every track of a SACD ISO can join the queue.</li>
+  <li>A Speaker Layout stays in place after a seek. FLAC files that macOS
+      can't open show their real sample rate, bit depth and channels, and a
+      file that can't be added to the library is named in the Diagnostic
+      Log, with the reason.</li>
+  <li>VeraVox is more robust against malformed messages from other devices
+      on the network, as a renderer and as a control point.</li>
+</ul>
+
+<p>Many of these changes began with a message from someone who uses VeraVox:
+thank you for writing in.</p>
+
+<p><a href="https://veravox.audio">veravox.audio</a></p>

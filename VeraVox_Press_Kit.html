@@ -479,9 +479,10 @@ footer{
     <tr><td>DSD128</td><td>5.6448 MHz</td><td>352.8 kHz</td><td>~22 MB at 8 s</td></tr>
     <tr><td>DSD256</td><td>11.2896 MHz</td><td>705.6 kHz</td><td>~22 MB at 4 s</td></tr>
     <tr><td>DSD512</td><td>22.5792 MHz</td><td>1411.2 kHz</td><td>~45 MB at 4 s</td></tr>
+    <tr><td>DSD1024</td><td>45.1584 MHz</td><td>none a DAC accepts (2822.4 kHz)</td><td>DSD&rarr;PCM ring</td></tr>
   </table>
   </div>
-  <div class="note">Higher DSD rates via DoP require a DAC capable of accepting the corresponding PCM carrier. DSD256 needs 705.6 kHz; DSD512 needs 1411.2 kHz. Many USB DACs cap at 705.6 kHz or lower &mdash; check your device&rsquo;s spec sheet before assuming DSD512 support. The DAC Diagnostic panel reports the maximum non-mixable carrier your device exposes.</div>
+  <div class="note">Higher DSD rates via DoP require a DAC capable of accepting the corresponding PCM carrier. DSD256 needs 705.6 kHz; DSD512 needs 1411.2 kHz. Many USB DACs cap at 705.6 kHz or lower &mdash; check your device&rsquo;s spec sheet before assuming DSD512 support. The DAC Diagnostic panel reports the maximum non-mixable carrier your device exposes. DSD1024 needs a carrier no USB DAC exposes: on a local output VeraVox plays it through DSD&rarr;PCM, and to a UPnP renderer it serves the file intact. The 48&thinsp;kHz base family, from DSD64 at 3.072&thinsp;MHz to DSD1024 at 49.152&thinsp;MHz, is read the same way and named with the suffix (48k).</div>
 
   <h3 class="sub-h">Streaming Architecture &amp; SACD ISO</h3>
   <p class="body">DSF and DFF files are read via streaming FileHandle in 128&thinsp;KB chunks — only the file header (~512 bytes) is loaded at startup. No full-file copy in RAM; memory usage is bounded to the ring buffer regardless of file length. SACD ISO images are parsed using a native Scarlet Book parser: the Master TOC at sector 510 locates both the stereo and multi-channel areas, and per-track DSD data is extracted sector by sector. DST-compressed tracks are decoded via a streaming pipeline with a C-language decoder bridge and a cancellation token for stopping mid-decode without blocking.</p>
@@ -516,14 +517,14 @@ footer{
   <p class="body">VeraVox operates on two hardware realities: DACs that support non-mixable integer formats and those that do not. When the selected device cannot provide exclusive integer mode, VeraVox falls back gracefully — but always makes the fallback visible with a status banner. There is no silent degradation.</p>
 
   <h3 class="sub-h">PCM Shared Output Fallback</h3>
-  <p class="body">When the device does not support non-mixable integer mode — built-in speakers, Bluetooth, or a DAC that only exposes mixable formats — VeraVox uses AVAudioEngine. The player node connects directly to the output node, skipping the main mixer node to prevent resampling artefacts at non-standard rates. VeraVox still sets <span class="chip">kAudioDevicePropertyNominalSampleRate</span> to notify other listeners, but a <strong>"Shared output — not bit-perfect"</strong> banner is displayed in the player UI.</p>
-  <div class="note">Setting macOS system volume to 100% does not bypass the system mixer — it applies unity-gain coefficient in the CoreAudio mixing stage operating in 32-bit float. Even at unity gain, the mixer may resample if the device rate differs from the file's native rate. Hog Mode eliminates the mixer entirely.</div>
+  <p class="body">When the device does not support non-mixable integer mode (built-in speakers, Bluetooth, or a DAC that only exposes mixable formats), or when you set a DAC to Shared Output, VeraVox uses AVAudioEngine. The source node connects directly to the output node, skipping the main mixer node. On a device that has no exclusive mode, VeraVox sets <span class="chip">kAudioDevicePropertyNominalSampleRate</span> to the file's rate when the device offers it; a DAC set to Shared Output keeps its current rate, because the rate belongs to the device and changing it would change it for every application using it. Whenever the file's rate differs from the device's, VeraVox converts it upstream at mastering quality, with a linear-phase filter that keeps the audible band intact, and the Signal Path shows the step and reports the path as High Quality rather than Bit-Perfect. When AVAudioEngine stops on a configuration change, because another application or Audio MIDI Setup moved the device's rate, VeraVox rebuilds the stream at the new rate from the same position and never writes the rate back.</p>
+  <div class="note">Setting macOS system volume to 100% does not bypass the system mixer — it applies unity-gain coefficient in the CoreAudio mixing stage operating in 32-bit float. Even at unity gain, the stream is resampled on the way if the device rate differs from the file's native rate. Hog Mode eliminates the mixer entirely.</div>
 
   <h3 class="sub-h">DSD→PCM Fallback</h3>
   <p class="body">When the DAC does not support DoP at the required carrier rate, VeraVox falls back to a sinc-Kaiser FIR decimation pipeline. DSD data is decimated using pre-computed byte lookup tables with overlap-save buffering for continuity across chunk boundaries. If the DAC supports non-mixable PCM formats, the decimated Int32 signal is output via exclusive mode (hog mode + IOProc), bypassing the system mixer entirely (Enhanced path, yellow LED). Otherwise, the Float32 output is delivered via AVAudioEngine (shared output, green "High Quality" LED). The Signal Path popover shows the full chain including the DSD→PCM Conversion step.</p>
 
   <h3 class="sub-h">Signal Path Indicator</h3>
-  <p class="body">During playback, a colored LED dot on the format badge shows playback quality at a glance: <strong>green</strong> (bit-perfect — IOProc + hog, native signal unmodified to the DAC), <strong>yellow</strong> (Enhanced — DSD converted to high-res PCM via exclusive mode), <strong>blue</strong> (Network Bit-Perfect — file streamed unmodified to a UPnP renderer), <strong>light blue</strong> (Channel-Transparent — multichannel file routed end-to-end through a virtual or aggregate device at unity gain, no downmix, no channel remapping), <strong>green</strong> (Bit-Perfect Handoff: stereo PCM delivered bit-exact to a virtual audio device running at the file's rate, for a processing chain that runs after VeraVox), or <strong>green</strong> (High Quality — shared-output path for stereo or L/R-extracted multichannel). Click the badge to open a popover with the full processing chain — source, decode, sample rate conversion, lossy codec, output mode, and destination device. A purple "DAC Warm-Up" indicator appears below the badge when the warm-up sequence is active.</p>
+  <p class="body">During playback, a colored LED dot on the format badge shows playback quality at a glance: <strong>green</strong> (bit-perfect — IOProc + hog, native signal unmodified to the DAC), <strong>yellow</strong> (Enhanced: DSD, or PCM above the DAC's rates, converted and played in exclusive mode), <strong>blue</strong> (Network Bit-Perfect — file streamed unmodified to a UPnP renderer), <strong>light blue</strong> (Channel-Transparent: every channel of a multichannel file delivered at unity gain, with no downmix, to a virtual or aggregate device or a multichannel DAC set to Shared Output), <strong>green</strong> (Bit-Perfect Handoff: stereo PCM delivered bit-exact to a virtual audio device running at the file's rate, for a processing chain that runs after VeraVox), or <strong>green</strong> (High Quality: the shared output path for stereo or L/R-extracted multichannel, with every conversion shown as a step). Click the badge to open a popover with the full processing chain — source, decode, sample rate conversion, lossy codec, output mode, and destination device. A purple "DAC Warm-Up" indicator appears below the badge when the warm-up sequence is active.</p>
 </section>
 
 <!-- LIBRARY -->
@@ -558,7 +559,7 @@ footer{
   </ul>
 
   <h3 class="sub-h">Queue</h3>
-  <p class="body">The Queue panel holds the tracks lined up for playback. Tracks play in order top to bottom. Double-clicking a track starts playback immediately. Shuffle plays the queue in a random order, from a random track or from the track you choose, and follows the queue as you edit it; Repeat cycles through Off → Repeat One → Repeat All, with dot indicators in the transport.</p>
+  <p class="body">The Queue panel holds the tracks lined up for playback. Tracks play in order top to bottom. Double-clicking a track starts playback immediately. Shuffle plays the queue in a random order, from a random track or from the track you choose, and follows the queue as you edit it; Repeat cycles through Off → Repeat One → Repeat All, with dot indicators in the transport. A find bar (⌘F, or the magnifier next to the Queue title) takes you to any row by the words it shows, title, artist, album or format, without hiding or moving a single row; ⌘G steps through the matches, and the Web Remote's Queue has the same find.</p>
 
   <h3 class="sub-h">Mini Player</h3>
   <p class="body">A compact floating window (⤓ in the toolbar) that stays always on top, providing Previous, Play/Pause, Next, track title, and a format badge. Shares AudioPlayer state with the main window — actions in either are immediately reflected in the other. Does not display Hog Mode status or stream diagnostics; those remain in the main window and the Stream Inspector.</p>
@@ -633,7 +634,7 @@ footer{
   <h3 class="sub-h">Stream Inspector</h3>
   <p class="body">Complete real-time view of the playback pipeline, operating on a 30&thinsp;Hz display timer reading from a lock-free tap buffer populated by the IOProc on every hardware interrupt. No sample is ever delayed or dropped for display purposes.</p>
   <ul class="feat-list">
-    <li class="feat-item"><div class="feat-dot cy"></div><div class="feat-content"><div class="feat-title">Bit-Perfect Chain Verifier</div><div class="feat-desc">Real-time verification of signal integrity. Monitors the fade envelope gain at the hardware tap point &mdash; when gain is exactly 1.0, the per-sample multiplication is skipped entirely, guaranteeing bitwise-identical delivery. Status indicator (PASS / PASS &middot; FAITHFUL DECODE / PASS &middot; ENHANCED EXCLUSIVE / FADE ACTIVE / N/A), fade gain meter, output path label, and session counters showing cumulative non-bit-perfect time.</div></div></li>
+    <li class="feat-item"><div class="feat-dot cy"></div><div class="feat-content"><div class="feat-title">Bit-Perfect Chain Verifier</div><div class="feat-desc">Real-time verification of signal integrity. Monitors the fade envelope gain at the hardware tap point &mdash; when gain is exactly 1.0, the per-sample multiplication is skipped entirely, guaranteeing bitwise-identical delivery. For DSD over DoP it also watches the fade modulator, which after a fade holds the stream at full level until the music covers the switch back to the file&rsquo;s bits. Status indicator (PASS / PASS &middot; FAITHFUL DECODE / PASS &middot; ENHANCED EXCLUSIVE / FADE ACTIVE / DSD SILENCE / DSD REMODULATED / N/A), fade gain meter, output path label, and session counters showing cumulative non-bit-perfect time.</div></div></li>
     <li class="feat-item"><div class="feat-dot cy"></div><div class="feat-content"><div class="feat-title">Live Oscilloscope</div><div class="feat-desc">For DSD: the signal envelope decoded via a FIR 1-bit&rarr;audio filter. For PCM: the raw sample waveform. A scrolling RMS history bar chart with peak hold indicator runs alongside.</div></div></li>
     <li class="feat-item"><div class="feat-dot cy"></div><div class="feat-content"><div class="feat-title">Stream Status</div><div class="feat-desc">Instant-read indicators for DAC Sync status, DoP Marker quality, Phase Error count, Fill Injection count, and Underrun count &mdash; each green (nominal) or amber/red (attention required).</div></div></li>
     <li class="feat-item"><div class="feat-dot cy"></div><div class="feat-content"><div class="feat-title">Bit-Plane Visualizer</div><div class="feat-desc">Shows which of the 32 bits in the SInt32 internal container carry signal. A 24-bit file in a 32-bit container shows top 24 bits active, bottom 8 silent. An effective bit depth label bridges the gap between the internal transport format and the physical DAC format.</div></div></li>
@@ -729,7 +730,7 @@ footer{
   <div class="callout">Bit-Perfect Test workflow: set VeraVox's main output device AND the SIG GEN input to the same loopback device (BlackHole 2ch for digital, or a loopback-cabled audio interface for hardware) → generate SINE 1 kHz at −6 dBFS → switch SOURCE to DUAL → CALIBRATE → check BPT = PASS → repeat at every sample rate the DAC supports. If BPT shows ERR at a specific rate, that format is going through the system mixer.</div>
 
   <h3 class="sub-h">Audio Output Architecture</h3>
-  <p class="body">The Signal Generator uses the same playback pipeline as music — <strong>by design</strong>. The signal exercises the exact same code path (PCMRingBuffer block 3, syntheticFill closure), format negotiation, and hardware delivery. Measurements are representative of real playback conditions. Two independent output paths: a 30 fps visual timer pushing Int32 samples to the VectorscopeDataSource, and an audio fill closure at the DAC's native sample rate. Each uses separate phase accumulators — no cross-thread conflicts.</p>
+  <p class="body">The Signal Generator uses the same playback pipeline as music — <strong>by design</strong>. The signal exercises the exact same code path (the PCM ring buffer, with the generator as its source in place of a file), format negotiation, and hardware delivery. Measurements are representative of real playback conditions. Two independent output paths: a 30 fps visual timer pushing Int32 samples to the VectorscopeDataSource, and an audio fill closure at the DAC's native sample rate. Each uses separate phase accumulators — no cross-thread conflicts.</p>
   <div class="callout am">The Signal Generator produces real audio output. In Hog Mode, there is no system volume control between the software and the DAC. The default level is −6 dBFS as a safety margin. Always verify monitoring levels before generating at 0 dBFS, especially with headphones or high-sensitivity speakers.</div>
 </section>
 
@@ -790,9 +791,9 @@ footer{
   <table class="tech-table">
     <tr><th>Mechanism</th><th>Detail</th></tr>
     <tr><td>Local network only</td><td>Server binds to the LAN interface. Not accessible from the internet.</td></tr>
-    <tr><td>PIN authentication</td><td>Random 4-digit PIN generated on first launch. Persists across server restarts unless explicitly regenerated. Shown in the Settings popover and the Web Remote panel (⌘⇧R).</td></tr>
+    <tr><td>PIN authentication</td><td>Random 4-digit PIN generated on first launch. Persists across server restarts unless explicitly regenerated. Shown on the Web Remote card in Settings › Network (⌘⇧R).</td></tr>
     <tr><td>Token-based sessions</td><td>After PIN entry, a UUID token is stored in the browser — subsequent connections re-authenticate automatically.</td></tr>
-    <tr><td>Disconnect All</td><td>One button in the settings panel revokes all active tokens and disconnects all clients instantly.</td></tr>
+    <tr><td>Disconnect All</td><td>One button on the Web Remote card revokes all active tokens and disconnects all clients instantly.</td></tr>
   </table>
   </div>
   <div class="callout">Web Remote is read-only with respect to the audio engine: it sends commands via the same API used by the media keys and Mini Player. No audio signal processing is involved — the "Signal Untouched" philosophy is fully preserved.</div>
@@ -826,10 +827,10 @@ footer{
   <table class="tech-table">
     <tr><th>Format</th><th>Support</th></tr>
     <tr><td>PCM (FLAC, WAV, AIFF, ALAC, WavPack, MP3, AAC)</td><td>Widely supported by all UPnP renderers.</td></tr>
-    <tr><td>DSD (DSF, DFF, WavPack DSD)</td><td>Native DSD streaming for capable renderers. GetProtocolInfo check before playback begins.</td></tr>
+    <tr><td>DSD (DSF, DFF, SACD ISO, WavPack DSD)</td><td>Native DSD streaming, only to renderers that declare DSD: checked with GetProtocolInfo before playback begins, the next track included.</td></tr>
   </table>
   </div>
-  <div class="note">VeraVox serves files in their native format. No transcoding. If the renderer does not support DSD natively, playback will be rejected — use local output with DoP instead.</div>
+  <div class="note">VeraVox serves each file as it is, except a track of a CUE sheet over a PCM file, served as a WAV of that track alone, and a track of a SACD ISO or a WavPack DSD file, served as a DSF with its DSD bit-perfect. If the renderer does not declare DSD, VeraVox does not send it: use local output with DoP instead.</div>
 
   <h3 class="sub-h">Gapless Playback</h3>
   <p class="body">Two-tier gapless mechanism for network renderers:</p>
@@ -843,7 +844,7 @@ footer{
   <p class="body">VeraVox detects when the renderer has promoted a pre-loaded track and skips the Stop/re-serve cycle entirely, preserving the renderer's gapless buffer.</p>
 
   <h3 class="sub-h">Connection Recovery</h3>
-  <p class="body">If the renderer becomes unreachable (network disruption, device restart, Wi-Fi loss), VeraVox detects the failure after 5 consecutive poll errors (~5 seconds) and displays a red error banner. Probing continues every 10 seconds. When the renderer comes back online, a green "Renderer reconnected" banner appears and playback can be resumed.</p>
+  <p class="body">If the renderer stops answering (network disruption, device restart, Wi-Fi loss), VeraVox waits up to 30 seconds, the time the UPnP specification gives a device to answer, and shows a "Waiting for" banner with the renderer's name; then it displays a red banner saying the renderer is not available. When the renderer is heard on the network again, a green "Renderer reconnected" banner appears and playback can be resumed.</p>
 
   <h3 class="sub-h">Volume</h3>
   <p class="body">VeraVox does <strong>not</strong> apply volume to UPnP renderers. This is consistent with the player&rsquo;s overall design: VeraVox serves the file untouched and lets the renderer&rsquo;s own audio stage handle the rest. Use the renderer&rsquo;s own volume control (hardware knob, remote, or native app) &mdash; many modern streamers implement digital volume with high-order noise-shaping at the device&rsquo;s internal rate, which is a different operation from applying a player-side coefficient.</p>
@@ -855,7 +856,8 @@ footer{
   <table class="tech-table">
     <tr><th>Aspect</th><th>Behaviour</th></tr>
     <tr><td>Same engine</td><td>Identical bit-perfect path to the DAC as a local file — no parallel, lesser chain.</td></tr>
-    <tr><td>Fast start</td><td>Progressive download to disk with a safe-start gate: a large hi-res file begins in seconds, and only real samples are ever played.</td></tr>
+    <tr><td>Fast start</td><td>Progressive download to disk with a safe-start gate: a large hi-res FLAC, WavPack or AIFF file begins in seconds, and only real samples are ever played. Formats whose readers fix the length when they open the file (WAV, DSF, DFF, M4A, MP3) start once the whole file is on disk, so every track plays to its real end. Until the first sound the transport reports TRANSITIONING (AVTransport:1 &sect;&nbsp;2.4.9.3).</td></tr>
+    <tr><td>Seek</td><td>A seek inside the downloaded part goes straight to the engine. A seek past it waits in TRANSITIONING (AVTransport:1 &sect;&nbsp;2.4.12.3) and lands on the requested point when the download gets there; for FLAC the download frontier is measured from the frame headers, not estimated.</td></tr>
     <tr><td>Gapless</td><td>The control point&rsquo;s next-track queue (SetNextAVTransportURI) feeds VeraVox&rsquo;s existing sample-accurate gapless engine.</td></tr>
     <tr><td>Eventing</td><td>A GENA server emits LastChange NOTIFYs so the control point&rsquo;s state tracks VeraVox live; transport controls are bidirectional.</td></tr>
     <tr><td>Resilience</td><td>A dropped control point, a dead source, a disconnected device, or turning the mode off mid-stream all stop playback in an orderly way — the renderer is never left orphaned.</td></tr>
@@ -902,8 +904,8 @@ footer{
     </div>
     <div class="fmt-block">
       <div class="fmt-head"><span class="fmt-title">DSD Native</span><span class="fdot am"></span></div>
-      <div class="frow"><span class="fext">DSF</span><span class="fspec">DSD64 → DSD512, multi-ch</span></div>
-      <div class="frow"><span class="fext">DFF</span><span class="fspec">DSD64 → DSD512, multi-ch</span></div>
+      <div class="frow"><span class="fext">DSF</span><span class="fspec">DSD64 → DSD1024 (DoP to DSD512), multi-ch</span></div>
+      <div class="frow"><span class="fext">DFF</span><span class="fspec">DSD64 → DSD1024 (DoP to DSD512), multi-ch</span></div>
       <div class="frow"><span class="fext">SACD ISO</span><span class="fspec">Scarlet Book, DST decode</span></div>
       <div class="frow"><span class="fext">DoP</span><span class="fspec">bit-perfect via PCM carrier</span></div>
       <div class="frow"><span class="fext">DSD→PCM</span><span class="fspec">FIR fallback, exclusive mode when possible</span></div>
